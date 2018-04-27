@@ -4,9 +4,10 @@
 #include <stdio.h>
 
 typedef void*    eni_create_t(char* pArgStr);
-typedef uint64_t eni_gas_t(void* pFunctor);
-typedef char*    eni_run_t(void* pFunctor);
 typedef void     eni_destroy_t(void* pFunctor);
+
+extern uint64_t eni_gas(void* pFunctor);
+extern const char* eni_run(void *pFunctor);
 
 int main(int argc, char* argv[])
 {
@@ -18,8 +19,6 @@ int main(int argc, char* argv[])
     return 1;
 
   eni_create_t*  eni_create  = dlsym(handle, "reverse_create");
-  eni_gas_t*     eni_gas     = dlsym(handle, "eni_gas");
-  eni_run_t*     eni_run     = dlsym(handle, "eni_run");
   eni_destroy_t* eni_destroy = dlsym(handle, "reverse_destroy");
 
   void* functor = eni_create(argv[1]);

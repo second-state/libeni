@@ -16,6 +16,7 @@ clean:
 	rm -f *.so
 
 test: eni_reverse.so
-	$(CC) -o$@ main.c $(CFLAGS) -ldl
-	./$@ 'Hello World' | diff -qs - expected.txt
+	$(CXX) $(CPP_FLAGS) -shared -olibeni.so $(LIBENI_SOURCES)
+	$(CC) -o$@ main.c $(CFLAGS) -ldl -L. -leni
+	LD_LIBRARY_PATH=. ./$@ 'Hello World' | diff -qs - expected.txt
 	rm -f $@
