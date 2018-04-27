@@ -3,10 +3,10 @@
 #include <stdint.h>
 #include <stdio.h>
 
-typedef void*    eni_create_t(char* pArgStr);
-typedef void     eni_destroy_t(void* pFunctor);
+typedef void* eni_create_t(char* pArgStr);
+typedef void  eni_destroy_t(void* pFunctor);
 
-extern uint64_t eni_gas(void* pFunctor);
+extern uint64_t    eni_gas(void* pFunctor);
 extern const char* eni_run(void *pFunctor);
 
 int main(int argc, char* argv[])
