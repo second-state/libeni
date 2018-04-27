@@ -1,0 +1,13 @@
+{
+    "name": "dywu",
+    "age": 18,
+    "have_car": true,
+    "spouse": "Gakki",
+    "colleagues": ["hydai", "yi", "dm4", "katy"],
+    "array": [["a","b"], "c"]
+}
+
+[ [ "a", "b", ], "c", ]"a"
+age = 18
+18
+128196
