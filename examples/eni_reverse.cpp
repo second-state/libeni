@@ -18,12 +18,12 @@ private:
   }
 };
 
-extern "C" void* eni_create(char* pArgStr)
+extern "C" void* reverse_create(char* pArgStr)
 {
   return (void*)new Reverse(pArgStr);
 }
 
-extern "C" void eni_destroy(void* pFunctor)
+extern "C" void reverse_destroy(void* pFunctor)
 {
   return delete (eni::EniBase*)pFunctor;
 }

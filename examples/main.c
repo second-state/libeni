@@ -17,10 +17,10 @@ int main(int argc, char* argv[])
   if (NULL == handle)
     return 1;
 
-  eni_create_t*  eni_create  = dlsym(handle, "eni_create");
+  eni_create_t*  eni_create  = dlsym(handle, "reverse_create");
   eni_gas_t*     eni_gas     = dlsym(handle, "eni_gas");
   eni_run_t*     eni_run     = dlsym(handle, "eni_run");
-  eni_destroy_t* eni_destroy = dlsym(handle, "eni_destroy");
+  eni_destroy_t* eni_destroy = dlsym(handle, "reverse_destroy");
 
   void* functor = eni_create(argv[1]);
   printf("gas: %llu\n", (unsigned long long)eni_gas(functor));
