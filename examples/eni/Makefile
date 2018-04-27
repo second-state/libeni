@@ -1,5 +1,5 @@
-CPP_INCLUDES=-I../include
-LIBENI_SOURCES=../lib/eni.cpp
+CPP_INCLUDES=-I../../include
+LIBENI_SOURCES=../../lib/eni.cpp
 
 CC=gcc
 CXX=g++
