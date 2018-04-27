@@ -7,6 +7,11 @@ using namespace json;
 
 static Value g_NullValue(UNDEF); // XXX
 
+Value::Value(const string& pString)
+  : Notation(STRING) {
+  m_Value.string_p = new string(pString);
+}
+
 Value::Value(const eni::s256& pSint)
   : Notation(INT) {
   m_Value.int_p = new eni::s256(pSint);
@@ -20,14 +25,6 @@ Value::Value(const Object& pObject)
 Value::Value(const Array& pArray)
   : Notation(ARRAY) {
   m_Value.array_p = new Array(pArray);
-}
-
-Value& Value::assign(const std::string& pValue)
-{
-  assert((this->isUndefined() || this->isString()) && "Value has been assigned");
-  m_Type = STRING;
-  m_Value.string_p = new string(pValue);
-  return *this;
 }
 
 Value& Value::delegate(eni::s256& pSint)

@@ -40,9 +40,8 @@ public:
       m_Stack.back().second = string(pStr.begin(), pStr.end());
     }
     else {
-      Value v(STRING);
       string s(pStr.begin(), pStr.end());
-      v.assign(s);
+      Value v(s);
       set_parent(v);
     }
   }

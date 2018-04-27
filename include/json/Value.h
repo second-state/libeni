@@ -20,7 +20,7 @@ public:
   Value() { }
 
   explicit Value(bool pB) : Notation(BOOL) { m_Value.bool_p = pB; }
-  explicit Value(Type pType) : Notation(pType) { m_Value.bool_p = 0; }
+  explicit Value(const string& pString);
 
   Value(const eni::s256& pValue);
   Value(const Object& pObject);
@@ -28,7 +28,6 @@ public:
 
   Value(const Value& pCopy);
 
-  Value& assign(const std::string& pValue);
   Value& delegate(eni::s256& pValue);
   Value& delegate(json::Object& pObject);
   Value& delegate(json::Array& pArray);
