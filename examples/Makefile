@@ -4,7 +4,7 @@ LIBENI_SOURCES=../lib/eni.cpp
 CC=gcc
 CXX=g++
 
-CFLAGS=-fPIC $(CPP_INCLUDES)
+CFLAGS=-fPIC
 CPP_FLAGS=-fPIC -fno-rtti -std=c++11 $(CPP_INCLUDES)
 
 all: test clean
