@@ -29,9 +29,9 @@ namespace json {
 // read/write files is not supported yet
 using std::vector;
 
-class parser {
+class Parser {
 public:
-  parser(const std::string &pStr) {
+  Parser(const std::string &pStr) {
     m_It = m_Start = &pStr[0];
     m_End = &pStr[0] + pStr.length();
     parse_value();

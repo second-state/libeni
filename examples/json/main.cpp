@@ -8,7 +8,7 @@ using namespace std;
 using namespace json;
 
 void f3(const string &params_text) {
-  parser ps(params_text);
+  Parser ps(params_text);
   Value params = ps.getRoot();
 
   Value ar = params["array"];
