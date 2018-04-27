@@ -1,10 +1,12 @@
 #include <eni.h>
+#include <json/Parser.h>
 
 using namespace eni;
 
 EniBase::EniBase(const std::string& pArgStr)
-  : m_Args(pArgStr) {
-  // empty
+{
+  json::Parser parser(pArgStr);
+  m_Args = parser.getRoot();
 }
 
 EniBase::~EniBase()

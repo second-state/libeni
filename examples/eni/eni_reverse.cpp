@@ -1,4 +1,5 @@
 #include <eni.h>
+#include <json/Array.h>
 
 class Reverse : public eni::EniBase
 {
@@ -9,11 +10,14 @@ public:
 
 private:
   eni::Gas gas(const json::Value& pArgs) const override {
-    return pArgs.length();
+    return pArgs[0].toString().length();
   }
 
   bool run(const json::Value& pArgs, json::Value& pRetVal) override {
-    pRetVal.assign(pArgs.rbegin(), pArgs.rend());
+    const std::string& str = pArgs[0].toString();
+    std::string ret(str.rbegin(), str.rend());
+    pRetVal.delegate(*(new json::Array()));
+    pRetVal.asArray().push_back(*(new json::Value(ret)));
     return true;
   }
 };

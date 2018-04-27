@@ -1,5 +1,9 @@
 CPP_INCLUDES=-I../../include
-LIBENI_SOURCES=../../lib/eni.cpp
+LIBENI_SOURCES=../../lib/eni.cpp \
+    ../../lib/json/Object.cpp \
+    ../../lib/json/Notation.cpp \
+    ../../lib/json/Value.cpp \
+    ../../lib/json/Array.cpp
 
 CC=gcc
 CXX=g++

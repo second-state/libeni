@@ -1,14 +1,11 @@
 #ifndef ETHEREUM_NATIVE_INTERFACE
 #define ETHEREUM_NATIVE_INTERFACE
 
+#include <json/Value.h>
 #include <cstdint>
+#include <cstring>
 #include <string>
-
-namespace json { // TODO: replace with something like include<json.h>
-
-using Value = std::string;
-
-} // namespace of json
+#include <sstream>
 
 namespace eni {
 
@@ -28,7 +25,10 @@ public:
   const char* start() {
     if (!run(m_Args, m_RetVals))
       return nullptr;
-    return m_RetVals.c_str(); // TODO: replace with something like json-to-str
+
+    std::ostringstream os;
+    m_RetVals.print(os);
+    return ::strdup(os.str().c_str());
   }
 
 private:
