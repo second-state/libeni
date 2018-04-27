@@ -22,7 +22,7 @@ public:
     return gas(m_Args);
   }
 
-  const char* start() {
+  char* start() {
     if (!run(m_Args, m_RetVals))
       return nullptr;
 

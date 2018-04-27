@@ -7,8 +7,8 @@
 typedef void* eni_create_t(char* pArgStr);
 typedef void  eni_destroy_t(void* pFunctor);
 
-extern uint64_t    eni_gas(void* pFunctor);
-extern const char* eni_run(void *pFunctor);
+extern uint64_t eni_gas(void* pFunctor);
+extern char*    eni_run(void *pFunctor);
 
 int main(int argc, char* argv[])
 {
@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
   /* Simulate calling an ENI function. */
   void* functor = eni_create(params);
   uint64_t gas = eni_gas(functor);
-  const char *retval = eni_run(functor);
+  char *retval = eni_run(functor);
   printf("gas: %llu\n", (unsigned long long)gas);
   printf("ret: %s\n", retval);
   eni_destroy(functor);
