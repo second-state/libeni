@@ -1,0 +1,27 @@
+CPP_INCLUDES=-I../../include
+LIBENI_SOURCES=../../lib/eni.cpp \
+    ../../lib/json/Object.cpp \
+    ../../lib/json/Notation.cpp \
+    ../../lib/json/Value.cpp \
+    ../../lib/json/Array.cpp
+
+CC=gcc
+CXX=g++
+
+CFLAGS=-fPIC
+LDFLAGS=-lssl -lcrypto
+CPP_FLAGS=-fPIC -fno-rtti -std=c++11 $(CPP_INCLUDES)
+
+all: test clean
+
+%.so: %.cpp
+	$(CXX) $(CPP_FLAGS) -shared -o$@ $? $(LIBENI_SOURCES) $(LDFLAGS)
+
+clean:
+	rm -f *.so
+
+test: eni_crypto.so
+	$(CXX) $(CPP_FLAGS) -shared -olibeni.so $(LIBENI_SOURCES)
+	$(CC) -o$@ main.c $(CFLAGS) -ldl -L. -leni
+	@echo TODO: run and compare the output with 'expected.txt'
+	rm -f $@
