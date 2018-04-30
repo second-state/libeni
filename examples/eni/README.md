@@ -1,5 +1,5 @@
-Examples of ENI
-===============
+A Simple Example of ENI
+=======================
 
 ## Directory Structure
 
