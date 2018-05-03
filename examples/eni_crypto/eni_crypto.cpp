@@ -12,26 +12,50 @@ using namespace eni_crypto;
 //===----------------------------------------------------------------------===//
 bool rsa::pub_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 {
-  // TODO
-  return false;
+  unsigned char* encrypted = new unsigned char[::RSA_size(&pKey)];
+  int len = ::RSA_public_encrypt(pMsg.length(),
+    reinterpret_cast<const unsigned char*>(pMsg.c_str()), encrypted, &pKey,
+    RSA_PKCS1_PADDING);
+  if (-1 == len)
+    return false;
+  pResult.assign(reinterpret_cast<char*>(encrypted), len);
+  return true;
 }
 
 bool rsa::pub_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 {
-  // TODO
-  return false;
+  unsigned char* decrypted = new unsigned char[::RSA_size(&pKey)];
+  int len = ::RSA_public_decrypt(pMsg.length(),
+    reinterpret_cast<const unsigned char*>(pMsg.c_str()), decrypted, &pKey,
+    RSA_PKCS1_PADDING);
+  if (-1 == len)
+    return false;
+  pResult.assign(reinterpret_cast<char*>(decrypted), len);
+  return true;
 }
 
 bool rsa::priv_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 {
-  // TODO
-  return false;
+  unsigned char* encrypted = new unsigned char[::RSA_size(&pKey)];
+  int len = ::RSA_private_encrypt(pMsg.length(),
+    reinterpret_cast<const unsigned char*>(pMsg.c_str()), encrypted, &pKey,
+    RSA_PKCS1_PADDING);
+  if (-1 == len)
+    return false;
+  pResult.assign(reinterpret_cast<char*>(encrypted), len);
+  return true;
 }
 
 bool rsa::priv_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 {
-  // TODO
-  return false;
+  unsigned char* decrypted = new unsigned char[::RSA_size(&pKey)];
+  int len = ::RSA_private_decrypt(pMsg.length(),
+    reinterpret_cast<const unsigned char*>(pMsg.c_str()), decrypted, &pKey,
+    RSA_PKCS1_PADDING);
+  if (-1 == len)
+    return false;
+  pResult.assign(reinterpret_cast<char*>(decrypted), len);
+  return true;
 }
 
 //===----------------------------------------------------------------------===//
