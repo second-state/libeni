@@ -2,11 +2,37 @@
 #include <json/Array.h>
 
 extern "C" {
-#include <openssl/bio.h>
 #include <openssl/rsa.h>
 }
 
 using namespace eni_crypto;
+
+//===----------------------------------------------------------------------===//
+// Helper functions
+//===----------------------------------------------------------------------===//
+bool rsa::pub_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
+{
+  // TODO
+  return false;
+}
+
+bool rsa::pub_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
+{
+  // TODO
+  return false;
+}
+
+bool rsa::priv_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
+{
+  // TODO
+  return false;
+}
+
+bool rsa::priv_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
+{
+  // TODO
+  return false;
+}
 
 //===----------------------------------------------------------------------===//
 // RSAEncrypt

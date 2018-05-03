@@ -3,7 +3,26 @@
 
 #include <eni.h>
 
+//===----------------------------------------------------------------------===//
+// Forward declaration of OpenSSL types
+//===----------------------------------------------------------------------===//
+extern "C" struct rsa_st;
+extern "C" typedef struct rsa_st RSA;
+
 namespace eni_crypto {
+
+//===----------------------------------------------------------------------===//
+// Helper functions
+//===----------------------------------------------------------------------===//
+namespace rsa {
+
+bool pub_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult);
+bool pub_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult);
+
+bool priv_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult);
+bool priv_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult);
+
+} // namespace of rsa
 
 //===----------------------------------------------------------------------===//
 // RSAEncrypt
