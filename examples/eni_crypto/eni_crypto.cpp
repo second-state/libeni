@@ -10,6 +10,12 @@ using namespace eni_crypto;
 //===----------------------------------------------------------------------===//
 // Helper functions
 //===----------------------------------------------------------------------===//
+RSA* rsa::create(const std::string& pPemStr)
+{
+  // TODO
+  return NULL;
+}
+
 bool rsa::pub_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 {
   unsigned char* encrypted = new unsigned char[::RSA_size(&pKey)];
