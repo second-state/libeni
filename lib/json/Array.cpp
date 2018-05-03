@@ -21,10 +21,10 @@ Array& Array::operator=(const Array& pArray)
 void Array::print(std::ostream& os) const
 {
   os << "[ ";
+  int i=0;
   for(const Value &e: *this){
+    if(i++) os << ", ";
     e.print(os);
-    os << ",";
-    os << ' ';
   }
   os << ']';
 }
