@@ -2,6 +2,7 @@
 #include <json/Array.h>
 
 extern "C" {
+#include <openssl/pem.h>
 #include <openssl/rsa.h>
 }
 
@@ -12,8 +13,17 @@ using namespace eni_crypto;
 //===----------------------------------------------------------------------===//
 RSA* rsa::create(const std::string& pPemStr)
 {
-  // TODO
-  return NULL;
+  BIO* bio = BIO_new_mem_buf(pPemStr.c_str(), -1);
+  if (NULL == bio)
+    return NULL;
+  RSA* key = PEM_read_bio_RSAPrivateKey(bio, NULL, NULL, NULL);
+  return key;
+}
+
+void rsa::destroy(RSA*& pKey)
+{
+  RSA_free(pKey);
+  pKey = NULL;
 }
 
 bool rsa::pub_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)

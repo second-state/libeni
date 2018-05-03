@@ -1,10 +1,8 @@
 #include <eni_crypto.h>
 #include <cassert> // replace with a testing framework such as SkyPat
+#include <fstream>
 #include <iostream>
-
-extern "C" {
-#include <openssl/rsa.h>
-}
+#include <streambuf>
 
 using namespace eni_crypto;
 
@@ -13,7 +11,13 @@ int main(int argc, char* argv[])
   if (argc < 2)
     return -1;
 
-  RSA* key = RSA_generate_key(1024, 3, 0, 0);
+  std::ifstream ifs("priv.pem");
+  if (!ifs.is_open())
+    return -2;
+
+  std::string pemstr((std::istreambuf_iterator<char>(ifs)),
+                      std::istreambuf_iterator<char>());
+  RSA* key = rsa::create(pemstr);
   if (NULL == key)
     return 1;
 
@@ -35,6 +39,6 @@ int main(int argc, char* argv[])
   std::cout << decrypted << std::endl;
   assert((msg == decrypted));
 
-  RSA_free(key);
+  rsa::destroy(key);
   return 0;
 }
