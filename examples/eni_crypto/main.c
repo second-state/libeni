@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
   /* Construct JSON parameters. ["Private Key","Message"] */
   len = 2 + sizeof(priv_key) + 3 + strlen(encrypted) + 2;
   params = (char*)malloc(len);
-  snprintf(params, len, "[\"%s\",\"%s\"]", priv_key, encrypted);
+  snprintf(params, len, "[\"%s\",%s", priv_key, strstr(encrypted, "\""));
 
   fprintf(stderr, "%s\n", params);
 
