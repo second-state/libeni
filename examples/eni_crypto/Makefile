@@ -23,5 +23,6 @@ clean:
 test: eni_crypto.so
 	$(CXX) $(CPP_FLAGS) -shared -olibeni.so $(LIBENI_SOURCES)
 	$(CC) -o$@ main.c $(CFLAGS) -ldl -L. -leni
-	@echo TODO: run and compare the output with 'expected.txt'
+	LD_LIBRARY_PATH=. ./$@ 'Hello World!'
+	@echo TODO: compare the output with 'expected.txt'
 	rm -f $@
