@@ -88,7 +88,7 @@ public:
       if (have('\"')) break;
       if (m_It == m_End) parse_error("unterminated string");
       if (have('\\')) {
-        parse_escape();
+        str.push_back(parse_escape());
       } else {
         // TODO: UTF-8 decoding
         // Current: ASCII (temp)
