@@ -86,57 +86,51 @@ bool rsa::priv_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 //===----------------------------------------------------------------------===//
 // RSAEncrypt
 //===----------------------------------------------------------------------===//
-RSAEncrypt::RSAEncrypt(const std::string& pArgStr)
-  : EniBase(pArgStr) {
-  // TODO
-}
-
-RSAEncrypt::~RSAEncrypt()
-{
-  // empty
-}
-
 bool RSAEncrypt::parse(const json::Value& pArgs)
 {
-  // TODO
+  m_Key = rsa::create_pubkey(pArgs[0].toString());
+  m_Msg = pArgs[1].toString();
+  return (nullptr != m_Key);
 }
 
 eni::Gas RSAEncrypt::gas() const
 {
-  // TODO
+  return m_Msg.length();
 }
 
 bool RSAEncrypt::run(json::Value& pRetVal)
 {
-  // TODO
+  std::string result;
+  if (!rsa::pub_encrypt(*m_Key, m_Msg, result))
+    return false;
+  pRetVal.delegate(*(new json::Array()));
+  pRetVal.asArray().push_back(*(new json::Value(result)));
+  return true;
 }
 
 //===----------------------------------------------------------------------===//
 // RSADecrypt
 //===----------------------------------------------------------------------===//
-RSADecrypt::RSADecrypt(const std::string& pArgStr)
-  : EniBase(pArgStr) {
-  // TODO
-}
-
-RSADecrypt::~RSADecrypt()
-{
-  // empty
-}
-
 bool RSADecrypt::parse(const json::Value& pArgs)
 {
-  // TODO
+  m_Key = rsa::create_privkey(pArgs[0].toString());
+  m_Msg = pArgs[1].toString();
+  return (nullptr != m_Key);
 }
 
 eni::Gas RSADecrypt::gas() const
 {
-  // TODO
+  return m_Msg.length();
 }
 
 bool RSADecrypt::run(json::Value& pRetVal)
 {
-  // TODO
+  std::string result;
+  if (!rsa::priv_decrypt(*m_Key, m_Msg, result))
+    return false;
+  pRetVal.delegate(*(new json::Array()));
+  pRetVal.asArray().push_back(*(new json::Value(result)));
+  return true;
 }
 
 //===----------------------------------------------------------------------===//

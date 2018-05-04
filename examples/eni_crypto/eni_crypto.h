@@ -35,9 +35,10 @@ bool priv_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult);
 class RSAEncrypt : public eni::EniBase
 {
 public:
-  RSAEncrypt(const std::string& pArgStr);
+  RSAEncrypt(const std::string& pArgStr)
+    : EniBase(pArgStr), m_Key(nullptr), m_Msg() { }
 
-  ~RSAEncrypt();
+  ~RSAEncrypt() { }
 
 private:
   bool parse(const json::Value& pArgs) override;
@@ -45,6 +46,10 @@ private:
   eni::Gas gas() const override;
 
   bool run(json::Value& pRetVal) override;
+
+private:
+  RSA* m_Key;
+  std::string m_Msg;
 };
 
 //===----------------------------------------------------------------------===//
@@ -53,9 +58,10 @@ private:
 class RSADecrypt : public eni::EniBase
 {
 public:
-  RSADecrypt(const std::string& pArgStr);
+  RSADecrypt(const std::string& pArgStr)
+    : EniBase(pArgStr), m_Key(nullptr), m_Msg() { }
 
-  ~RSADecrypt();
+  ~RSADecrypt() { }
 
 private:
   bool parse(const json::Value& pArgs) override;
@@ -63,6 +69,10 @@ private:
   eni::Gas gas() const override;
 
   bool run(json::Value& pRetVal) override;
+
+private:
+  RSA* m_Key;
+  std::string m_Msg;
 };
 
 } // namespace of eni_rsa
