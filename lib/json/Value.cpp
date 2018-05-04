@@ -62,11 +62,11 @@ void Value::print(std::ostream &os) const
       break;
     case STRING: {
       os << '"';
-      string &s = *m_Value.string_p;
-      for (char c: s) {
-        if ((c == '"') || (c == '\\'))
+      string::const_iterator c, end = m_Value.string_p->end();
+      for (c = m_Value.string_p->begin(); c != end; ++c) {
+        if ((*c == '"') || (*c == '\\'))
           os << '\\';
-        os << c;
+        os << *c;
       }
       os << '"';
       break;
