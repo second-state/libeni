@@ -87,16 +87,12 @@ public:
     while (1) {
       if (have('\"')) break;
       if (m_It == m_End) parse_error("unterminated string");
-      if (have('\\')) { //< escape
-        // XXX: ???
-        // adapter.finish_run();
-        // parse_escape();
-        // adapter.start_run();
-        m_It++;
-      }
-      else {
+      if (have('\\')) {
+        parse_escape();
+      } else {
         // TODO: UTF-8 decoding
         // Current: ASCII (temp)
+        // parse_utf8();
         str.push_back(*m_It);
         m_It++;
       }
@@ -172,8 +168,31 @@ private:
     while (have(is_digit, pStr));
   }
 
-  void parse_escape() {
-    // TODO
+  char parse_escape() {
+    if (have('"')){
+      return '"';
+    } else if (have('\\')) {
+      return '\\';
+    } else if (have('/')) {
+      return '/';
+    } else if (have('b')) {
+      return '\b'; // backspace
+    } else if (have('f')) {
+      return '\f'; // formfeed
+    } else if (have('n')) {
+      return '\n'; // line feed
+    } else if (have('r')) {
+      return '\r'; // carriage return
+    } else if (have('t')) {
+      return '\t'; // horizontal tab
+    } else if (have('u')) {
+      // parse_codepoint_ref();
+    } else {
+      parse_error("invalid escape sequence");
+    }
+  }
+  vector<char> parse_utf8(){
+
   }
 
   bool have(char pCh) {
