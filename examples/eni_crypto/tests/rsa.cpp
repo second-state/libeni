@@ -6,39 +6,54 @@
 
 using namespace eni_crypto;
 
+static inline bool readfile(const std::string& pName, std::string& pStr)
+{
+  std::ifstream ifs(pName);
+  if (!ifs.is_open())
+    return false;
+
+  pStr.assign((std::istreambuf_iterator<char>(ifs)),
+               std::istreambuf_iterator<char>());
+  return true;
+}
+
 int main(int argc, char* argv[])
 {
   if (argc < 2)
     return -1;
 
-  std::ifstream ifs("priv.pem");
-  if (!ifs.is_open())
+  std::string pemstr;
+  if (!readfile("priv.pem", pemstr))
     return -2;
+  RSA* privkey = rsa::create_privkey(pemstr);
+  if (NULL == privkey)
+    return -3;
 
-  std::string pemstr((std::istreambuf_iterator<char>(ifs)),
-                      std::istreambuf_iterator<char>());
-  RSA* key = rsa::create(pemstr);
-  if (NULL == key)
-    return 1;
+  if (!readfile("pub.pem", pemstr))
+    return -4;
+  RSA* pubkey = rsa::create_pubkey(pemstr);
+  if (NULL == pubkey)
+    return -5;
 
   // Case 1: RSA_public_encrypt + RSA_private_decrypt
   const std::string msg(argv[1]);
   std::string encrypted, decrypted;
-  if (!rsa::pub_encrypt(*key, msg, encrypted))
+  if (!rsa::pub_encrypt(*pubkey, msg, encrypted))
     return 2;
-  if (!rsa::priv_decrypt(*key, encrypted, decrypted))
+  if (!rsa::priv_decrypt(*privkey, encrypted, decrypted))
     return 3;
   std::cout << decrypted << std::endl;
   assert((msg == decrypted));
 
   // Case 2: RSA_private_encrypt + RSA_public_decrypt
-  if (!rsa::priv_encrypt(*key, msg, encrypted))
+  if (!rsa::priv_encrypt(*privkey, msg, encrypted))
     return 4;
-  if (!rsa::pub_decrypt(*key, encrypted, decrypted))
+  if (!rsa::pub_decrypt(*pubkey, encrypted, decrypted))
     return 5;
   std::cout << decrypted << std::endl;
   assert((msg == decrypted));
 
-  rsa::destroy(key);
+  rsa::destroy(pubkey);
+  rsa::destroy(privkey);
   return 0;
 }
