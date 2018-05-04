@@ -2,7 +2,7 @@
     "name": "dywu",
     "age": 18,
     "have_car": true,
-    "spouse": "Gakki",
+    "escape": "\"\\n\"",
     "colleagues": ["hydai", "yi", "dm4", "katy"],
-    "array": [["a","b"], "c"]
+    "array": [["a",8], "c"]
 }

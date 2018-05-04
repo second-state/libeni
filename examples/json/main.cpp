@@ -25,6 +25,9 @@ void f3(const string &params_text) {
   Value x(c);
   age.print(std::cout); puts("");
   x.print(std::cout); puts("");
+
+  Value s = params["escape"];
+  std::cout << s.toString() << std::endl;
 }
 
 int main(int argc, char* argv[]) {
