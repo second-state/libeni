@@ -118,8 +118,10 @@ bool rsa::priv_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 bool RSAEncrypt::parse(const json::Value& pArgs)
 {
   m_Key = rsa::create_pubkey(pArgs[0].toString());
+  if (nullptr == m_Key)
+    return false;
   m_Msg = pArgs[1].toString();
-  return (nullptr != m_Key);
+  return true;
 }
 
 eni::Gas RSAEncrypt::gas() const
@@ -129,11 +131,13 @@ eni::Gas RSAEncrypt::gas() const
 
 bool RSAEncrypt::run(json::Value& pRetVal)
 {
-  std::string result;
+  std::string result, hexs;
   if (!rsa::pub_encrypt(*m_Key, m_Msg, result))
     return false;
+  if (!str2hex(result, hexs))
+    return false;
   pRetVal.delegate(*(new json::Array()));
-  pRetVal.asArray().push_back(*(new json::Value(result)));
+  pRetVal.asArray().push_back(*(new json::Value(hexs)));
   return true;
 }
 
@@ -143,8 +147,11 @@ bool RSAEncrypt::run(json::Value& pRetVal)
 bool RSADecrypt::parse(const json::Value& pArgs)
 {
   m_Key = rsa::create_privkey(pArgs[0].toString());
-  m_Msg = pArgs[1].toString();
-  return (nullptr != m_Key);
+  if (nullptr == m_Key)
+    return false;
+  if (!hex2str(pArgs[1].toString(), m_Msg))
+    return false;
+  return true;
 }
 
 eni::Gas RSADecrypt::gas() const
