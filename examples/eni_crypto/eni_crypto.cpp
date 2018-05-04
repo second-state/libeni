@@ -16,7 +16,7 @@ RSA* rsa::create_pubkey(const std::string& pPemStr)
   BIO* bio = BIO_new_mem_buf(pPemStr.c_str(), -1);
   if (NULL == bio)
     return NULL;
-  RSA* key = PEM_read_bio_RSAPublicKey(bio, NULL, NULL, NULL);
+  RSA* key = PEM_read_bio_RSA_PUBKEY(bio, NULL, NULL, NULL);
   return key;
 }
 
