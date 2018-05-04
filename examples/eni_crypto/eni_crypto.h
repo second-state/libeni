@@ -16,7 +16,9 @@ namespace eni_crypto {
 //===----------------------------------------------------------------------===//
 namespace rsa {
 
-RSA* create(const std::string& pPemStr);
+RSA* create_privkey(const std::string& pPemStr);
+RSA* create_pubkey(const std::string& pPemStr);
+
 void destroy(RSA*& pKey);
 
 bool pub_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult);

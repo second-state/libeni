@@ -11,7 +11,16 @@ using namespace eni_crypto;
 //===----------------------------------------------------------------------===//
 // Helper functions
 //===----------------------------------------------------------------------===//
-RSA* rsa::create(const std::string& pPemStr)
+RSA* rsa::create_pubkey(const std::string& pPemStr)
+{
+  BIO* bio = BIO_new_mem_buf(pPemStr.c_str(), -1);
+  if (NULL == bio)
+    return NULL;
+  RSA* key = PEM_read_bio_RSAPublicKey(bio, NULL, NULL, NULL);
+  return key;
+}
+
+RSA* rsa::create_privkey(const std::string& pPemStr)
 {
   BIO* bio = BIO_new_mem_buf(pPemStr.c_str(), -1);
   if (NULL == bio)
