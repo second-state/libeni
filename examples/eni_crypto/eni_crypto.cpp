@@ -1,5 +1,6 @@
 #include "eni_crypto.h"
 #include <json/Array.h>
+#include <sstream>
 
 extern "C" {
 #include <openssl/pem.h>
@@ -11,6 +12,34 @@ using namespace eni_crypto;
 //===----------------------------------------------------------------------===//
 // Helper functions
 //===----------------------------------------------------------------------===//
+static inline unsigned char hex2digit(char h1, char h0)
+{
+  auto h2d = [](char h) { return (h < 'a') ? (h - '0') : (h - 'a' + 10); };
+  return h2d(h1) * 16 + h2d(h0);
+}
+
+bool eni_crypto::str2hex(const std::string& pStr, std::string& pHex)
+{
+  std::ostringstream oss;
+  std::string::const_iterator ic, end = pStr.end();
+  for (ic = pStr.begin(); ic != end; ++ic)
+    oss << std::hex << std::setw(2) << std::setfill('0')
+        << (int)(unsigned char)(*ic);
+  pHex = oss.str();
+  return true;
+}
+
+bool eni_crypto::hex2str(const std::string& pHex, std::string& pStr)
+{
+  if (0 != (pHex.length() % 2))
+    return false;
+  pStr.clear();
+  std::string::const_iterator ic, end = pHex.end();
+  for (ic = pHex.begin(); ic != end; ic += 2)
+    pStr.push_back((char)hex2digit(*ic, *(ic + 1)));
+  return true;
+}
+
 RSA* rsa::create_pubkey(const std::string& pPemStr)
 {
   BIO* bio = BIO_new_mem_buf(pPemStr.c_str(), -1);

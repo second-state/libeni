@@ -13,7 +13,8 @@ CPP_FLAGS=-fPIC -fno-rtti -std=c++11 $(CPP_INCLUDES)
 
 all: check clean
 
-check: rsa
+check: hex rsa
+	./hex_test 'A+!'
 	./rsa_test 'Hello World!'
 
 clean:

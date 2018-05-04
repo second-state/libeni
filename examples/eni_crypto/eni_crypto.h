@@ -14,6 +14,9 @@ namespace eni_crypto {
 //===----------------------------------------------------------------------===//
 // Helper functions
 //===----------------------------------------------------------------------===//
+bool str2hex(const std::string& pStr, std::string& pHex);
+bool hex2str(const std::string& pHex, std::string& pStr);
+
 namespace rsa {
 
 RSA* create_privkey(const std::string& pPemStr);
