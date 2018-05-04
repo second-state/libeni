@@ -9,17 +9,24 @@ public:
   ~Reverse() { }
 
 private:
-  eni::Gas gas(const json::Value& pArgs) const override {
-    return pArgs[0].toString().length();
+  bool parse(const json::Value& pArgs) override {
+    m_Str = pArgs[0].toString();
+    return true;
   }
 
-  bool run(const json::Value& pArgs, json::Value& pRetVal) override {
-    const std::string& str = pArgs[0].toString();
-    std::string ret(str.rbegin(), str.rend());
+  eni::Gas gas() const override {
+    return m_Str.length();
+  }
+
+  bool run(json::Value& pRetVal) override {
+    std::string ret(m_Str.rbegin(), m_Str.rend());
     pRetVal.delegate(*(new json::Array()));
     pRetVal.asArray().push_back(*(new json::Value(ret)));
     return true;
   }
+
+private:
+  std::string m_Str;
 };
 
 extern "C" void* reverse_create(char* pArgStr)

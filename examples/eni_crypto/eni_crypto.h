@@ -38,9 +38,11 @@ public:
   ~RSAEncrypt();
 
 private:
-  eni::Gas gas(const json::Value& pArgs) const override;
+  bool parse(const json::Value& pArgs) override;
 
-  bool run(const json::Value& pArgs, json::Value& pRetVal) override;
+  eni::Gas gas() const override;
+
+  bool run(json::Value& pRetVal) override;
 };
 
 //===----------------------------------------------------------------------===//
@@ -54,9 +56,11 @@ public:
   ~RSADecrypt();
 
 private:
-  eni::Gas gas(const json::Value& pArgs) const override;
+  bool parse(const json::Value& pArgs) override;
 
-  bool run(const json::Value& pArgs, json::Value& pRetVal) override;
+  eni::Gas gas() const override;
+
+  bool run(json::Value& pRetVal) override;
 };
 
 } // namespace of eni_rsa

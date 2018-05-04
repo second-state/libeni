@@ -87,12 +87,17 @@ RSAEncrypt::~RSAEncrypt()
   // empty
 }
 
-eni::Gas RSAEncrypt::gas(const json::Value& pArgs) const
+bool RSAEncrypt::parse(const json::Value& pArgs)
 {
   // TODO
 }
 
-bool RSAEncrypt::run(const json::Value& pArgs, json::Value& pRetVal)
+eni::Gas RSAEncrypt::gas() const
+{
+  // TODO
+}
+
+bool RSAEncrypt::run(json::Value& pRetVal)
 {
   // TODO
 }
@@ -110,12 +115,17 @@ RSADecrypt::~RSADecrypt()
   // empty
 }
 
-eni::Gas RSADecrypt::gas(const json::Value& pArgs) const
+bool RSADecrypt::parse(const json::Value& pArgs)
 {
   // TODO
 }
 
-bool RSADecrypt::run(const json::Value& pArgs, json::Value& pRetVal)
+eni::Gas RSADecrypt::gas() const
+{
+  // TODO
+}
+
+bool RSADecrypt::run(json::Value& pRetVal)
 {
   // TODO
 }

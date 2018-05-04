@@ -18,12 +18,17 @@ public:
 
   virtual ~EniBase() = 0;
 
-  Gas getGas() const {
-    return gas(m_Args);
+  Gas getGas() {
+    if ((!m_Parsed) && (!parse(m_Args)))
+      return 0;
+    return gas();
   }
 
   char* start() {
-    if (!run(m_Args, m_RetVals))
+    if ((!m_Parsed) && (!parse(m_Args)))
+      return nullptr;
+
+    if (!run(m_RetVals))
       return nullptr;
 
     std::ostringstream os;
@@ -32,11 +37,14 @@ public:
   }
 
 private:
-  virtual Gas gas(const json::Value& pArgs) const = 0;
+  virtual bool parse(const json::Value& pArgs) = 0;
 
-  virtual bool run(const json::Value& pArgs, json::Value& pRetVal) = 0;
+  virtual Gas gas() const = 0;
+
+  virtual bool run(json::Value& pRetVal) = 0;
 
 private:
+  bool m_Parsed;
   json::Value m_Args;
   json::Value m_RetVals;
 };
