@@ -2,7 +2,7 @@
 #include <json/Object.h>
 #include <json/Array.h>
 #include <eni_types.h>
-
+#include <string>
 using namespace json;
 
 static Value g_NullValue(UNDEF); // XXX
@@ -60,9 +60,17 @@ void Value::print(std::ostream &os) const
     case BOOL:
       os << (m_Value.bool_p? "true": "false");
       break;
-    case STRING:
-      os << '"' << *m_Value.string_p << '"';
+    case STRING: {
+      os << '"';
+      string &s = *m_Value.string_p;
+      for (char c: s) {
+        if ((c == '"') || (c == '\\'))
+          os << '\\';
+        os << c;
+      }
+      os << '"';
       break;
+    }
     case OBJECT:
       m_Value.object_p->print(os);
       break;
