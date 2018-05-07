@@ -41,7 +41,7 @@ public:
   RSAEncrypt(const std::string& pArgStr)
     : EniBase(pArgStr), m_Key(nullptr), m_Msg() { }
 
-  ~RSAEncrypt() { }
+  ~RSAEncrypt() { rsa::destroy(m_Key); }
 
 private:
   bool parse(const json::Value& pArgs) override;
@@ -64,7 +64,7 @@ public:
   RSADecrypt(const std::string& pArgStr)
     : EniBase(pArgStr), m_Key(nullptr), m_Msg() { }
 
-  ~RSADecrypt() { }
+  ~RSADecrypt() { rsa::destroy(m_Key); }
 
 private:
   bool parse(const json::Value& pArgs) override;
