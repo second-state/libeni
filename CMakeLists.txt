@@ -16,3 +16,6 @@ add_library(eni SHARED
   lib/json/Value.cpp
   lib/json/Array.cpp
 )
+
+add_subdirectory(examples)
+add_subdirectory(tools)
