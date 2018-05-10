@@ -1,5 +1,9 @@
-add_test(NAME test_eni_crypto_hex COMMAND hex_test 'A+!')
-add_test(NAME test_eni_crypto_rsa COMMAND rsa_test 'Hello World!')
+add_test(NAME test_eni_crypto_hex
+  COMMAND hex_test "A+!"
+  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+add_test(NAME test_eni_crypto_rsa
+  COMMAND rsa_test "Hello World!"
+  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 
 add_executable(hex_test
   hex.cpp

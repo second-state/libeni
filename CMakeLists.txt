@@ -17,5 +17,6 @@ add_library(eni SHARED
   lib/json/Array.cpp
 )
 
+enable_testing()
 add_subdirectory(examples)
 add_subdirectory(tools)
