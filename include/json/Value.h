@@ -28,6 +28,7 @@ public:
 
   Value(const Value& pCopy);
 
+  ~Value();
   Value& delegate(eni::s256& pValue);
   Value& delegate(json::Object& pObject);
   Value& delegate(json::Array& pArray);

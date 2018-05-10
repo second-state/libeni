@@ -27,6 +27,25 @@ Value::Value(const Array& pArray)
   m_Value.array_p = new Array(pArray);
 }
 
+Value::~Value()
+{
+  switch (this->type()) {
+    case STRING:
+      delete m_Value.string_p;
+      break;
+    case OBJECT:
+      delete m_Value.object_p;
+      break;
+    case ARRAY:
+      delete m_Value.array_p;
+      break;
+    default:
+      break;
+  }
+  m_Value.reset();
+  setType(UNDEF);
+}
+
 Value& Value::delegate(eni::s256& pSint)
 {
   assert(this->isUndefined() && "Value has been assigned");
