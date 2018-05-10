@@ -1,0 +1,6 @@
+params: ["Hello World!","HELLOGCC"]
+gas: 12
+ret: [ "Olssv Dvysk!"]
+params: ["Olssv Dvysk!","HELLOGCC"]
+gas: 12
+ret: [ "Hello World!"]
