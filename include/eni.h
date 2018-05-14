@@ -33,13 +33,13 @@ public:
   virtual ~EniBase() = 0;
 
   Gas getGas() {
-    if ((!m_Parsed) && (!parse(m_Args)))
+    if (!check(m_Args))
       return 0;
     return gas();
   }
 
   char* start() {
-    if ((!m_Parsed) && (!parse(m_Args)))
+    if (!check(m_Args))
       return nullptr;
 
     if (!run(m_RetVals.asArray()))
@@ -48,6 +48,16 @@ public:
     std::ostringstream os;
     m_RetVals.print(os);
     return ::strdup(os.str().c_str());
+  }
+
+private:
+  bool check(const json::Value& pArgs) {
+    bool ret = true;
+    if (!m_Parsed) {
+      ret = parse(pArgs);
+      m_Parsed = true;
+    }
+    return ret;
   }
 
 private:
