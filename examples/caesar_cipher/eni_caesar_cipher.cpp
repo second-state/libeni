@@ -31,7 +31,7 @@ eni::Gas Encrypt::gas() const {
   return m_Data.length();
 }
 
-bool Encrypt::run(json::Value& pRetVal) {
+bool Encrypt::run(json::Array& pRetVal) {
   const int cseed = char2int(m_Seed[0]);
   std::string ret("");
   for (auto ch : m_Data) {
@@ -44,8 +44,7 @@ bool Encrypt::run(json::Value& pRetVal) {
       ret.push_back(ch);
     }
   }
-  pRetVal.delegate(*(new json::Array()));
-  pRetVal.asArray().push_back(*(new json::Value(ret)));
+  pRetVal.push_back(*(new json::Value(ret)));
   return true;
 }
 
@@ -62,7 +61,7 @@ bool Decrypt::parse(const json::Value& pArgs) {
   return true;
 };
 
-bool Decrypt::run(json::Value& pRetVal) {
+bool Decrypt::run(json::Array& pRetVal) {
   const int cseed = char2int(m_Seed[0]);
   std::string ret("");
   for (auto ch : m_Data) {
@@ -75,8 +74,7 @@ bool Decrypt::run(json::Value& pRetVal) {
       ret.push_back(ch);
     }
   }
-  pRetVal.delegate(*(new json::Array()));
-  pRetVal.asArray().push_back(*(new json::Value(ret)));
+  pRetVal.push_back(*(new json::Value(ret)));
   return true;
 }
 

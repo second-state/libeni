@@ -42,7 +42,7 @@ public:
     if ((!m_Parsed) && (!parse(m_Args)))
       return nullptr;
 
-    if (!run(m_RetVals))
+    if (!run(m_RetVals.asArray()))
       return nullptr;
 
     std::ostringstream os;
@@ -55,7 +55,7 @@ private:
 
   virtual Gas gas() const = 0;
 
-  virtual bool run(json::Value& pRetVal) = 0;
+  virtual bool run(json::Array& pRetVal) = 0;
 
 private:
   bool m_Parsed;

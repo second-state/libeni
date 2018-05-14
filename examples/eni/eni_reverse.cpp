@@ -18,10 +18,9 @@ private:
     return m_Str.length();
   }
 
-  bool run(json::Value& pRetVal) override {
+  bool run(json::Array& pRetVal) override {
     std::string ret(m_Str.rbegin(), m_Str.rend());
-    pRetVal.delegate(*(new json::Array()));
-    pRetVal.asArray().push_back(*(new json::Value(ret)));
+    pRetVal.push_back(*(new json::Value(ret)));
     return true;
   }
 

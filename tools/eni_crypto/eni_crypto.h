@@ -48,7 +48,7 @@ private:
 
   eni::Gas gas() const override;
 
-  bool run(json::Value& pRetVal) override;
+  bool run(json::Array& pRetVal) override;
 
 private:
   RSA* m_Key;
@@ -71,7 +71,7 @@ private:
 
   eni::Gas gas() const override;
 
-  bool run(json::Value& pRetVal) override;
+  bool run(json::Array& pRetVal) override;
 
 private:
   RSA* m_Key;

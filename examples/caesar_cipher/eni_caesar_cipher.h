@@ -19,7 +19,7 @@ private:
 
   eni::Gas gas() const override;
 
-  bool run(json::Value& pRetVal) override;
+  bool run(json::Array& pRetVal) override;
 
 private:
   std::string m_Data;
@@ -39,7 +39,7 @@ private:
 
   eni::Gas gas() const override;
 
-  bool run(json::Value& pRetVal) override;
+  bool run(json::Array& pRetVal) override;
 
 private:
   std::string m_Data;

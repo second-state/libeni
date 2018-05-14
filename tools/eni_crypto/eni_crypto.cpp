@@ -129,15 +129,14 @@ eni::Gas RSAEncrypt::gas() const
   return m_Msg.length();
 }
 
-bool RSAEncrypt::run(json::Value& pRetVal)
+bool RSAEncrypt::run(json::Array& pRetVal)
 {
   std::string result, hexs;
   if (!rsa::pub_encrypt(*m_Key, m_Msg, result))
     return false;
   if (!str2hex(result, hexs))
     return false;
-  pRetVal.delegate(*(new json::Array()));
-  pRetVal.asArray().push_back(*(new json::Value(hexs)));
+  pRetVal.push_back(*(new json::Value(hexs)));
   return true;
 }
 
@@ -159,13 +158,12 @@ eni::Gas RSADecrypt::gas() const
   return m_Msg.length();
 }
 
-bool RSADecrypt::run(json::Value& pRetVal)
+bool RSADecrypt::run(json::Array& pRetVal)
 {
   std::string result;
   if (!rsa::priv_decrypt(*m_Key, m_Msg, result))
     return false;
-  pRetVal.delegate(*(new json::Array()));
-  pRetVal.asArray().push_back(*(new json::Value(result)));
+  pRetVal.push_back(*(new json::Value(result)));
   return true;
 }
 
