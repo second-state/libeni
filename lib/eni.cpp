@@ -3,6 +3,9 @@
 
 using namespace eni;
 
+//===----------------------------------------------------------------------===//
+// EniBase
+//===----------------------------------------------------------------------===//
 EniBase::EniBase(const std::string& pArgStr)
   : m_Parsed(false), m_Args(), m_RetVals() {
   json::Parser parser(pArgStr);
@@ -14,6 +17,9 @@ EniBase::~EniBase()
   // implementation of pure virtual destructor
 }
 
+//===----------------------------------------------------------------------===//
+// C Interface for all eni-functors
+//===----------------------------------------------------------------------===//
 extern "C" uint64_t eni_gas(void* pFunctor) {
   return ((eni::EniBase*)pFunctor)->getGas();
 }
