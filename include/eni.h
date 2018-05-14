@@ -14,7 +14,7 @@ using Gas = uint64_t;
 class EniBase
 {
 public:
-  EniBase(const std::string& pArgStr);
+  explicit EniBase(const std::string& pArgStr);
 
   virtual ~EniBase() = 0;
 
