@@ -170,27 +170,7 @@ bool RSADecrypt::run(json::Value& pRetVal)
 }
 
 //===----------------------------------------------------------------------===//
-// C interface for RSAEncrypt
+// C interface for RSAEncrypt and RSADecrypt
 //===----------------------------------------------------------------------===//
-extern "C" void* rsa_encrypt_create(char* pArgStr)
-{
-  return (void*)new RSAEncrypt(pArgStr);
-}
-
-extern "C" void rsa_encrypt_destroy(void* pFunctor)
-{
-  return delete (eni::EniBase*)pFunctor;
-}
-
-//===----------------------------------------------------------------------===//
-// C interface for RSADecrypt
-//===----------------------------------------------------------------------===//
-extern "C" void* rsa_decrypt_create(char* pArgStr)
-{
-  return (void*)new RSADecrypt(pArgStr);
-}
-
-extern "C" void rsa_decrypt_destroy(void* pFunctor)
-{
-  return delete (eni::EniBase*)pFunctor;
-}
+ENI_C_INTERFACE(rsa_encrypt, RSAEncrypt)
+ENI_C_INTERFACE(rsa_decrypt, RSADecrypt)

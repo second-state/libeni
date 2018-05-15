@@ -80,22 +80,8 @@ bool Decrypt::run(json::Value& pRetVal) {
   return true;
 }
 
-extern "C" void* caesar_encrypt_create(char* pArgStr)
-{
-  return (void*)new Encrypt(pArgStr);
-}
-
-extern "C" void caesar_encrypt_destroy(void* pFunctor)
-{
-  return delete (eni::EniBase*)pFunctor;
-}
-
-extern "C" void* caesar_decrypt_create(char* pArgStr)
-{
-  return (void*)new Decrypt(pArgStr);
-}
-
-extern "C" void caesar_decrypt_destroy(void* pFunctor)
-{
-  return delete (eni::EniBase*)pFunctor;
-}
+//===----------------------------------------------------------------------===//
+// C interface
+//===----------------------------------------------------------------------===//
+ENI_C_INTERFACE(caesar_encrypt, Encrypt)
+ENI_C_INTERFACE(caesar_decrypt, Decrypt)

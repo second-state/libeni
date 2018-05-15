@@ -7,6 +7,20 @@
 #include <string>
 #include <sstream>
 
+#define ENI_CREATE(OP, CLZ) \
+  extern "C" void* OP ## _create(char* pArgStr) { \
+    return (void*)new CLZ(pArgStr); \
+  }
+
+#define ENI_DESTROY(OP, CLZ) \
+  extern "C" void OP ## _destroy(void* pFunctor) { \
+    return delete (eni::EniBase*)pFunctor; \
+  }
+
+#define ENI_C_INTERFACE(OP, CLZ) \
+  ENI_CREATE(OP, CLZ) \
+  ENI_DESTROY(OP, CLZ)
+
 namespace eni {
 
 using Gas = uint64_t;

@@ -29,12 +29,4 @@ private:
   std::string m_Str;
 };
 
-extern "C" void* reverse_create(char* pArgStr)
-{
-  return (void*)new Reverse(pArgStr);
-}
-
-extern "C" void reverse_destroy(void* pFunctor)
-{
-  return delete (eni::EniBase*)pFunctor;
-}
+ENI_C_INTERFACE(reverse, Reverse)
