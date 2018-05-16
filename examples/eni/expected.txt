@@ -1,3 +1,0 @@
-params: ["Hello World"]
-gas: 11
-ret: ["dlroW olleH"]

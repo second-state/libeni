@@ -1,10 +1,12 @@
-A Simple Example of ENI
-=======================
+Some Simple Examples of ENI
+===========================
 
-## Directory Structure
+## Reverse
 
-| Path            | Description                                     |
-| --------------- | ----------------------------------------------- |
-| CMakeList.txt   | Makefile for this example.                      |
-| eni_reverse.cpp | A small demo for implementing an ENI operation by including <eni.h> and subclassing `EniBase`. |
-| main.c          | Show how to load and call the ENI operation.    |
+This example demonstrates implementing an ENI operation that reverses a string
+by including <eni.h> and subclassing `EniBase`.
+
+## Caesar Cipher
+
+This example currently implements ENI operations for Caesar Cipher encryption
+and decryption.

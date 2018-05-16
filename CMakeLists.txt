@@ -20,3 +20,4 @@ add_library(eni SHARED
 enable_testing()
 add_subdirectory(examples)
 add_subdirectory(tools)
+add_subdirectory(test)

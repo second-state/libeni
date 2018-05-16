@@ -1,13 +1,9 @@
-add_test(NAME examples_eni COMMAND eni_test "Hello World")
-
-add_executable(eni_test main.c)
-target_link_libraries(eni_test
-  eni
-  dl
-)
-
 add_library(eni_reverse MODULE
-  eni_reverse.cpp
+  reverse/eni_reverse.cpp
 )
-set_property(TARGET eni_reverse
-  PROPERTY PREFIX "")
+set_property(TARGET eni_reverse PROPERTY PREFIX "")
+
+add_library(eni_caesar_cipher MODULE
+  caesar_cipher/eni_caesar_cipher.cpp
+)
+set_property(TARGET eni_caesar_cipher PROPERTY PREFIX "")
