@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-fPIC -fno-rtti")
 
+include(CTest)
+
 include_directories(PRIVATE
   ${CMAKE_SOURCE_DIR}/include
 )
@@ -17,7 +19,9 @@ add_library(eni SHARED
   lib/json/Array.cpp
 )
 
-enable_testing()
 add_subdirectory(examples)
 add_subdirectory(tools)
-add_subdirectory(test)
+
+if(BUILD_TESTING)
+  add_subdirectory(test)
+endif()

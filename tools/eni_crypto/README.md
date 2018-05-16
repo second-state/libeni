@@ -6,10 +6,9 @@ decryption using the OpenSSL library.
 
 ## Directory Structure
 
-| Path           | Description                                          |
-| -------------- | ---------------------------------------------------- |
-| tests/         | Unit-tests for this ENI package.                     |
-| CMakeList.txt  | Makefile for this package.                           |
-| eni_crypto.h   | Class and function definitions of this ENI package.  |
-| eni_crypto.cpp | Implementation and C interface of this ENI package.  |
-| demo.c         | Demonstration to load and call the ENI operations.   |
+| Path            | Description                                          |
+| --------------- | ---------------------------------------------------- |
+| test/           | Tests for this ENI package.                          |
+| CMakeList.txt   | Makefile for this package.                           |
+| eni\_crypto.h   | Class and function definitions of this ENI package.  |
+| eni\_crypto.cpp | Implementation and C interface of this ENI package.  |

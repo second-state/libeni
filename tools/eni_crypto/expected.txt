@@ -1,3 +1,0 @@
-gas: 12
-gas: 256
-ret: ["Hello World!"]
