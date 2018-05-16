@@ -7,6 +7,29 @@ using namespace json;
 
 static Value g_NullValue(UNDEF); // XXX
 
+Value::Value(const Value& pCopy)
+  : Notation(pCopy) {
+  switch (this->type()) {
+    case INT:
+      m_Value.int_p = new eni::s256(*pCopy.m_Value.int_p);
+      break;
+    case BOOL:
+      m_Value.bool_p = pCopy.m_Value.bool_p;
+      break;
+    case STRING:
+      m_Value.string_p = new string(*pCopy.m_Value.string_p);
+      break;
+    case OBJECT:
+      m_Value.object_p = new Object(*pCopy.m_Value.object_p);
+      break;
+    case ARRAY:
+      m_Value.array_p = new Array(*pCopy.m_Value.array_p);
+      break;
+    case UNDEF:
+      break;
+  }
+}
+
 Value::Value(const string& pString)
   : Notation(STRING) {
   m_Value.string_p = new string(pString);
@@ -45,6 +68,7 @@ Value::~Value()
   m_Value.reset();
   setType(UNDEF);
 }
+
 
 Value& Value::delegate(eni::s256& pSint)
 {
@@ -106,8 +130,10 @@ void Value::printValue(std::ostream &os) const
   os << "(" << m_Type << "," << m_Value.pointer << ")\n";
 }
 
-Value::Value(const Value& pCopy)
-  : Notation(pCopy) {
+
+Value& Value::operator=(const Value& pCopy)
+{
+  Notation::operator=(pCopy);
   switch (this->type()) {
     case INT:
       m_Value.int_p = new eni::s256(*pCopy.m_Value.int_p);
@@ -127,7 +153,9 @@ Value::Value(const Value& pCopy)
     case UNDEF:
       break;
   }
+  return *this;
 }
+
 
 // beware that parameter key might be assigned from an integer
 // because (string <= char <= int) is available

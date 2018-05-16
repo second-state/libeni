@@ -1,6 +1,7 @@
 #include <json/Object.h>
 
 using namespace json;
+typedef unsigned uint;
 
 Object::Object()
   : std::map<std::string, Value>(), Notation(OBJECT) {

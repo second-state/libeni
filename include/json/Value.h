@@ -47,6 +47,7 @@ public:
   void print(std::ostream &os) const;
   void printValue(std::ostream &os) const;
 
+  Value& operator=(const Value& pCopy);
   Value& operator[](const std::string &key);
   const Value& operator[](const std::string &key) const;
 
