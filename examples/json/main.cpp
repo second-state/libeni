@@ -18,7 +18,7 @@ void f3(const string &params_text) {
 
   Value age = params["age"];
 
-  eni::Int a = age.asInt();
+  eni::Int a = age.asInteger();
   std::cout << "age = " << a;puts("");
   eni::Int b(7122);
   eni::Int c = a*b;

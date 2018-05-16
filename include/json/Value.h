@@ -32,12 +32,12 @@ public:
   Value& delegate(json::Object& pObject);
   Value& delegate(json::Array& pArray);
 
-  eni::s256 asInt() { return *m_Value.int_p; }
+  eni::s256 asInteger() { return *m_Value.int_p; }
   string& asString() { return *m_Value.string_p; }
   Object& asObject() { return *m_Value.object_p; }
   Array& asArray() { return *m_Value.array_p; }
 
-  const eni::s256 toInt() const { return *m_Value.int_p; }
+  const eni::s256 toInteger() const { return *m_Value.int_p; }
   const string& toString() const { return *m_Value.string_p; }
   const Object& toObject() const { return *m_Value.object_p; }
   const Array& toArray() const { return *m_Value.array_p; }
