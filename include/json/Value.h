@@ -37,6 +37,7 @@ public:
   Object& asObject() { return *m_Value.object_p; }
   Array& asArray() { return *m_Value.array_p; }
 
+  bool toBoolean() const { return m_Value.bool_p; }
   const eni::s256& toInteger() const { return *m_Value.int_p; }
   const string& toString() const { return *m_Value.string_p; }
   const Object& toObject() const { return *m_Value.object_p; }

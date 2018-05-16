@@ -25,7 +25,7 @@ public:
   Type type() const { return m_Type; }
 
   bool isInteger()  const { return (INT == m_Type); }
-  bool isBool()      const { return (BOOL == m_Type); }
+  bool isBoolean()   const { return (BOOL == m_Type); }
   bool isString()    const { return (STRING == m_Type); }
   bool isObject()    const { return (OBJECT == m_Type); }
   bool isArray()     const { return (ARRAY == m_Type); }
