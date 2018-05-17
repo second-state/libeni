@@ -3,21 +3,6 @@ Library for ENI (Ethereum Native Interface)
 
 The C++ implementation for libeni.
 
-## Directory Structure
-
-| Path          | Description                                     |
-| ------------- | ----------------------------------------------- |
-| include/      | Header files for this library.                  |
-| lib/          | Implementations for this library.               |
-| examples/     | Examples of how to use this library.            |
-| test/         | Unit-tests for this library and its examples.   |
-| tools/        | Tools and modules for this library.             |
-| docs/         | Documentations.                                 |
-| CMakeList.txt | The top-directory Makefile.                     |
-| CHANGELOG.md  | Change logs for each released versions.         |
-| LICENSE       | License file for the whole project.             |
-| README.md     | This file.                                      |
-
 ## Prerequisites
 
 - CMake >= 3.1
@@ -63,3 +48,18 @@ Total Test time (real) =   0.01 sec
 ```
 
 See `Testing/Temporary/LastTest.log` for the detailed output of all tests.
+
+## Directory Structure
+
+| Path          | Description                                     |
+| ------------- | ----------------------------------------------- |
+| include/      | Header files for this library.                  |
+| lib/          | Implementations for this library.               |
+| examples/     | Examples of how to use this library.            |
+| test/         | Unit-tests for this library and its examples.   |
+| tools/        | Tools and modules for this library.             |
+| docs/         | Documentations.                                 |
+| CMakeList.txt | The top-directory Makefile.                     |
+| CHANGELOG.md  | Change logs for each released versions.         |
+| LICENSE       | License file for the whole project.             |
+| README.md     | This file.                                      |
