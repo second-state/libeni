@@ -9,15 +9,20 @@ The C++ implementation for libeni.
 | ------------- | ----------------------------------------------- |
 | include/      | Header files for this library.                  |
 | lib/          | Implementations for this library.               |
-| examples/     | Demonstrate how to use this library.            |
-| CMakeList.txt | Makefile for this library.                      |
+| examples/     | Examples of how to use this library.            |
+| test/         | Unit-tests for this library and its examples.   |
+| tools/        | Tools and modules for this library.             |
+| docs/         | Documentations.                                 |
+| CMakeList.txt | The top-directory Makefile.                     |
 | CHANGELOG.md  | Change logs for each released versions.         |
+| LICENSE       | License file for the whole project.             |
 | README.md     | This file.                                      |
 
 ## Prerequisites
 
 - CMake >= 3.1
 - OpenSSL >= 1.0
+- SkyPat >= 3.1.1
 
 ## Build
 
@@ -33,23 +38,31 @@ make
 ## Run Tests
 
 In your build directory, run `ctest`.
-The output looks like the below.
+The result looks like the below.
 
 ```
-Test project libeni/build
-    Start 1: examples_json
-1/5 Test #1: examples_json ....................   Passed    0.00 sec
-    Start 2: examples_eni
-2/5 Test #2: examples_eni .....................   Passed    0.00 sec
-    Start 3: examples_crypto
-3/5 Test #3: examples_crypto ..................   Passed    0.00 sec
-    Start 4: test_eni_crypto_hex
-4/5 Test #4: test_eni_crypto_hex ..............   Passed    0.00 sec
-    Start 5: test_eni_crypto_rsa
-5/5 Test #5: test_eni_crypto_rsa ..............   Passed    0.00 sec
+Test project /builds/cybermiles/libeni/build
+    Start 1: crypto_tests
+1/4 Test #1: crypto_tests .....................   Passed    0.00 sec
+    Start 2: crypto_so_tests
+2/4 Test #2: crypto_so_tests ..................   Passed    0.00 sec
+    Start 3: json_tests
+3/4 Test #3: json_tests .......................   Passed    0.00 sec
+    Start 4: example_tests
+4/4 Test #4: example_tests ....................   Passed    0.00 sec
 
-100% tests passed, 0 tests failed out of 5
+100% tests passed, 0 tests failed out of 4
+
+Label Time Summary:
+json          =   0.00 sec (1 test)
+regression    =   0.00 sec (2 tests)
+sharedlib     =   0.00 sec (2 tests)
+unittest      =   0.01 sec (2 tests)
+
+Total Test time (real) =   0.01 sec
 ```
+
+See `Testing/Temporary/LastTest.log` for the detailed output of all tests.
 
 ## Attribution
 - [Icon](https://commons.wikimedia.org/wiki/File:Creative-Tail-pulse.svg)
