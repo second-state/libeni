@@ -1,3 +1,9 @@
+/*==- json/Object.h --------------------------------------------------------==
+
+  This file is part of the Lity project distributed under GPL-3.0.
+  See LICENSE for details.
+
+==------------------------------------------------------------------------==*/
 #ifndef ENI_JSON_OBJECT
 #define ENI_JSON_OBJECT
 

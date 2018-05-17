@@ -1,3 +1,9 @@
+/*==- test/json/ParserTest.cpp ---------------------------------------------==
+
+  This file is part of the Lity project distributed under GPL-3.0.
+  See LICENSE for details.
+
+==------------------------------------------------------------------------==*/
 #include <skypat/skypat.h>
 #include <json/Parser.h>
 #include <fstream>

@@ -1,3 +1,9 @@
+/*==- examples/eni/caesar_cipher/eni_caesar_cipher.h -----------------------==
+
+  This file is part of the Lity project distributed under GPL-3.0.
+  See LICENSE for details.
+
+==------------------------------------------------------------------------==*/
 #ifndef ENI_CAESAR_CIPHER_H
 #define ENI_CAESAR_CIPHER_H
 #include <eni.h>

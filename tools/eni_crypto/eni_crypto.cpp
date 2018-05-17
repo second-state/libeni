@@ -1,3 +1,9 @@
+/*==- eni_crypto.cpp -------------------------------------------------------==
+
+  This file is part of the Lity project distributed under GPL-3.0.
+  See LICENSE for details.
+
+==------------------------------------------------------------------------==*/
 #include "eni_crypto.h"
 #include <json/Array.h>
 #include <sstream>
@@ -9,9 +15,9 @@ extern "C" {
 
 using namespace eni_crypto;
 
-//===----------------------------------------------------------------------===//
-// Helper functions
-//===----------------------------------------------------------------------===//
+/*==------------------------------------------------------------------------==
+  Helper functions
+==------------------------------------------------------------------------==*/
 static inline unsigned char hex2digit(char h1, char h0)
 {
   auto h2d = [](char h) { return (h < 'a') ? (h - '0') : (h - 'a' + 10); };
@@ -112,9 +118,9 @@ bool rsa::priv_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
   return true;
 }
 
-//===----------------------------------------------------------------------===//
-// RSAEncrypt
-//===----------------------------------------------------------------------===//
+/*==------------------------------------------------------------------------==
+  RSAEncrypt
+==------------------------------------------------------------------------==*/
 bool RSAEncrypt::parse(const json::Value& pArgs)
 {
   m_Key = rsa::create_pubkey(pArgs[0].toString());
@@ -140,9 +146,9 @@ bool RSAEncrypt::run(json::Array& pRetVal)
   return true;
 }
 
-//===----------------------------------------------------------------------===//
-// RSADecrypt
-//===----------------------------------------------------------------------===//
+/*==------------------------------------------------------------------------==
+  RSADecrypt
+==------------------------------------------------------------------------==*/
 bool RSADecrypt::parse(const json::Value& pArgs)
 {
   m_Key = rsa::create_privkey(pArgs[0].toString());
@@ -167,8 +173,8 @@ bool RSADecrypt::run(json::Array& pRetVal)
   return true;
 }
 
-//===----------------------------------------------------------------------===//
-// C interface for RSAEncrypt and RSADecrypt
-//===----------------------------------------------------------------------===//
+/*==------------------------------------------------------------------------==
+  C interface for RSAEncrypt and RSADecrypt
+==------------------------------------------------------------------------==*/
 ENI_C_INTERFACE(rsa_encrypt, RSAEncrypt)
 ENI_C_INTERFACE(rsa_decrypt, RSADecrypt)

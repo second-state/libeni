@@ -1,3 +1,9 @@
+/*==- test/json/ValueTest.cpp ----------------------------------------------==
+
+  This file is part of the Lity project distributed under GPL-3.0.
+  See LICENSE for details.
+
+==------------------------------------------------------------------------==*/
 #include <skypat/skypat.h>
 #include <eni_types.h>
 #include <json/Value.h>

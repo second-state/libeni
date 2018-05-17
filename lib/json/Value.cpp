@@ -1,3 +1,9 @@
+/*==- json/Value.cpp -------------------------------------------------------==
+
+  This file is part of the Lity project distributed under GPL-3.0.
+  See LICENSE for details.
+
+==------------------------------------------------------------------------==*/
 #include <json/Value.h>
 #include <json/Object.h>
 #include <json/Array.h>

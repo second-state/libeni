@@ -1,3 +1,9 @@
+/*==- json/Notation.cpp ----------------------------------------------------==
+
+  This file is part of the Lity project distributed under GPL-3.0.
+  See LICENSE for details.
+
+==------------------------------------------------------------------------==*/
 #include <json/Notation.h>
 
 using namespace json;

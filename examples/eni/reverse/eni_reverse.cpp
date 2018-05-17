@@ -1,3 +1,9 @@
+/*==- examples/eni/reverse/eni_reverse.cpp ---------------------------------==
+
+  This file is part of the Lity project distributed under GPL-3.0.
+  See LICENSE for details.
+
+==------------------------------------------------------------------------==*/
 #include <eni.h>
 #include <json/Array.h>
 

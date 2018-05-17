@@ -1,3 +1,9 @@
+/*==- eni.h ----------------------------------------------------------------==
+
+  This file is part of the Lity project distributed under GPL-3.0.
+  See LICENSE for details.
+
+==------------------------------------------------------------------------==*/
 #ifndef ETHEREUM_NATIVE_INTERFACE
 #define ETHEREUM_NATIVE_INTERFACE
 
