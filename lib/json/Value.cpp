@@ -107,9 +107,15 @@ void Value::print(std::ostream &os) const
       os << '"';
       string::const_iterator c, end = m_Value.string_p->end();
       for (c = m_Value.string_p->begin(); c != end; ++c) {
-        if ((*c == '"') || (*c == '\\'))
-          os << '\\';
-        os << *c;
+        if ((*c == '"') || (*c == '\\')){
+          os << '\\' << *c;
+        } else if (0<=*c && *c<0x20){
+          char str[11];
+          sprintf(str, "%04X", *c);
+          os << "\\u" << str;
+        } else {
+          os << *c;
+        }
       }
       os << '"';
       break;

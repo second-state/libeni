@@ -11,6 +11,8 @@ void f3(const string &params_text) {
   Parser ps(params_text);
   Value params = ps.getRoot();
 
+  params.print(std::cout);
+  
   Value ar = params["array"];
   Value u = ar[0][0];
   ar.print(std::cout);

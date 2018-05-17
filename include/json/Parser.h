@@ -186,10 +186,17 @@ private:
     } else if (have('t')) {
       return '\t'; // horizontal tab
     } else if (have('u')) {
-      // parse_codepoint_ref();
+      return parse_codepoint();
     } else {
       parse_error("invalid escape sequence");
     }
+  }
+  char parse_codepoint(){
+    std::string str(m_It, m_It+4);
+    m_It+= 4;
+    int code;
+    sscanf(str.c_str(), "%X", &code);
+    return code;
   }
   vector<char> parse_utf8(){
 

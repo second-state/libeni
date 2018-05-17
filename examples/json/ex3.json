@@ -2,7 +2,7 @@
     "name": "dywu",
     "age": 18,
     "have_car": true,
-    "escape": "\"\\n\"",
+    "escape": "\"\\n\"\u0001\n",
     "colleagues": ["hydai", "yi", "dm4", "katy"],
     "array": [["a",8], "c"]
 }
