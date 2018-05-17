@@ -3,6 +3,7 @@
 #include <json/Array.h>
 #include <eni_types.h>
 #include <string>
+
 using namespace json;
 
 static Value g_NullValue(UNDEF); // XXX
@@ -107,13 +108,15 @@ void Value::print(std::ostream &os) const
       os << '"';
       string::const_iterator c, end = m_Value.string_p->end();
       for (c = m_Value.string_p->begin(); c != end; ++c) {
-        if ((*c == '"') || (*c == '\\')){
+        if ((*c == '"') || (*c == '\\')) {
           os << '\\' << *c;
-        } else if (0<=*c && *c<0x20){
+        }
+        else if ((0 <= *c) && (*c < 0x20)) {
           char str[11];
           sprintf(str, "%04X", *c);
           os << "\\u" << str;
-        } else {
+        }
+        else {
           os << *c;
         }
       }

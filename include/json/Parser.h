@@ -191,9 +191,9 @@ private:
       parse_error("invalid escape sequence");
     }
   }
-  char parse_codepoint(){
+  char parse_codepoint() {
     std::string str(m_It, m_It+4);
-    m_It+= 4;
+    m_It += 4;
     int code;
     sscanf(str.c_str(), "%X", &code);
     return code;

@@ -1,7 +1,6 @@
 #include <json/Object.h>
 
 using namespace json;
-typedef unsigned uint;
 
 Object::Object()
   : std::map<std::string, Value>(), Notation(OBJECT) {
@@ -18,15 +17,16 @@ Object& Object::operator=(const Object& pCopy)
   return *this;
 }
 
-void Object::print(std::ostream &os) const {
-    os<<'{';
-    uint i = 0;
-        os<<'\n';
-    for(std::pair<std::string, Value> v: *this){
-        if(i++)os<<",\n";
-        os<<v.first<<':';
-        v.second.print(os);
-    }
-    os<<'\n';
-    os<<'}';
+void Object::print(std::ostream& pOs) const {
+  pOs << '{';
+  unsigned int i = 0;
+  pOs << '\n';
+  for (std::pair<std::string, Value> v: *this) {
+    if(i++)
+      pOs << ",\n";
+    pOs << v.first << ':';
+    v.second.print(pOs);
+  }
+  pOs << '\n';
+  pOs << '}';
 }
