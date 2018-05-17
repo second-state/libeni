@@ -63,6 +63,3 @@ Total Test time (real) =   0.01 sec
 ```
 
 See `Testing/Temporary/LastTest.log` for the detailed output of all tests.
-
-## Attribution
-- [Icon](https://commons.wikimedia.org/wiki/File:Creative-Tail-pulse.svg)
