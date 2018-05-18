@@ -1,3 +1,22 @@
+### 1.0.x (pre-released)
+
+Features:
+  * all: Add license information to the beginning of all source code.
+  * all: Setup building system with CMake.
+  * eni: Refine interface.
+  * eni: Add a Caesar Cipher example.
+  * json: Support unicode `string`.
+  * test: Integrate SkyPat as the main testing framework and support running
+    tests with CTest.
+
+Bug fixes:
+  * eni: '\0' problem is resolved by JSON printer and parser.
+  * json: Fix memory leak in destructors.
+
+Known issues:
+  * all: Current building system does not support Mac OSX.
+
+
 ### 1.0.0
 
 Features:
