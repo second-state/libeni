@@ -7,12 +7,17 @@ Download the Prebuilt `libeni`
 
 .. TODO: add link to binaries for pre-released version
 
+Prerequisites
+`````````````
+- Boost >= 1.58
+
 Build From Source
 -----------------
 
 Prerequisites
 `````````````
 
+- Boost >= 1.58
 - CMake >= 3.1
 - OpenSSL >= 1.0
 - SkyPat >= 3.1.1 (see `SkyPat releases <https://github.com/skymizer/SkyPat/releases/>`_)

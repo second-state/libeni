@@ -5,6 +5,7 @@ The C++ implementation for libeni.
 
 ## Prerequisites
 
+- Boost >= 1.58
 - CMake >= 3.1
 - OpenSSL >= 1.0
 - SkyPat >= 3.1.1
