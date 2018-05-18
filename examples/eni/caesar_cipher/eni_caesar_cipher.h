@@ -21,7 +21,7 @@ public:
   ~Encrypt() { }
 
 private:
-  bool parse(const json::Value& pArgs) override;
+  bool parse(const json::Array& pArgs) override;
 
   eni::Gas gas() const override;
 
@@ -41,7 +41,7 @@ public:
   ~Decrypt() { }
 
 private:
-  bool parse(const json::Value& pArgs) override;
+  bool parse(const json::Array& pArgs) override;
 
   eni::Gas gas() const override;
 

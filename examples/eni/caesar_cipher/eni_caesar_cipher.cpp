@@ -5,7 +5,6 @@
 
 ==------------------------------------------------------------------------==*/
 #include <eni.h>
-#include <json/Array.h>
 #include <cstring>
 #include "eni_caesar_cipher.h"
 
@@ -27,7 +26,7 @@ int CaesarCipher::char2int(char ch) {
 /*==------------------------------------------------------------------------==
   Encrypt functions
 ==------------------------------------------------------------------------==*/
-bool Encrypt::parse(const json::Value& pArgs) {
+bool Encrypt::parse(const json::Array& pArgs) {
   m_Data = pArgs[0].toString();
   m_Seed = pArgs[1].toString();
   return true;
@@ -61,7 +60,7 @@ eni::Gas Decrypt::gas() const {
   return m_Data.length();
 }
 
-bool Decrypt::parse(const json::Value& pArgs) {
+bool Decrypt::parse(const json::Array& pArgs) {
   m_Data = pArgs[0].toString();
   m_Seed = pArgs[1].toString();
   return true;

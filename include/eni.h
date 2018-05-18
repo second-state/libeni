@@ -7,6 +7,7 @@
 #ifndef ETHEREUM_NATIVE_INTERFACE
 #define ETHEREUM_NATIVE_INTERFACE
 
+#include <json/Array.h>
 #include <json/Value.h>
 #include <cstdint>
 #include <cstring>
@@ -60,14 +61,14 @@ private:
   bool check(const json::Value& pArgs) {
     bool ret = true;
     if (!m_Parsed) {
-      ret = parse(pArgs);
+      ret = parse(pArgs.toArray());
       m_Parsed = true;
     }
     return ret;
   }
 
 private:
-  virtual bool parse(const json::Value& pArgs) = 0;
+  virtual bool parse(const json::Array& pArgs) = 0;
 
   virtual Gas gas() const = 0;
 

@@ -5,7 +5,6 @@
 
 ==------------------------------------------------------------------------==*/
 #include <eni.h>
-#include <json/Array.h>
 
 class Reverse : public eni::EniBase
 {
@@ -15,7 +14,7 @@ public:
   ~Reverse() { }
 
 private:
-  bool parse(const json::Value& pArgs) override {
+  bool parse(const json::Array& pArgs) override {
     m_Str = pArgs[0].toString();
     return true;
   }

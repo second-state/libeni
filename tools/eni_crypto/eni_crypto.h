@@ -50,7 +50,7 @@ public:
   ~RSAEncrypt() { rsa::destroy(m_Key); }
 
 private:
-  bool parse(const json::Value& pArgs) override;
+  bool parse(const json::Array& pArgs) override;
 
   eni::Gas gas() const override;
 
@@ -73,7 +73,7 @@ public:
   ~RSADecrypt() { rsa::destroy(m_Key); }
 
 private:
-  bool parse(const json::Value& pArgs) override;
+  bool parse(const json::Array& pArgs) override;
 
   eni::Gas gas() const override;
 

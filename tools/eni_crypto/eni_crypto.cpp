@@ -5,7 +5,6 @@
 
 ==------------------------------------------------------------------------==*/
 #include "eni_crypto.h"
-#include <json/Array.h>
 #include <sstream>
 
 extern "C" {
@@ -121,7 +120,7 @@ bool rsa::priv_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 /*==------------------------------------------------------------------------==
   RSAEncrypt
 ==------------------------------------------------------------------------==*/
-bool RSAEncrypt::parse(const json::Value& pArgs)
+bool RSAEncrypt::parse(const json::Array& pArgs)
 {
   m_Key = rsa::create_pubkey(pArgs[0].toString());
   if (nullptr == m_Key)
@@ -149,7 +148,7 @@ bool RSAEncrypt::run(json::Array& pRetVal)
 /*==------------------------------------------------------------------------==
   RSADecrypt
 ==------------------------------------------------------------------------==*/
-bool RSADecrypt::parse(const json::Value& pArgs)
+bool RSADecrypt::parse(const json::Array& pArgs)
 {
   m_Key = rsa::create_privkey(pArgs[0].toString());
   if (nullptr == m_Key)
