@@ -11,6 +11,23 @@ Prerequisites
 `````````````
 - Boost >= 1.58
 
+Install
+```````
+
+.deb
+''''
+
+.. code:: bash
+
+  dpkg -i libeni-1.0.x.deb
+
+.tgz
+''''
+
+.. code:: bash
+
+  tar zxvf libeni-1.0.x.tgz --strip-components 1 -C ${LIBENI_PATH}
+
 Build From Source
 -----------------
 
