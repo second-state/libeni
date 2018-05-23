@@ -3,7 +3,7 @@ project(libeni)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "-fPIC -fno-rtti")
+set(CMAKE_CXX_FLAGS "-fPIC")
 
 include(CTest)
 
