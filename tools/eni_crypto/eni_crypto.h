@@ -4,8 +4,8 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
-#ifndef ENI_EXAMPLE_CRYPTO
-#define ENI_EXAMPLE_CRYPTO
+#ifndef ENI_CRYPTO_ENI_CRYPTO
+#define ENI_CRYPTO_ENI_CRYPTO
 
 #include <eni.h>
 
