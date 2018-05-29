@@ -17,7 +17,7 @@ using namespace ceni;
 
 int main(int argc, char* argv[])
 {
-  ceni::Opt opt("eni_run",
+  Opt opt("eni_run",
     "run the ENI operation and print the result in JSON format");
   if (!opt.parse(argc, argv)) {
     opt.help(std::cerr);

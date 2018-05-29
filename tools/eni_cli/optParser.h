@@ -46,8 +46,8 @@ public:
   }
 
 private:
-  const std::string& m_ProgName;
-  const std::string& m_ProgDesc;
+  const std::string m_ProgName;
+  const std::string m_ProgDesc;
 
   Path m_LibPath;
   std::string m_OpName;

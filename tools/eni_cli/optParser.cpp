@@ -40,5 +40,9 @@ bool Opt::parse(int pArgc, char* pArgv[])
       }
     }
   }
+  if (posCount < 3) {
+    // TODO: too less arguments
+    return false;
+  }
   return true;
 }
