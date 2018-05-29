@@ -1,7 +1,13 @@
-add_executable(eni_gas eni_gas.cpp)
+add_executable(eni_gas
+  optParser.cpp
+  eni_gas.cpp
+)
 target_link_libraries(eni_gas dl eni)
 
-add_executable(eni_run eni_run.cpp)
+add_executable(eni_run
+  optParser.cpp
+  eni_run.cpp
+)
 target_link_libraries(eni_run dl eni)
 
 if(BUILD_TESTING)
