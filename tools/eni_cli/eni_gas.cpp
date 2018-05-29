@@ -4,6 +4,7 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
+#include "ceni.h"
 #include "optParser.h"
 #include <eni.h>
 #include <dlfcn.h>
