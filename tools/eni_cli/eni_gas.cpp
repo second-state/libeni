@@ -10,13 +10,41 @@
 #include <dlfcn.h>
 #include <iostream>
 
+#define NULL_RETURN(VAR,ERR) \
+  if (NULL == (VAR)) return ERR
+
+using namespace ceni;
+
 int main(int argc, char* argv[])
 {
-  ceni::Opt opt("eni_gas",
+  Opt opt("eni_gas",
     "the estimated gas cost when running the ENI operation");
   if (!opt.parse(argc, argv)) {
     opt.help(std::cerr);
-    return 1;
+    return ExitParseError;
   }
-  return 0;
+
+  void* handle = ::dlopen(opt.lib().c_str(), RTLD_LAZY);
+  NULL_RETURN(handle, ExitLoadError);
+
+  const char* op_create = (opt.op() + "_create").c_str();
+  eni_create_t* eni_create = (eni_create_t*)::dlsym(handle, op_create);
+  NULL_RETURN(eni_create, ExitSymCreateError);
+
+  const char* op_destroy = (opt.op() + "_destroy").c_str();
+  eni_destroy_t* eni_destroy = (eni_destroy_t*)::dlsym(handle, op_destroy);
+  NULL_RETURN(eni_destroy, ExitSymDestroyError);
+
+  void* functor = eni_create(const_cast<char*>(opt.params().c_str()));
+  NULL_RETURN(functor, ExitCreateError);
+
+  uint64_t gas = eni_gas(functor);
+  eni_destroy(functor);
+  ::dlclose(handle);
+
+  if (0 == gas)
+    return ExitFailure;
+
+  std::cout << gas << std::endl;
+  return ExitSuccess;
 }
