@@ -5,7 +5,10 @@ foreach(test ${tests})
     COMMAND ${test}
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
-  set_property(TEST ${test_name} PROPERTY LABELS auto regression)
+  set_tests_properties(${test_name} PROPERTIES
+    ENVIRONMENT "T_BINDIR=${CMAKE_BINARY_DIR}"
+    LABELS      "auto;regression"
+  )
 endforeach(test)
 
 add_test(NAME json_tests
