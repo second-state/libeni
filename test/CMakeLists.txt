@@ -1,3 +1,13 @@
+file(GLOB tests t[0-9][0-9][0-9][0-9]-*.sh)
+foreach(test ${tests})
+  string(REGEX REPLACE "(^/.*/)|(\\.sh$)" "" test_name ${test})
+  add_test(NAME ${test_name}
+    COMMAND ${test}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  )
+  set_property(TEST ${test_name} PROPERTY LABELS auto regression)
+endforeach(test)
+
 add_test(NAME json_tests
   COMMAND json_tests
   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/json"
