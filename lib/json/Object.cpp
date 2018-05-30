@@ -29,7 +29,7 @@ void Object::print(std::ostream& pOs) const {
   pOs << '\n';
   for (std::pair<std::string, Value> v: *this) {
     if(i++)
-      pOs << ",\n";
+      pOs << ',';
     pOs << v.first << ':';
     v.second.print(pOs);
   }
