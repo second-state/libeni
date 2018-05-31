@@ -27,7 +27,7 @@ of ``eni::EniBase``. The constructor of your subclass must take a string as para
 .. code:: C++
 
   #include <eni.h>
-  class Reverse : public eni::EniBaes {
+  class Reverse : public eni::EniBase {
   public:
     Reverse(const std::string& pArgStr)
       : eni::EniBase(pArgStr) { ... }
@@ -46,7 +46,7 @@ Store the arguments into member variables for further use. Return ``false`` when
 
 .. code:: C++
 
-  class Reverse : public eni::EniBaes {
+  class Reverse : public eni::EniBase {
     ...
   private:
     bool parse(const json::Array& pArgs) override {
