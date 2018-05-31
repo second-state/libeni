@@ -27,12 +27,12 @@ int main(int argc, char* argv[])
   void* handle = ::dlopen(opt.lib().c_str(), RTLD_LAZY);
   NULL_RETURN(handle, ExitLoadError);
 
-  const char* op_create = (opt.op() + "_create").c_str();
-  eni_create_t* eni_create = (eni_create_t*)::dlsym(handle, op_create);
+  eni_create_t* eni_create =
+    (eni_create_t*)::dlsym(handle, (opt.op() + "_create").c_str());
   NULL_RETURN(eni_create, ExitSymCreateError);
 
-  const char* op_destroy = (opt.op() + "_destroy").c_str();
-  eni_destroy_t* eni_destroy = (eni_destroy_t*)::dlsym(handle, op_destroy);
+  eni_destroy_t* eni_destroy =
+    (eni_destroy_t*)::dlsym(handle, (opt.op() + "_destroy").c_str());
   NULL_RETURN(eni_destroy, ExitSymDestroyError);
 
   void* functor = eni_create(const_cast<char*>(opt.params().c_str()));
