@@ -12,18 +12,18 @@ foreach(test ${tests})
   )
 endforeach(test)
 
-add_test(NAME json_tests
-  COMMAND json_tests
-  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/json"
+add_test(NAME unittests
+  COMMAND unittests
+  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/unittests"
 )
-set_property(TEST json_tests PROPERTY LABELS json unittest)
+set_tests_properties(unittests PROPERTIES LABELS "unittest")
 
-add_executable(json_tests
-  json/main.cpp
-  json/ParserTest.cpp
-  json/ValueTest.cpp
+add_executable(unittests
+  unittests/main.cpp
+  unittests/ParserTest.cpp
+  unittests/ValueTest.cpp
 )
-target_link_libraries(json_tests
+target_link_libraries(unittests
   eni
   skypat
 )
