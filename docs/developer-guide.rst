@@ -91,7 +91,7 @@ In the ENI `reverse` example, we use the string length as its gas consumption.
 
 .. code:: C++
 
-  class Reverse : public eni::EniBaes {
+  class Reverse : public eni::EniBase {
     ...
   private:
     eni::Gas gas() const override {
@@ -106,7 +106,7 @@ Override the pure virtual function `run` and push the result back into the ``jso
 
 .. code:: C++
 
-  class Reverse : public eni::EniBaes {
+  class Reverse : public eni::EniBase {
     ...
   private:
     bool run(json::Array& pRetVal) override {
