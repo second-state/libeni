@@ -29,6 +29,7 @@ function p_expect
 #   (undefined)
 function t_run
 {
+  set +e
   output=$("$@")
   status=$?
 }
@@ -43,6 +44,6 @@ function o_expect
 {
   local expect=$1
   shift
-  t_run "$@"
+  set +e; t_run "$@"
   [ "$expect" = "$output" ] && : || p_expect "$*" "$expect" "$output"
 }
