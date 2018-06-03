@@ -150,3 +150,7 @@ Here is an example Makefile for `examples/eni/reverse`. Please be aware that the
 .. Test Your ENI Operations
 .. ------------------------
 .. TODO: how to test shared libraries
+
+The following illustrates the code hierarchy and the use of namespaces. 
+
+.. image:: diagrams/libeni.png
