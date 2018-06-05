@@ -49,7 +49,7 @@ bool Encrypt::run(json::Array& pRetVal) {
       ret.push_back(ch);
     }
   }
-  pRetVal.push_back(*(new json::Value(ret)));
+  pRetVal.emplace_back(ret);
   return true;
 }
 
@@ -79,7 +79,7 @@ bool Decrypt::run(json::Array& pRetVal) {
       ret.push_back(ch);
     }
   }
-  pRetVal.push_back(*(new json::Value(ret)));
+  pRetVal.emplace_back(ret);
   return true;
 }
 

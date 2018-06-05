@@ -141,7 +141,7 @@ bool RSAEncrypt::run(json::Array& pRetVal)
     return false;
   if (!str2hex(result, hexs))
     return false;
-  pRetVal.push_back(*(new json::Value(hexs)));
+  pRetVal.emplace_back(hexs);
   return true;
 }
 
@@ -168,7 +168,7 @@ bool RSADecrypt::run(json::Array& pRetVal)
   std::string result;
   if (!rsa::priv_decrypt(*m_Key, m_Msg, result))
     return false;
-  pRetVal.push_back(*(new json::Value(result)));
+  pRetVal.emplace_back(result);
   return true;
 }
 

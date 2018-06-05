@@ -25,7 +25,7 @@ private:
 
   bool run(json::Array& pRetVal) override {
     std::string ret(m_Str.rbegin(), m_Str.rend());
-    pRetVal.push_back(*(new json::Value(ret)));
+    pRetVal.emplace_back(ret);
     return true;
   }
 
