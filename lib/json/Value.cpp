@@ -37,6 +37,11 @@ Value::Value(const Value& pCopy)
   }
 }
 
+Value::Value(Value&& pMove)
+  : Notation(std::move(pMove)), m_Value(std::move(pMove.m_Value)) {
+  // empty
+}
+
 Value::Value(const string& pString)
   : Notation(STRING) {
   m_Value.string_p = new string(pString);

@@ -10,6 +10,14 @@
 
 using namespace json;
 
+SKYPAT_F(ValueTest, move_constructor)
+{
+  eni::Int i(1);
+  Value v(i);
+  Value m(std::move(v));
+  EXPECT_EQ(m.toInteger(), 1);
+}
+
 SKYPAT_F(ValueTest, type_test)
 {
   eni::Int a(18);

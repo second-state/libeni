@@ -33,8 +33,10 @@ public:
   Value(const Array& pArray);
 
   Value(const Value& pCopy);
+  Value(Value&& pMove);
 
   ~Value();
+
   Value& delegate(eni::s256& pValue);
   Value& delegate(json::Object& pObject);
   Value& delegate(json::Array& pArray);
