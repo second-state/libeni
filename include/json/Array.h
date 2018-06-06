@@ -18,11 +18,11 @@ class Value;
 class Array : private std::vector<Value>, public Notation
 {
 public:
+  using std::vector<Value>::at;
   using std::vector<Value>::begin;
   using std::vector<Value>::end;
   using std::vector<Value>::emplace_back;
   using std::vector<Value>::push_back;
-  using std::vector<Value>::operator[];
 
 public:
   Array();
@@ -32,6 +32,8 @@ public:
   Array(const Array& pArray);
 
   Array& operator=(const Array& pArray);
+
+  const Value& operator[](int pIdx) const { return this->at(pIdx); }
 
   void print(std::ostream &os) const;
 };

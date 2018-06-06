@@ -176,31 +176,14 @@ Value& Value::operator=(const Value& pCopy)
   return *this;
 }
 
-
 // beware that parameter key might be assigned from an integer
 // because (string <= char <= int) is available
 // by the HOLLY string& operator= (char c)
 // compiler WONT warn you
-Value& Value::operator[](const std::string &key)
-{
-  if(m_Type == OBJECT) {
-    return asObject()[key];
-  }
-  return g_NullValue;
-}
-
 const Value& Value::operator[](const std::string &key) const
 {
   if (m_Type == OBJECT) {
     return (*m_Value.object_p)[key];
-  }
-  return g_NullValue;
-}
-
-Value& Value::operator[](int i)
-{
-  if (m_Type == ARRAY) {
-    return asArray()[i];
   }
   return g_NullValue;
 }
