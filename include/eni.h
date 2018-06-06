@@ -14,19 +14,27 @@
 #include <string>
 #include <sstream>
 
-#define ENI_CREATE(OP, CLZ) \
-  extern "C" void* OP ## _create(char* pArgStr) { \
-    return (void*)new CLZ(pArgStr); \
+#define ENI_GAS(OP, CLZ) \
+  extern "C" uint64_t* OP ## _gas(char* pArgStr) {              \
+    eni::EniBase* functor = new CLZ(pArgStr);                   \
+    uint64_t gas = functor->getGas();                           \
+    uint64_t* ptrGas = (uint64_t*)::malloc(sizeof(uint64_t));   \
+    *ptrGas = gas;                                              \
+    delete functor;                                             \
+    return ptrGas;                                              \
   }
 
-#define ENI_DESTROY(OP, CLZ) \
-  extern "C" void OP ## _destroy(void* pFunctor) { \
-    return delete (eni::EniBase*)pFunctor; \
+#define ENI_RUN(OP, CLZ) \
+  extern "C" char* OP ## _run(char* pArgStr) {  \
+    eni::EniBase* functor = new CLZ(pArgStr);   \
+    char* ret = functor->start();               \
+    delete functor;                             \
+    return ret;                                 \
   }
 
 #define ENI_C_INTERFACE(OP, CLZ) \
-  ENI_CREATE(OP, CLZ) \
-  ENI_DESTROY(OP, CLZ)
+  ENI_GAS(OP, CLZ) \
+  ENI_RUN(OP, CLZ)
 
 namespace eni {
 

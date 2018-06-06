@@ -23,14 +23,3 @@ EniBase::~EniBase()
 {
   // implementation of pure virtual destructor
 }
-
-/*==------------------------------------------------------------------------==
-  C Interface for all eni-functors
-==------------------------------------------------------------------------==*/
-extern "C" uint64_t eni_gas(void* pFunctor) {
-  return ((eni::EniBase*)pFunctor)->getGas();
-}
-
-extern "C" char* eni_run(void* pFunctor) {
-  return ((eni::EniBase*)pFunctor)->start();
-}

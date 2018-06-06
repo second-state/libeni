@@ -11,21 +11,15 @@
 
 namespace ceni {
 
-typedef void* eni_create_t(char* pArgStr);
-typedef void  eni_destroy_t(void* pFunctor);
-
-extern "C" uint64_t eni_gas(void* pFunctor);
-extern "C" char*    eni_run(void *pFunctor);
+typedef void* eni_op_t(char* pArgStr);
 
 enum ExitStatus : uint8_t {
   ExitSuccess = 0,
   ExitFailure = 1,
   ExitParseError,
   ExitLoadError,
-  ExitSymCreateError,
-  ExitSymDestroyError,
-  ExitCreateError,
-  ExitDestroyError,
+  ExitSymError,
+  ExitRunError,
   ExitCloseError,
 };
 
