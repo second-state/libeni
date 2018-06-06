@@ -16,6 +16,8 @@ namespace json {
 class Object : private std::map<std::string, Value>, public Notation
 {
 public:
+  using std::map<std::string, Value>::begin;
+  using std::map<std::string, Value>::end;
   using std::map<std::string, Value>::operator[];
 
 public:

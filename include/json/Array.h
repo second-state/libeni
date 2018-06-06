@@ -18,6 +18,8 @@ class Value;
 class Array : private std::vector<Value>, public Notation
 {
 public:
+  using std::vector<Value>::begin;
+  using std::vector<Value>::end;
   using std::vector<Value>::emplace_back;
   using std::vector<Value>::push_back;
   using std::vector<Value>::operator[];
