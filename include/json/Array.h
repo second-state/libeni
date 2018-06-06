@@ -15,8 +15,13 @@ namespace json {
 
 class Value;
 
-class Array : public std::vector<Value>, public Notation
+class Array : private std::vector<Value>, public Notation
 {
+public:
+  using std::vector<Value>::emplace_back;
+  using std::vector<Value>::push_back;
+  using std::vector<Value>::operator[];
+
 public:
   Array();
 

@@ -13,8 +13,11 @@
 
 namespace json {
 
-class Object : public std::map<std::string, Value>, public Notation
+class Object : private std::map<std::string, Value>, public Notation
 {
+public:
+  using std::map<std::string, Value>::operator[];
+
 public:
   Object();
 
