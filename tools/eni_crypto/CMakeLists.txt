@@ -2,6 +2,7 @@ add_library(eni_crypto MODULE
   eni_crypto.cpp
 )
 target_link_libraries(eni_crypto
+  eni
   ssl
   crypto
 )
