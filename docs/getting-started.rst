@@ -5,7 +5,8 @@ Getting Started
 Download the Prebuilt `libeni`
 ------------------------------
 
-.. TODO: add link to binaries for pre-released version
+See `libeni releases on Github <https://github.com/CyberMiles/libeni/releases>_`
+for the newest release.
 
 Prerequisites
 `````````````
@@ -14,19 +15,17 @@ Prerequisites
 Install
 ```````
 
-.deb
-''''
-
-.. code:: bash
-
-  dpkg -i libeni-1.0.x.deb
-
 .tgz
 ''''
 
 .. code:: bash
 
-  tar zxvf libeni-1.0.x.tgz --strip-components 1 -C ${LIBENI_PATH}
+  tar zxvf libeni.tgz --strip-components 1 -C ${LIBENI_PATH}
+
+Test Manually
+`````````````
+See `Testing ENI Operations <docs/testing-eni-operations.rst>`_ for how to
+test the prebuilt shared libraries for ENI operations.
 
 Build From Source
 -----------------
