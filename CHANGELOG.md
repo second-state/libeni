@@ -1,4 +1,23 @@
-### 1.0.x (pre-released)
+### 1.1.0
+
+Features:
+  * tool: Add command line tools `eni_gas` and `eni_run` for testing ENI
+    libraries.
+  * test: Create regression tests for ENI libraries (including examples)
+    using the new CLIs `eni_gas` and `eni_run`.
+
+Bug fixes:
+  * all: Fix several memory issues.
+  * json: Change array and object to privately inherit from STL containers
+    to prevent potential memory leak.
+  * json: Use `at` instead of `operator[]` to access `std::vector` to avoid
+    potential undefined behavior.
+
+Known issues:
+  * all: Current building system does not support Mac OSX.
+
+
+### 1.0.x (pre-release)
 
 Features:
   * all: Add license information to the beginning of all source code.
@@ -10,7 +29,7 @@ Features:
     tests with CTest.
 
 Bug fixes:
-  * eni: '\0' problem is resolved by JSON printer and parser.
+  * eni: `'\0'` problem is resolved by JSON printer and parser.
   * json: Fix memory leak in destructors.
 
 Known issues:
