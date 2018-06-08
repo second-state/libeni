@@ -46,5 +46,6 @@ int main(int argc, char* argv[])
     return ExitFailure;
 
   std::cout << str << std::endl;
+  ::free(str);
   return 0;
 }
