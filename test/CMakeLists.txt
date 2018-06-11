@@ -12,18 +12,4 @@ foreach(test ${tests})
   )
 endforeach(test)
 
-add_test(NAME unittests
-  COMMAND unittests
-  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/unittests"
-)
-set_tests_properties(unittests PROPERTIES LABELS "unittest")
-
-add_executable(unittests
-  unittests/main.cpp
-  unittests/ParserTest.cpp
-  unittests/ValueTest.cpp
-)
-target_link_libraries(unittests
-  eni
-  skypat
-)
+add_subdirectory(unittests)
