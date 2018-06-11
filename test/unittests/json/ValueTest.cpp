@@ -1,4 +1,4 @@
-/*==- test/json/ValueTest.cpp ----------------------------------------------==
+/*==- test/json/unittests/ValueTest.cpp ------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
@@ -10,7 +10,7 @@
 
 using namespace json;
 
-SKYPAT_F(ValueTest, move_constructor)
+SKYPAT_F(JsonValueTest, move_constructor)
 {
   eni::Int i(1);
   Value v(i);
@@ -18,7 +18,7 @@ SKYPAT_F(ValueTest, move_constructor)
   EXPECT_EQ(m.toInteger(), 1);
 }
 
-SKYPAT_F(ValueTest, type_test)
+SKYPAT_F(JsonValueTest, type_test)
 {
   eni::Int a(18);
   eni::Int b(7122);

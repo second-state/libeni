@@ -1,4 +1,4 @@
-/*==- test/json/ParserTest.cpp ---------------------------------------------==
+/*==- test/json/unittests/ParserTest.cpp -----------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
@@ -11,21 +11,21 @@
 
 using namespace json;
 
-SKYPAT_F(ParserTest, empty_object)
+SKYPAT_F(JsonParserTest, empty_object)
 {
   Parser ps("{}");
   Value val = ps.getRoot();
   EXPECT_TRUE(val.isObject());
 }
 
-SKYPAT_F(ParserTest, empty_array)
+SKYPAT_F(JsonParserTest, empty_array)
 {
   Parser ps("[]");
   Value val = ps.getRoot();
   EXPECT_TRUE(val.isArray());
 }
 
-SKYPAT_F(ParserTest, file_test)
+SKYPAT_F(JsonParserTest, file_test)
 {
   // TODO: parser directly read from file
   std::ifstream ifs("data/0.json");

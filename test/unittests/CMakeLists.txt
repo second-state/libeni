@@ -6,8 +6,8 @@ set_tests_properties(unittests PROPERTIES LABELS "unittest")
 
 add_executable(unittests
   main.cpp
-  ParserTest.cpp
-  ValueTest.cpp
+  json/ParserTest.cpp
+  json/ValueTest.cpp
 )
 target_link_libraries(unittests
   eni
