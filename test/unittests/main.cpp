@@ -1,4 +1,4 @@
-/*==- test/json/main.cpp ---------------------------------------------------==
+/*==- test/unittests/main.cpp ----------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
@@ -8,7 +8,7 @@
 
 int main(int argc, char* argv[])
 {
-  skypat::Test::Initialize("Unit-Tests for libeni/json");
+  skypat::Test::Initialize("Unit-Tests for libeni");
   skypat::Test::RunAll();
 
   skypat::testing::UnitTest* tests = skypat::testing::UnitTest::self();
