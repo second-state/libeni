@@ -5,7 +5,7 @@ Getting Started
 Download the Prebuilt `libeni`
 ------------------------------
 
-See `libeni releases on Github <https://github.com/CyberMiles/libeni/releases>_`
+See `libeni releases <https://github.com/CyberMiles/libeni/releases>`_
 for the newest release.
 
 Prerequisites
