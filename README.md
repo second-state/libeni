@@ -1,66 +1,41 @@
-Library for ENI (Ethereum Native Interface)
-===========================================
+libENI: Library for Ethereum Native Interface
+=============================================
 
-The C++ implementation for libeni.
+[![Latest Release](https://img.shields.io/github/release-date/CyberMiles/libeni.svg)](https://github.com/CyberMiles/libeni/releases)
+[![Build Status](https://img.shields.io/travis/CyberMiles/libeni.svg)](https://travis-ci.org/CyberMiles/libeni)
+[![Docs](https://img.shields.io/readthedocs/lity.svg)](http://lity.readthedocs.io/)
 
-## Prerequisites
+Official C++ implementation of **libENI**,
+which is part of [the Lity project][Lity].
 
-- Boost >= 1.58
-- CMake >= 3.1
-- OpenSSL >= 1.0
-- SkyPat >= 3.1.1
+## Getting Started
 
-## Build
+You can find introductions to [Lity][Lity] and [Ethereum Native Interface][ENI]
+in the [Lity documentation](http://lity.readthedocs.io/).
 
-Build libeni and all packages.
+[Lity]: https://github.com/CyberMiles/lity
+[ENI]: https://github.com/CyberMiles/libeni
 
-```
-mkdir build
-cd build
-cmake ..
-make
-```
+To install or build libENI,
+check [getting started](docs/getting-started.rst) in the documentation.
+To create your own ENI operations,
+check the [developer guide](docs/developer-guide.rst).
 
-## Run Tests
+## Contributing
 
-In your build directory, run `ctest`.
-The result looks like the below.
+[![Contributors](https://img.shields.io/github/contributors/CyberMiles/libeni.svg)](https://github.com/CyberMiles/libeni/graphs/contributors)
+[![Pull Requests](https://img.shields.io/github/issues-pr/CyberMiles/libeni.svg)](https://github.com/CyberMiles/libeni/pulls)
 
-```
-Test project /builds/cybermiles/libeni/build
-    Start 1: crypto_tests
-1/4 Test #1: crypto_tests .....................   Passed    0.00 sec
-    Start 2: crypto_so_tests
-2/4 Test #2: crypto_so_tests ..................   Passed    0.00 sec
-    Start 3: json_tests
-3/4 Test #3: json_tests .......................   Passed    0.00 sec
-    Start 4: example_tests
-4/4 Test #4: example_tests ....................   Passed    0.00 sec
+Please see the [contribution guide](docs/contributing.rst) for more details.
 
-100% tests passed, 0 tests failed out of 4
+## Contact
 
-Label Time Summary:
-json          =   0.00 sec (1 test)
-regression    =   0.00 sec (2 tests)
-sharedlib     =   0.00 sec (2 tests)
-unittest      =   0.01 sec (2 tests)
+[![Issues](https://img.shields.io/github/issues/CyberMiles/libeni.svg)](https://github.com/CyberMiles/libeni/issues)
 
-Total Test time (real) =   0.01 sec
-```
+Feel free to report bugs, issues, or send a feature request using [Github issues](https://github.com/CyberMiles/libeni/issues).
 
-See `Testing/Temporary/LastTest.log` for the detailed output of all tests.
+## License
 
-## Directory Structure
+[![License](https://img.shields.io/github/license/CyberMiles/libeni.svg)](https://www.gnu.org/licenses/lgpl-3.0.en.html)
 
-| Path          | Description                                     |
-| ------------- | ----------------------------------------------- |
-| include/      | Header files for this library.                  |
-| lib/          | Implementations for this library.               |
-| examples/     | Examples of how to use this library.            |
-| test/         | Unit-tests for this library and its examples.   |
-| tools/        | Tools and modules for this library.             |
-| docs/         | Documentations.                                 |
-| CMakeList.txt | The top-directory Makefile.                     |
-| CHANGELOG.md  | Change logs for each released versions.         |
-| LICENSE       | License file for the whole project.             |
-| README.md     | This file.                                      |
+See the [LICENSE](LICENSE) file.
