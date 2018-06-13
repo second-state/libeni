@@ -2,9 +2,9 @@
 Developer Guide
 ===============
 
-In this tutorial, we will guide you through how to create new ENI operations with `libeni` in C++.
+In this tutorial, we will guide you through how to create new ENI operations with libENI in C++.
 
-See `Getting Started <docs/getting-started.rst>`_ for how to install `libeni`.
+See `Getting Started <docs/getting-started.rst>`_ for how to install libENI.
 
 Implement an ENI Operations
 ---------------------------
@@ -40,7 +40,7 @@ The constructor of ``eni::EniBase`` will preprocess the parameter from a raw str
 Parse Arguments
 ```````````````
 
-After the parameter is converted into ``json::Array``, `libeni` will call the pure virtual function `parse` that allows your ENI operation to get the arguments.
+After the parameter is converted into ``json::Array``, libENI will call the pure virtual function `parse` that allows your ENI operation to get the arguments.
 
 Store the arguments into member variables for further use. Return ``false`` when the given arguments are not correct (e.g., lacking arguments).
 
@@ -80,7 +80,7 @@ Access the arguments in ``json::Array`` with ``operator[]`` and convert to the o
   eni::Int    seed  = pArgs[1].toInteger();
   eni::Bool   magic = pArgs[2].toBoolean();
 
-See `libeni API <docs/api/index.rst>`_ for more information about the `json` in `libeni`.
+See `libeni API <docs/api/index.rst>`_ for more information about the `json` in libENI.
 
 Estimate Gas Consumption
 ````````````````````````
@@ -130,9 +130,9 @@ Build the ENI Operations Into a Shared Library
 
 Please add these flags ``-std=c++11 -fPIC`` when compiling into a shared library. You might want to check `GCC Option Summary <https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html>`_ to see the explanation for these flags.
 
-Specify the path to `libeni` headers, such as `eni.h``, with ``-I${LIBENI_PATH}/include``.
+Specify the path to libENI headers, such as `eni.h``, with ``-I${LIBENI_PATH}/include``.
 
-You might also want to link to `libeni` by specifying the path ``-L${LIBENI_PATH}/lib``, and the library name ``-leni``.
+You might also want to link to libENI by specifying the path ``-L${LIBENI_PATH}/lib``, and the library name ``-leni``.
 
 Here is an example Makefile for `examples/eni/reverse`. Please be aware that the flags and commands might differ if you're using different compilers or building systems.
 

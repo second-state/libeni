@@ -2,21 +2,19 @@
 Getting Started
 ===============
 
-Download the Prebuilt `libeni`
-------------------------------
+Download the Prebuilt libENI
+----------------------------
 
-See `libeni releases <https://github.com/CyberMiles/libeni/releases>`_
+See `libENI releases <https://github.com/CyberMiles/libeni/releases>`_
 for the newest release.
 
 Prerequisites
 `````````````
+
 - Boost >= 1.58
 
 Install
 ```````
-
-.tgz
-''''
 
 .. code:: bash
 

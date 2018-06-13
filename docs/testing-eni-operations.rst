@@ -5,10 +5,10 @@ Testing ENI Operations
 Setup Environment
 -----------------
 
-Make sure `libeni` can be found in your environment.
-See `Getting Started <docs/getting-started.rst>`_ for how to install `libeni`.
+Make sure libENI can be found in your environment.
+See `Getting Started <docs/getting-started.rst>`_ for how to install libENI.
 
-You might want to try the following settings if `libeni` is installed
+You might want to try the following settings if libENI is installed
 but not found in your environment.
 
 .. code:: bash
