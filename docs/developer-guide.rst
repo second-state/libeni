@@ -4,7 +4,7 @@ Developer Guide
 
 In this tutorial, we will guide you through how to create new ENI operations with `libeni` in C++.
 
-See `Getting Started <docs/getting-started.rst>`_ for how to build and install `libeni`.
+See `Getting Started <docs/getting-started.rst>`_ for how to install `libeni`.
 
 Implement an ENI Operations
 ---------------------------
@@ -147,13 +147,8 @@ Here is an example Makefile for `examples/eni/reverse`. Please be aware that the
   	g++ ${CPPFLAGS} ${CXXFLAGS} ${LDFLAGS} -shared -oeni_reverse.so eni_reverse.cpp ${LDADD}
 
 
-.. Test Your ENI Operations
-.. ------------------------
-.. TODO: how to test shared libraries
+Test Your ENI Operations
+------------------------
 
-Visual overview of libENI code
-------------------------------
-
-The following illustrates the libENI code hierarchy and the use of namespaces. 
-
-.. image:: diagrams/libeni.png
+See `the documentation <docs/testing-eni-operations.rst>`_ for how to
+test your ENI operations.
