@@ -39,11 +39,14 @@ Check the usage of the tools by running it without any arguments.
     OP      - name of the ENI operation
     JSON    - parameters passed to the operation in JSON format
 
-Test "eni_reverse.so"
-`````````````````````
+Test Prebuilt Shared Libraries
+------------------------------
 
-Here we demonstrate how to test the ENI operation `reverse` built from
-`examples/eni/reverse` with the CLI tools `eni_gas` and `eni_run`.
+Here we demonstrate how to test the ENI operation built from our examples
+and tools with the CLI tools `eni_gas` and `eni_run`.
+
+Test "eni_reverse.so" (`examples/eni/reverse`)
+``````````````````````````````````````````````
 
 .. code:: bash
 
@@ -53,8 +56,8 @@ Here we demonstrate how to test the ENI operation `reverse` built from
 The first call `eni_gas` will output `12`, and
 the second one `eni_run` will output `["!dlroW olleH"]`.
 
-Test "eni_caesar_cipher.so"
-```````````````````````````
+Test "eni_caesar_cipher.so" (`examples/eni/caesar_cipher`)
+``````````````````````````````````````````````````````````
 
 .. code:: bash
 
@@ -72,10 +75,10 @@ Output for the above lines.
   12
   ["Hello World!"]
 
-Test "eni_crypto.so"
-````````````````````
+Test "eni_crypto.so" (`tools/eni_crypto`)
+`````````````````````````````````````````
 
-Get the JSON files for testing from the directory `test/t0004` in the source repository.
+Get the JSON files for testing from the directory `test/t0004 <test/t0004>`_.
 
 .. code:: bash
 
