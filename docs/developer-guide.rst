@@ -5,7 +5,7 @@ Developer Guide
 In this tutorial, we will guide you through how to create new ENI operations
 with libENI in C++.
 
-See `Getting Started <docs/getting-started.rst>`_ for how to install libENI.
+See :doc:`Getting Started <getting-started>` for how to install libENI.
 
 Implement an ENI Operation
 --------------------------
@@ -91,7 +91,7 @@ Here we just take the first argument and convert it to a string.
     std::string m_Str;
   };
 
-Check `the documentation <docs/parsing-eni-arguments.rst>`_ to see more detail
+Check :doc:`the documentation <parsing-eni-arguments>` to see more detail
 about how arguments are converted into a ``json::Array``.
 
 Estimate Gas Consumption
@@ -176,5 +176,5 @@ the flags and commands might differ if you're using different compilers.
 Test Your ENI Operations
 ------------------------
 
-See `the documentation <docs/testing-eni-operations.rst>`_ for how to test
+See :doc:`the documentation <testing-eni-operations>` for how to test
 your ENI operations.

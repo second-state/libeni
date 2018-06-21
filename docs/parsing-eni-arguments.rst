@@ -30,4 +30,4 @@ Here is a list of `TYPE` supported by our json API.
 * `Object`
 * `String`
 
-See `libENI API <#>`_ for more information about json APIs in libENI.
+See :doc:`libENI API <#>` for more information about json APIs in libENI.

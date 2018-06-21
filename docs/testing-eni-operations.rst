@@ -6,7 +6,7 @@ Setup Environment
 -----------------
 
 Make sure libENI can be found in your environment.
-See `Getting Started <docs/getting-started.rst>`_ for how to install libENI.
+See :doc:`Getting Started <getting-started>` for how to install libENI.
 
 You might want to try the following settings if libENI is installed
 but not found in your environment.

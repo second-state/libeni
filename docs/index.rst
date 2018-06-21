@@ -11,6 +11,6 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   getting-started.rst
-   developer-guide.rst
-   contributing.rst
+   getting-started
+   developer-guide
+   contributing

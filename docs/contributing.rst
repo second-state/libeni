@@ -2,7 +2,7 @@
 Contributing to libENI
 ======================
 
-See `Getting Started <docs/getting-started.rst>`_ for how to build libENI.
+See :doc:`Getting Started <getting-started>` for how to build libENI.
 
 Overview of libENI Code
 -----------------------
@@ -45,7 +45,7 @@ Create a Pull Request
 * Add test cases for your pull request if you're proposing new features or
   major bug fixes.
 * Build and test locally before submit your pull request.
-  See `Getting Started <docs/getting-started.rst>`_ for how to test libENI.
+  See :doc:`Getting Started <getting-started>` for how to test libENI.
 
 Please try to follow the existing coding style of libENI (although it is neither
 well-styled nor documented at this moment), which is basically based on

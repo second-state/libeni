@@ -22,7 +22,7 @@ Install
 
 Test Manually
 `````````````
-See `Testing ENI Operations <docs/testing-eni-operations.rst>`_ for how to
+See :doc:`Testing ENI Operations <testing-eni-operations>` for how to
 test the prebuilt shared libraries for ENI operations.
 
 Build From Source
