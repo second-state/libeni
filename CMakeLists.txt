@@ -17,7 +17,32 @@ add_library(eni SHARED
   lib/json/Notation.cpp
   lib/json/Value.cpp
   lib/json/Array.cpp
+  lib/lity/adt/StringRef.cpp
+  lib/lity/adt/TypeTag.cpp
 )
+
+find_path(HAVE_SYS_TYPES_H "sys/types.h")
+find_path(HAVE_INTTYPES_H "inttypes.h")
+find_path(HAVE_STDINT_H "stdint.h")
+if(HAVE_SYS_TYPES_H)
+	add_definitions(-DHAVE_SYS_TYPES_H)
+endif()
+if(HAVE_INTTYPES_H)
+	add_definitions(-DHAVE_INTTYPES_H)
+endif()
+if(HAVE_STDINT_H)
+	add_definitions(-DHAVE_STDINT_H)
+endif()
+
+include(CheckTypeSize)
+CHECK_TYPE_SIZE("uint64_t" HAVE_UINT64_T)
+CHECK_TYPE_SIZE("u_int64_t" HAVE_U_INT64_T)
+if(HAVE_UINT64_T)
+	add_definitions(-DHAVE_UINT64_T)
+endif()
+if(HAVE_U_INT64_T)
+	add_definitions(-DHAVE_U_INT64_T)
+endif()
 
 add_subdirectory(examples)
 add_subdirectory(tools)
