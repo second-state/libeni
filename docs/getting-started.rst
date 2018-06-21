@@ -22,8 +22,9 @@ Install
 
 Test Manually
 `````````````
-See :doc:`Testing ENI Operations <testing-eni-operations>` for how to
-test the prebuilt shared libraries for ENI operations.
+
+See :doc:`Testing Prebuilt ENI Operations <testing-prebuilt-eni-operations>`
+for how to test the prebuilt shared libraries of ENI operations.
 
 Build From Source
 -----------------

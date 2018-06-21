@@ -176,5 +176,5 @@ the flags and commands might differ if you're using different compilers.
 Test Your ENI Operations
 ------------------------
 
-See :doc:`the documentation <testing-eni-operations>` for how to test
-your ENI operations.
+See :doc:`the documentation <testing-eni-operations>` for how to test the
+shared libraries of your ENI operations.
