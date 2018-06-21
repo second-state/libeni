@@ -33,7 +33,7 @@ create a subclass of ``eni::EniBase``, and implement the following functions.
    ``eni::EniBase``, which will convert the raw string into a ``json::Array``
    containing the arguments for your ENI operation.
 1. A destructor.
-2. Three pure virtual functions.
+2. Three pure virtual functions, which should be implement privately.
 
    * ``parse`` to parse the arguments.
    * ``gas`` to calculate gas consumption from the arguments.
@@ -175,6 +175,29 @@ the flags and commands might differ if you're using different compilers.
 
 Test Your ENI Operations
 ------------------------
+
+Test From ``EniBase`` Interface
+```````````````````````````````
+
+Your ENI operations will only be accessed from the two public member functions
+of ``eni::EniBase``.
+
+* ``Gas getGas()`` should return the gas cost of your ENI operation.
+* ``char* start()`` should run your ENI operation and return the results in
+  JSON format.
+
+You may test your subclass through these two public functions.
+
+.. code:: C++
+
+  eni::EniBase* functor = new Reverse("[\"Hello World\"]");
+  ASSERT_NE(functor, nullptr);
+  EXPECT_EQ(functor->getGas(), 12);
+  EXPECT_EQ(::strcmp(functor->start(), "[\"!dlroW olleH\"]"), 0);
+  delete functor;
+
+Test From Shared Library Interface
+``````````````````````````````````
 
 See :doc:`the documentation <testing-eni-operations>` for how to test the
 shared libraries of your ENI operations.
