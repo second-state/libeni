@@ -12,6 +12,7 @@ Prerequisites
 `````````````
 
 - Boost >= 1.58
+- OpenSSL >= 1.0.2
 
 Install
 ```````
@@ -34,7 +35,7 @@ Prerequisites
 
 - Boost >= 1.58
 - CMake >= 3.1
-- OpenSSL >= 1.0
+- OpenSSL >= 1.0.2
 - SkyPat >= 3.1.1 (see `SkyPat releases <https://github.com/skymizer/SkyPat/releases/>`_)
 
 Download Source Code
