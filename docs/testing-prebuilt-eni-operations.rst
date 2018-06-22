@@ -60,3 +60,18 @@ Output for the above lines.
   ["An encrypted hex-string that is 512 characters in length."]
   256
   ["Hello World!"]
+
+Test "eni_scrypt.so" (`tools/eni_scrypt`)
+`````````````````````````````````````````
+
+.. code:: bash
+
+  eni_gas ${LIBENI_PATH}/lib/eni_scrypt.so scrypt '["00"]'
+  eni_run ${LIBENI_PATH}/lib/eni_scrypt.so scrypt '["00"]'
+
+Output for the above lines.
+
+.. code:: bash
+
+  2
+  ["161d0876f3b93b1048cda1bdeaa7332ee210f7131b42013cb43913a6553a4b69"]
