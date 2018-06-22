@@ -9,6 +9,7 @@ SKYPAT_F(ScryptTest, scrypt_empty_string)
   delete functor;
 
   EXPECT_EQ(memcmp(hash, R"(["161d0876f3b93b1048cda1bdeaa7332ee210f7131b42013cb43913a6553a4b69"])", 68), 0);
+  free(hash);
 }
 
 SKYPAT_F(ScryptTest, scrypt_all_zero)
@@ -18,6 +19,7 @@ SKYPAT_F(ScryptTest, scrypt_all_zero)
   delete functor;
 
   EXPECT_EQ(memcmp(hash, R"(["161d0876f3b93b1048cda1bdeaa7332ee210f7131b42013cb43913a6553a4b69"])", 68), 0);
+  free(hash);
 }
 
 SKYPAT_F(ScryptTest, scrypt_all_ff)
@@ -27,6 +29,7 @@ SKYPAT_F(ScryptTest, scrypt_all_ff)
   delete functor;
 
   EXPECT_EQ(memcmp(hash, R"(["5253069c14ecedf978745486375ee37415e977f55cdbedac31ebee8bf33dd127"])", 68), 0);
+  free(hash);
 }
 
 SKYPAT_F(ScryptTest, scrypt_truncate_oversized)
@@ -36,4 +39,5 @@ SKYPAT_F(ScryptTest, scrypt_truncate_oversized)
   delete functor;
 
   EXPECT_EQ(memcmp(hash, R"(["5253069c14ecedf978745486375ee37415e977f55cdbedac31ebee8bf33dd127"])", 68), 0);
+  free(hash);
 }
