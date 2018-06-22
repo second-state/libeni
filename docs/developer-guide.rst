@@ -193,7 +193,9 @@ You may test your subclass through these two public functions.
   eni::EniBase* functor = new Reverse("[\"Hello World\"]");
   ASSERT_NE(functor, nullptr);
   EXPECT_EQ(functor->getGas(), 12);
-  EXPECT_EQ(::strcmp(functor->start(), "[\"!dlroW olleH\"]"), 0);
+  char* ret = functor->start();
+  EXPECT_EQ(::strcmp(ret, "[\"!dlroW olleH\"]"), 0);
+  free(ret);
   delete functor;
 
 Test From Shared Library Interface
