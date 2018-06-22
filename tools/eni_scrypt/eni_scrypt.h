@@ -1,4 +1,4 @@
-/*==- examples/eni/scrypt/eni_scypt.cpp ---------------------------------==
+/*==- examples/eni/scrypt/eni_scrypt.h -----------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
