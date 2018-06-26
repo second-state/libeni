@@ -1,7 +1,21 @@
+### 1.2.0
+
+Features:
+  * all: Change C interface of libENI.
+  * all: Update documentations and deploy to [ReadTheDocs].
+  * tools: The second ENI package, `eni_scrypt`, which implements the Scrypt
+    hash algorithm.
+
+Known issues:
+  * all: Current building system does not support Mac OSX.
+
+[ReadTheDocs]: https://lity.readthedocs.io/projects/libeni/
+
+
 ### 1.1.0
 
 Features:
-  * tool: Add command line tools `eni_gas` and `eni_run` for testing ENI
+  * tools: Add command line tools `eni_gas` and `eni_run` for testing ENI
     libraries.
   * test: Create regression tests for ENI libraries (including examples)
     using the new CLIs `eni_gas` and `eni_run`.
