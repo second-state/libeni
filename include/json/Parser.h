@@ -103,8 +103,6 @@ public:
         m_It++;
       }
     }
-    // XXX: ?
-    // adapter.finish_run();
     m_CBacks.on_string(str, isKey);
     return true;
   }
@@ -132,8 +130,7 @@ public:
   bool parse_object() {
     skip_ws();
     if (!have('{')) return false;
-    // fprintf(stderr, "parsing object\n");
-
+    
     m_CBacks.begin_object();
     skip_ws();
     if (have('}')) {// empty
@@ -160,7 +157,6 @@ private:
     while (have(' ') || have('\t') || have('\n') || have('\r'));
   }
 
-  //
   bool parse_int_part(vector<char> &pStr) {
     if (!have(is_pos_digit, pStr)) {
       return false;
@@ -259,8 +255,8 @@ private:
   }
 
   void parse_error(const char* pErrMsg) {
-    // TODO
     std::cerr << pErrMsg;
+    exit(87);
   }
 
   template<char C>
