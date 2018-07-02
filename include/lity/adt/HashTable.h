@@ -10,7 +10,6 @@
 #include "lity/adt/bits/HashBase.h"
 #include <lity/support/MallocAllocator.h>
 #include <lity/adt/HashIterator.h>
-#include <lity/adt/TypeTraits.h>
 
 namespace lity {
 

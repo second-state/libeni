@@ -9,8 +9,6 @@ add_executable(unittests
   json/ParserTest.cpp
   json/ValueTest.cpp
   lity/HashTableTest.cpp
-  lity/StringRefTest.cpp
-  lity/TypeTraitsTest.cpp
 )
 target_link_libraries(unittests
   eni

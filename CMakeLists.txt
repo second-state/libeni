@@ -17,8 +17,6 @@ add_library(eni SHARED
   lib/json/Notation.cpp
   lib/json/Value.cpp
   lib/json/Array.cpp
-  lib/lity/adt/StringRef.cpp
-  lib/lity/adt/TypeTag.cpp
 )
 
 find_path(HAVE_SYS_TYPES_H "sys/types.h")

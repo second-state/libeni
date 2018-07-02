@@ -8,7 +8,6 @@
 #define LITY_ADT_STRING_HASH_TABLE_H
 #include <lity/adt/HashTable.h>
 #include <lity/adt/StringHasher.h>
-#include <lity/adt/StringRef.h>
 #include <lity/support/DataTypes.h>
 #include <lity/support/MallocAllocator.h>
 #include <cassert>
@@ -19,13 +18,13 @@ namespace lity {
 namespace internal {
 
 /**
- * Partial specification version of struct Entry for StringRef.
+ * Partial specification version of struct Entry for std::string.
  */
 template<class ValueType>
-struct Entry<StringRef, ValueType>
+struct Entry<std::string, ValueType>
 {
 public:
-  typedef StringRef key_type;
+  typedef std::string key_type;
   typedef ValueType value_type;
 
 public:
@@ -34,7 +33,7 @@ public:
     m_Key[pKey.size()] = '\0';
   }
 
-  key_type key() const { return StringRef(m_Key, m_KeyLen); }
+  key_type key() const { return std::string(m_Key, m_KeyLen); }
 
   void setKey(const key_type& pKey) { m_Key = pKey; }
 
@@ -55,15 +54,15 @@ protected:
 } // namespace hash
 
 /**
- * Partial specificiation MallocAllocator for Entry<StringRef, ValueType>
+ * Partial specificiation MallocAllocator for Entry<std::string, ValueType>
  */
 template<class ValueType>
-class MallocAllocator<internal::Entry<StringRef, ValueType> >
+class MallocAllocator<internal::Entry<std::string, ValueType> >
 {
 public:
   typedef size_t          size_type;
   typedef ptrdiff_t       difference_type;
-  typedef internal::Entry<StringRef, ValueType> DataType;
+  typedef internal::Entry<std::string, ValueType> DataType;
 
   typedef DataType*       pointer;
   typedef const DataType* const_pointer;
@@ -90,9 +89,9 @@ public:
   const_pointer address(const_reference X) const { return &X; }
   pointer       address(reference       X) const { return &X; }
 
-  pointer allocate(size_type pNumOfElements, const StringRef* pKey) {
+  pointer allocate(size_type pNumOfElements, const std::string* pKey) {
     return static_cast<pointer>(
-      std::malloc(sizeof(internal::Entry<StringRef, ValueType>) + pKey->size() + 1));
+      std::malloc(sizeof(internal::Entry<std::string, ValueType>) + pKey->size() + 1));
   }
 
   void deallocate(pointer pObject, size_type pN = 0)
@@ -107,7 +106,7 @@ public:
 
 template<class ValueType,
          class HasherType = internal::StringHasher<internal::ELF> >
-using StringHashTable = HashTable<StringRef, ValueType, HasherType>;
+using StringHashTable = HashTable<std::string, ValueType, HasherType>;
 
 } // namespace of lity
 

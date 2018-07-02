@@ -9,8 +9,8 @@
 
 #ifndef LITY_ADT_STRING_HASHER_H
 #define LITY_ADT_STRING_HASHER_H
-#include <lity/adt/StringRef.h>
 #include <lity/support/DataTypes.h>
+#include <string>
 #include <cassert>
 #include <cctype>
 #include <cstring>
@@ -38,9 +38,9 @@ enum StringHasherType {
  *  \brief the template StringHasher class, for specification
  */
 template<uint32_t NAME>
-struct StringHasher : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     assert(false && "Undefined StringHasher function.\n");
     return 0;
@@ -51,9 +51,9 @@ struct StringHasher : public std::unary_function<const lity::StringRef&, uint32_
  *  \brief RS StringHasher funciton
  */
 template<>
-struct StringHasher<RS> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<RS> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     const unsigned int b = 378551;
     uint32_t a = 63689;
@@ -71,9 +71,9 @@ struct StringHasher<RS> : public std::unary_function<const lity::StringRef&, uin
  *  \brief JS hash funciton
  */
 template<>
-struct StringHasher<JS> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<JS> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     uint32_t hash_val = 1315423911;
 
@@ -88,9 +88,9 @@ struct StringHasher<JS> : public std::unary_function<const lity::StringRef&, uin
  *  \brief P.J. Weinberger hash function
  */
 template<>
-struct StringHasher<PJW> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<PJW> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     const unsigned int BitsInUnsignedInt = (unsigned int)(sizeof(unsigned int) * 8);
     const unsigned int ThreeQuarters     = (unsigned int)((BitsInUnsignedInt  * 3) / 4);
@@ -114,9 +114,9 @@ struct StringHasher<PJW> : public std::unary_function<const lity::StringRef&, ui
  *  \brief ELF hash function.
  */
 template<>
-struct StringHasher<ELF> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<ELF> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     uint32_t hash_val = 0;
     uint32_t x = 0;
@@ -135,9 +135,9 @@ struct StringHasher<ELF> : public std::unary_function<const lity::StringRef&, ui
  *  \brief BKDR hash function
  */
 template<>
-struct StringHasher<BKDR> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<BKDR> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     const uint32_t seed = 131;
     uint32_t hash_val = 0;
@@ -154,9 +154,9 @@ struct StringHasher<BKDR> : public std::unary_function<const lity::StringRef&, u
  *  0.049s in 100000 test
  */
 template<>
-struct StringHasher<SDBM> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<SDBM> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     uint32_t hash_val = 0;
 
@@ -171,9 +171,9 @@ struct StringHasher<SDBM> : public std::unary_function<const lity::StringRef&, u
  *  0.057s in 100000 test
  */
 template<>
-struct StringHasher<DJB> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<DJB> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     uint32_t hash_val = 5381;
 
@@ -189,9 +189,9 @@ struct StringHasher<DJB> : public std::unary_function<const lity::StringRef&, ui
  *  0.60s
  */
 template<>
-struct StringHasher<DEK> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<DEK> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     uint32_t hash_val = pKey.size();
 
@@ -207,9 +207,9 @@ struct StringHasher<DEK> : public std::unary_function<const lity::StringRef&, ui
  *  0.057s
  */
 template<>
-struct StringHasher<BP> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<BP> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     uint32_t hash_val = 0;
     for(uint32_t i = 0; i < pKey.size(); ++i)
@@ -224,9 +224,9 @@ struct StringHasher<BP> : public std::unary_function<const lity::StringRef&, uin
  *  0.058s
  */
 template<>
-struct StringHasher<FNV> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<FNV> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     const uint32_t fnv_prime = 0x811C9DC5;
     uint32_t hash_val = 0;
@@ -244,9 +244,9 @@ struct StringHasher<FNV> : public std::unary_function<const lity::StringRef&, ui
  *  0.060s
  */
 template<>
-struct StringHasher<AP> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<AP> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pKey) const
+  uint32_t operator()(const std::string& pKey) const
   {
     unsigned int hash_val = 0xAAAAAAAA;
    
@@ -275,9 +275,9 @@ struct StringHasher<AP> : public std::unary_function<const lity::StringRef&, uin
  *                  Bit 24 is set only if ...                   'b' or 'B', ...
  */
 template<>
-struct StringHasher<ES> : public std::unary_function<const lity::StringRef&, uint32_t>
+struct StringHasher<ES> : public std::unary_function<const std::string&, uint32_t>
 {
-  uint32_t operator()(const lity::StringRef& pString) const
+  uint32_t operator()(const std::string& pString) const
   {
     uint32_t result = 0x0;
     unsigned int dot = 0;
