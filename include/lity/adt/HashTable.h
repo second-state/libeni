@@ -1,13 +1,13 @@
-/*===- HashTable.h ------------------------------------------------------===
+/*===- lity/adt/HashTable.h ----------------------------------------------===
 
-	This file is part of the Lity project distributed under GPL-3.0.
+  This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
 ==----------------------------------------------------------------------===*/
 #ifndef LITY_ADT_HASH_TABLE_H
 #define LITY_ADT_HASH_TABLE_H
 
-#include "lity/adt/bits/HashBase.h"
+#include "lity/adt/HashBase.h"
 #include <lity/support/MallocAllocator.h>
 #include <lity/adt/HashIterator.h>
 
