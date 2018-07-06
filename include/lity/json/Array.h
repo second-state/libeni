@@ -23,6 +23,7 @@ public:
   using std::vector<Value>::end;
   using std::vector<Value>::emplace_back;
   using std::vector<Value>::push_back;
+  using std::vector<Value>::size;
 
 public:
   Array();
