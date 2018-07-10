@@ -6,7 +6,8 @@
 ==----------------------------------------------------------------------===*/
 #ifndef LITY_ADT_STRING_MAP_H
 #define LITY_ADT_STRING_MAP_H
-#include <lity/adt/StringHashTable.h>
+
+#include <adt/StringHashTable.h>
 
 namespace lity {
 

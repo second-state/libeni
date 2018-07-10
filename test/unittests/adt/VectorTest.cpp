@@ -5,7 +5,7 @@
 
 ==------------------------------------------------------------------------==*/
 #include <skypat/skypat.h>
-#include <lity/adt/Vector.h>
+#include <adt/Vector.h>
 
 using namespace lity;
 

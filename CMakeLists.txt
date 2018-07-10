@@ -8,7 +8,7 @@ set(CMAKE_CXX_FLAGS "-fPIC")
 include(CTest)
 
 include_directories(PRIVATE
-  ${CMAKE_SOURCE_DIR}/include
+  ${CMAKE_SOURCE_DIR}/include/lity
 )
 
 add_library(eni SHARED

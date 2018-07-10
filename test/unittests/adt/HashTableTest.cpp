@@ -5,9 +5,9 @@
 
 ==----------------------------------------------------------------------==*/
 #include <skypat/skypat.h>
-#include <lity/adt/HashTable.h>
-#include <lity/adt/StringMap.h>
-#include <lity/adt/StringHashTable.h>
+#include <adt/HashTable.h>
+#include <adt/StringMap.h>
+#include <adt/StringHashTable.h>
 
 using namespace lity;
 

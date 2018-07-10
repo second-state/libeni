@@ -7,9 +7,9 @@
 #ifndef LITY_ADT_HASH_TABLE_H
 #define LITY_ADT_HASH_TABLE_H
 
-#include "lity/adt/HashBase.h"
-#include <lity/support/MallocAllocator.h>
-#include <lity/adt/HashIterator.h>
+#include <adt/HashBase.h>
+#include <adt/HashIterator.h>
+#include <support/MallocAllocator.h>
 
 namespace lity {
 

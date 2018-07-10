@@ -6,10 +6,11 @@
 ==----------------------------------------------------------------------===*/
 #ifndef LITY_ADT_STRING_HASH_TABLE_H
 #define LITY_ADT_STRING_HASH_TABLE_H
-#include <lity/adt/HashTable.h>
-#include <lity/adt/StringHasher.h>
-#include <lity/support/DataTypes.h>
-#include <lity/support/MallocAllocator.h>
+
+#include <adt/HashTable.h>
+#include <adt/StringHasher.h>
+#include <support/DataTypes.h>
+#include <support/MallocAllocator.h>
 #include <cassert>
 #include <cctype>
 #include <functional>

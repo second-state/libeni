@@ -7,7 +7,8 @@
 
 #ifndef LITY_ADT_STRING_HASHER_H
 #define LITY_ADT_STRING_HASHER_H
-#include <lity/support/DataTypes.h>
+
+#include <support/DataTypes.h>
 #include <string>
 #include <cassert>
 #include <cctype>
