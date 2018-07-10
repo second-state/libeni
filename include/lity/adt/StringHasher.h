@@ -140,7 +140,7 @@ struct StringHasher<BKDR> : public std::unary_function<const std::string&, uint3
   {
     const uint32_t seed = 131;
     uint32_t hash_val = 0;
-      
+
     for(uint32_t i = 0; i < pKey.size(); ++i)
       hash_val = (hash_val * seed) + pKey[i];
     return hash_val;
@@ -248,13 +248,13 @@ struct StringHasher<AP> : public std::unary_function<const std::string&, uint32_
   uint32_t operator()(const std::string& pKey) const
   {
     unsigned int hash_val = 0xAAAAAAAA;
-   
+
     for(uint32_t i = 0; i < pKey.size(); ++i) {  
       hash_val ^= ((i & 1) == 0)?
                           ((hash_val <<  7) ^ pKey[i] * (hash_val >> 3)):
                           (~((hash_val << 11) + (pKey[i] ^ (hash_val >> 5))));
     }
-   
+
     return hash_val;
   }
 };

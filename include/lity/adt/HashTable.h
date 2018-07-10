@@ -69,7 +69,7 @@ public:
   HashTable& operator=(const HashTable& pCopy);
 
   HashTable& operator=(HashTable&& pOther);
-  
+
   void clear();
 
   /// insert - insert a new element to the container. The element is
@@ -92,7 +92,7 @@ public:
   const_iterator find(const key_type& pKey) const;
 
   size_type count(const key_type& pKey) const;
-  
+
   float load_factor() const;
 
   /// rehash - if the load factor is larger than 75%, or the empty buckets is

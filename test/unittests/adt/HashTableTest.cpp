@@ -1,6 +1,6 @@
-/*===- HashTableTest.cpp -----------------------------------------------==
+/*===- test/unittests/adt/HashTableTest.cpp ----------------------------==
 
-	This file is part of the Lity project distributed under GPL-3.0.
+  This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
 ==----------------------------------------------------------------------==*/

@@ -6,6 +6,7 @@
 ==----------------------------------------------------------------------===*/
 #ifndef LITY_ADT_BITS_HASHBASE_H
 #define LITY_ADT_BITS_HASHBASE_H
+
 #include <support/DataTypes.h>
 #include <cstdlib>
 #include <cstring>
