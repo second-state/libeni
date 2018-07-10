@@ -5,8 +5,6 @@
 
 ==----------------------------------------------------------------------===*/
 
-using namespace lity;
-
 template<class ElementType>
 Vector<ElementType>::Vector()
   : elementSize(0), allocatedSize(0), dataArr(nullptr) {
