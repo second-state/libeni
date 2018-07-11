@@ -42,14 +42,24 @@ Value::Value(Value&& pMove)
   // empty
 }
 
+Value::Value(const char* pString)
+  : Notation(STRING) {
+  m_Value.string_p = new string(pString);
+}
+
 Value::Value(const string& pString)
   : Notation(STRING) {
   m_Value.string_p = new string(pString);
 }
 
-Value::Value(const eni::s256& pSint)
+Value::Value(int pSInt)
   : Notation(INT) {
-  m_Value.int_p = new eni::s256(pSint);
+  m_Value.int_p = new eni::s256(pSInt);
+}
+
+Value::Value(const eni::s256& pSInt)
+  : Notation(INT) {
+  m_Value.int_p = new eni::s256(pSInt);
 }
 
 Value::Value(const Object& pObject)

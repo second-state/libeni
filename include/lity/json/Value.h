@@ -26,9 +26,10 @@ public:
   Value() { }
 
   explicit Value(bool pB) : Notation(BOOL) { m_Value.bool_p = pB; }
+  explicit Value(const char* pString);
   explicit Value(const string& pString);
-
-  Value(const eni::s256& pValue);
+  explicit Value(int pSInt);
+  explicit Value(const eni::s256& pSInt);
   Value(const Object& pObject);
   Value(const Array& pArray);
 
