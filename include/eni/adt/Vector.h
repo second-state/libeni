@@ -7,6 +7,7 @@
 #ifndef LITY_ADT_VECTOR_H
 #define LITY_ADT_VECTOR_H
 
+#include <diagnostic/Exception.h>
 #include <cstdlib>
 #include <cerrno>
 #include <cstring>
@@ -69,20 +70,6 @@ public:
     }
   private:
     ElementType* ptr;
-  };
-
-  class bad_alloc : public std::bad_alloc
-  {
-  public:
-    bad_alloc(int e) : err(e) {
-    }
-    const char* what() const throw() {
-      std::string errStr("bad_alloc: ");
-      errStr += strerror(err);
-      return errStr.c_str();
-    }
-  private:
-    int err;
   };
 
   Vector();

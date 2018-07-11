@@ -45,9 +45,14 @@ private:
 public:
   Exception() : BaseType() { }
 
+  explicit Exception(int pErrNo) : BaseType(), m_ErrNo(pErrNo) { }
+
   const char* what() const noexcept override {
     return ErrStr.c_str();
   }
+
+private:
+  int m_ErrNo;
 };
 
 /*==------------------------------------------------------------------------==
@@ -69,7 +74,34 @@ public:
 };
 
 template<DiagID ID>
+class Exception<ID, std::out_of_range> : private internal::ExceptionBase<ID>,
+                                         public std::out_of_range
+{
+private:
+  using internal::ExceptionBase<ID>::ErrStr;
+
+public:
+  Exception() : std::out_of_range(ErrStr) { }
+
+  const char* what() const noexcept override {
+    return ErrStr.c_str();
+  }
+};
+
+/*==------------------------------------------------------------------------==
+  Abbreviations for Exception
+==------------------------------------------------------------------------==*/
+template<DiagID ID>
+using BadAlloc = Exception<ID, std::bad_alloc>;
+
+template<DiagID ID>
 using LogicError = Exception<ID, std::logic_error>;
+
+template<DiagID ID>
+using LengthError = Exception<ID, std::length_error>;
+
+template<DiagID ID>
+using OutOfRange = Exception<ID, std::out_of_range>;
 
 } // namespace of eni
 

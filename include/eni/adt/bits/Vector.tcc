@@ -114,14 +114,13 @@ template<class ElementType>
 void Vector<ElementType>::resize(size_t n)
 {
   if (n > max_size()) {
-    throw Vector<ElementType>::bad_alloc(ENOMEM);
+    throw BadAlloc<NoMemory>();
   }
   else {
     if (n > allocatedSize && allocatedSize != max_size()) {
       dataArr = (ElementType*)realloc(dataArr, n);
       if (errno) {
-        int err = errno;
-        throw Vector<ElementType>::bad_alloc(err);
+        throw BadAlloc<NoMemory>(errno);
       }
       allocatedSize = n;
     }
@@ -133,14 +132,13 @@ template<class ElementType>
 void Vector<ElementType>::resize(size_t n, const ElementType& value)
 {
   if (n > max_size()) {
-    throw Vector<ElementType>::bad_alloc(ENOMEM);
+    throw BadAlloc<NoMemory>();
   }
   else {
     if (n > allocatedSize && allocatedSize != max_size()) {
       dataArr = (ElementType*)realloc(dataArr, n);
       if (errno) {
-        int err = errno;
-        throw Vector<ElementType>::bad_alloc(err);
+        throw BadAlloc<NoMemory>(errno);
       }
       for (size_t i = allocatedSize; i < n; ++i) {
         dataArr[i] = value;
@@ -168,7 +166,7 @@ void Vector<ElementType>::reserve(size_t n)
 {
   if (n > allocatedSize) {
     if (n > max_size()) {
-      throw std::length_error("Vector: reserve size exceed max size");
+      throw LengthError<InvalidVectorSize>();
     }
     resize(n);
   }
@@ -180,8 +178,7 @@ void Vector<ElementType>::shrink_to_fit()
   if (allocatedSize > elementSize) {
     dataArr = (ElementType*)realloc(dataArr, elementSize);
     if (errno) {
-      int err = errno;
-      throw Vector<ElementType>::bad_alloc(err);
+      throw BadAlloc<NoMemory>(errno);
     }
     allocatedSize = elementSize;
   }
@@ -197,7 +194,7 @@ template<class ElementType>
 ElementType& Vector<ElementType>::at(size_t index)
 {
   if (index >= elementSize || index < 0) {
-    throw std::out_of_range("Vector: index out of range");
+    throw OutOfRange<InvalidVectorIndex>();
   }
   return dataArr[index];
 }
@@ -310,7 +307,7 @@ void Vector<ElementType>::insert(size_t index, const std::vector<ElementType>& s
 {
   size_t n = stdVector.size();
   if (index > elementSize) {
-    throw std::out_of_range("Vector: index out of range");
+    throw OutOfRange<InvalidVectorIndex>();
   }
   resize(elementSize + n);
   for (size_t i = elementSize - 1; i >= index + n; --i) {
@@ -325,7 +322,7 @@ template<class ElementType>
 void Vector<ElementType>::insert(size_t index, const ElementType& value)
 {
   if (index > elementSize) {
-    throw std::out_of_range("Vector: index out of range");
+    throw OutOfRange<InvalidVectorIndex>();
   }
   resize(elementSize + 1);
   for (size_t i = elementSize - 1; i > index; --i) {
@@ -338,7 +335,7 @@ template<class ElementType>
 void Vector<ElementType>::insert(size_t index, size_t n, const ElementType& value)
 {
   if (index > elementSize) {
-    throw std::out_of_range("Vector: index out of range");
+    throw OutOfRange<InvalidVectorIndex>();
   }
   resize(elementSize + n);
   for (size_t i = elementSize - 1; i >= index + n; --i) {
@@ -354,7 +351,7 @@ void Vector<ElementType>::insert(size_t index, std::initializer_list<ElementType
 {
   size_t n = ilist.size();
   if (index > elementSize) {
-    throw std::out_of_range("Vector: index out of range");
+    throw OutOfRange<InvalidVectorIndex>();
   }
   resize(elementSize + n);
   for (size_t i = elementSize - 1; i >= index + n; --i) {
