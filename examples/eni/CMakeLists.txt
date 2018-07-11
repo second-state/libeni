@@ -1,11 +1,9 @@
-add_library(eni_reverse MODULE
-  reverse/eni_reverse.cpp
+add_eni_library(eni_reverse
+  SRCS reverse/eni_reverse.cpp
+  LIBS eni
 )
-target_link_libraries(eni_reverse eni)
-set_property(TARGET eni_reverse PROPERTY PREFIX "")
 
-add_library(eni_caesar_cipher MODULE
-  caesar_cipher/eni_caesar_cipher.cpp
+add_eni_library(eni_caesar_cipher
+  SRCS caesar_cipher/eni_caesar_cipher.cpp
+  LIBS eni
 )
-target_link_libraries(eni_caesar_cipher eni)
-set_property(TARGET eni_caesar_cipher PROPERTY PREFIX "")
