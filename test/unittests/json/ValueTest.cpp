@@ -10,6 +10,18 @@
 
 using namespace json;
 
+SKYPAT_F(JsonValueTest, constructor_int)
+{
+  Value v(1);
+  EXPECT_TRUE(v.isInteger());
+}
+
+SKYPAT_F(JsonValueTest, constructor_str)
+{
+  Value v("two");
+  EXPECT_TRUE(v.isString());
+}
+
 SKYPAT_F(JsonValueTest, move_constructor)
 {
   eni::Int i(1);
