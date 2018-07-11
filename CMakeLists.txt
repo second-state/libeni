@@ -44,6 +44,7 @@ add_library(eni SHARED
   lib/json/Notation.cpp
   lib/json/Value.cpp
   lib/json/Array.cpp
+  lib/diagnostic/Exception.cpp
 )
 
 add_subdirectory(examples)
