@@ -8,8 +8,8 @@
 #ifndef LITY_ADT_STRING_HASHER_H
 #define LITY_ADT_STRING_HASHER_H
 
+#include <diagnostic/Exception.h>
 #include <string>
-#include <cassert>
 #include <cctype>
 #include <cstring>
 #include <functional>
@@ -40,7 +40,7 @@ struct StringHasher : public std::unary_function<const std::string&, uint32_t>
 {
   uint32_t operator()(const std::string& pKey) const
   {
-    assert(false && "Undefined StringHasher function.\n");
+    throw LogicError<Unimplemented>();
     return 0;
   }
 };

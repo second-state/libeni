@@ -7,4 +7,7 @@
   and "lib/diagnostic/Exception.cpp".
 
 ==------------------------------------------------------------------------==*/
-DIAG(Unknown, "unknown")
+DIAG(Unknown,                 "unknown")
+DIAG(Unimplemented,           "not implemented")
+DIAG(InvalidDelegateAssigned, "invalid delegation: value has been assigned")
+DIAG(InvalidIteratorEmpty,    "invalid iterator: iterator points to nowhere")

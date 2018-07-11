@@ -7,9 +7,11 @@
 #include <json/Value.h>
 #include <json/Object.h>
 #include <json/Array.h>
+#include <diagnostic/Exception.h>
 #include <eni_types.h>
 #include <string>
 
+using namespace eni;
 using namespace json;
 
 static Value g_NullValue(UNDEF); // XXX
@@ -94,7 +96,8 @@ Value::~Value()
 
 Value& Value::delegate(eni::s256& pSint)
 {
-  assert(this->isUndefined() && "Value has been assigned");
+  if (!this->isUndefined())
+    throw LogicError<InvalidDelegateAssigned>();
   m_Type = INT;
   m_Value.int_p = &pSint;
   return *this;
@@ -102,7 +105,8 @@ Value& Value::delegate(eni::s256& pSint)
 
 Value& Value::delegate(Object& pObject)
 {
-  assert(this->isUndefined() && "Value has been assigned");
+  if (!this->isUndefined())
+    throw LogicError<InvalidDelegateAssigned>();
   m_Type = OBJECT;
   m_Value.object_p = &pObject;
   return *this;
@@ -110,7 +114,8 @@ Value& Value::delegate(Object& pObject)
 
 Value& Value::delegate(Array& pArray)
 {
-  assert(this->isUndefined() && "Value has been assigned");
+  if (!this->isUndefined())
+    throw LogicError<InvalidDelegateAssigned>();
   m_Type = ARRAY;
   m_Value.array_p = &pArray;
   return *this;

@@ -65,7 +65,8 @@ template<typename HT>
 typename ChainIterBase<HT>::bucket_type*
 ChainIterBase<HT>::getBucket()
 {
-  assert(NULL != m_pHashTable && "trivial iterator points to no bucket");
+  if (nullptr == m_pHashTable)
+    throw LogicError<InvalidIteratorEmpty>();
   return &(m_pHashTable->bucket(m_Index));
 }
 
@@ -73,7 +74,8 @@ template<typename HT>
 const typename ChainIterBase<HT>::bucket_type*
 ChainIterBase<HT>::getBucket() const
 {
-  assert(NULL != m_pHashTable && "trivial iterator points to no bucket");
+  if (nullptr == m_pHashTable)
+    throw LogicError<InvalidIteratorEmpty>();
   return &(m_pHashTable->bucket(m_Index));
 }
 
@@ -81,7 +83,8 @@ template<typename HT>
 const typename ChainIterBase<HT>::entry_type*
 ChainIterBase<HT>::getEntry() const
 {
-  assert(NULL != m_pHashTable && "trivial iterator points to no entry");
+  if (nullptr == m_pHashTable)
+    throw LogicError<InvalidIteratorEmpty>();
   return m_pHashTable->bucket(m_Index).entry;
 }
 
@@ -89,7 +92,8 @@ template<typename HT>
 typename ChainIterBase<HT>::entry_type*
 ChainIterBase<HT>::getEntry()
 {
-  assert(NULL != m_pHashTable && "trivial iterator points to no entry");
+  if (nullptr == m_pHashTable)
+    throw LogicError<InvalidIteratorEmpty>();
   return m_pHashTable->bucket(m_Index).entry;
 }
 
@@ -180,7 +184,8 @@ template<typename HT>
 typename EntryIterBase<HT>::bucket_type*
 EntryIterBase<HT>::getBucket()
 {
-  assert(NULL != m_pHashTable && "trivial iterator doesn't have bucket");
+  if (nullptr == m_pHashTable)
+    throw LogicError<InvalidIteratorEmpty>();
   return &(m_pHashTable->bucket(m_Index));
 }
 
@@ -188,7 +193,8 @@ template<typename HT>
 const typename EntryIterBase<HT>::bucket_type*
 EntryIterBase<HT>::getBucket() const
 {
-  assert(NULL != m_pHashTable && "trivial iterator doesn't have bucket");
+  if (nullptr == m_pHashTable)
+    throw LogicError<InvalidIteratorEmpty>();
   return &(m_pHashTable->bucket(m_Index));
 }
 
@@ -196,7 +202,8 @@ template<typename HT>
 typename EntryIterBase<HT>::entry_type*
 EntryIterBase<HT>::getEntry()
 {
-  assert(NULL != m_pHashTable && "trivial iterator doesn't have entry");
+  if (nullptr == m_pHashTable)
+    throw LogicError<InvalidIteratorEmpty>();
   return m_pHashTable->bucket(m_Index).entry;
 }
 
@@ -204,7 +211,8 @@ template<typename HT>
 const typename EntryIterBase<HT>::entry_type*
 EntryIterBase<HT>::getEntry() const
 {
-  assert(NULL != m_pHashTable && "trivial iterator doesn't have entry");
+  if (nullptr == m_pHashTable)
+    throw LogicError<InvalidIteratorEmpty>();
   return m_pHashTable->bucket(m_Index).entry;
 }
 
@@ -218,7 +226,8 @@ void EntryIterBase<HT>::reset()
 template<typename HT>
 void EntryIterBase<HT>::advance()
 {
-  assert(NULL != m_pHashTable && "trivial iterator can't advance");
+  if (nullptr == m_pHashTable)
+    throw LogicError<InvalidIteratorEmpty>();
   do {
     ++m_Index;
     if (m_pHashTable->numOfBuckets() == m_Index) { // to the end

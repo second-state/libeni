@@ -8,6 +8,7 @@
 #define ENI_DIAGNOSTIC_EXCEPTION
 
 #include <exception>
+#include <stdexcept>
 #include <string>
 
 namespace eni {
@@ -30,6 +31,7 @@ struct ExceptionBase
 #define DIAG(ID, MSG) \
   template<> struct ExceptionBase<ID> { static const std::string ErrStr; };
 #include <diagnostic/DiagList.inc>
+
 #undef DIAG
 
 } // namespace of internal
@@ -47,6 +49,27 @@ public:
     return ErrStr.c_str();
   }
 };
+
+/*==------------------------------------------------------------------------==
+  Exception (partial template specialization goes here)
+==------------------------------------------------------------------------==*/
+template<DiagID ID>
+class Exception<ID, std::logic_error> : private internal::ExceptionBase<ID>,
+                                        public std::logic_error
+{
+private:
+  using internal::ExceptionBase<ID>::ErrStr;
+
+public:
+  Exception() : std::logic_error(ErrStr) { }
+
+  const char* what() const noexcept override {
+    return ErrStr.c_str();
+  }
+};
+
+template<DiagID ID>
+using LogicError = Exception<ID, std::logic_error>;
 
 } // namespace of eni
 

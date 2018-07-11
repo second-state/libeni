@@ -7,9 +7,9 @@
 #ifndef LITY_ADT_HASH_ITERATOR_H
 #define LITY_ADT_HASH_ITERATOR_H
 
+#include <diagnostic/Exception.h>
 #include <cstddef>
 #include <iterator>
-#include <cassert>
 
 namespace eni {
 
