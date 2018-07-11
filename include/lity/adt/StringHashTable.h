@@ -9,7 +9,6 @@
 
 #include <adt/HashTable.h>
 #include <adt/StringHasher.h>
-#include <support/DataTypes.h>
 #include <support/MallocAllocator.h>
 #include <cassert>
 #include <cctype>
