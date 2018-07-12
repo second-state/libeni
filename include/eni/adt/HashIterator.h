@@ -4,8 +4,8 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
-#ifndef LITY_ADT_HASH_ITERATOR_H
-#define LITY_ADT_HASH_ITERATOR_H
+#ifndef ENI_ADT_HASH_ITERATOR
+#define ENI_ADT_HASH_ITERATOR
 
 #include <diagnostic/Exception.h>
 #include <cstddef>

@@ -4,8 +4,8 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
-#ifndef LITY_ADT_VECTOR_H
-#define LITY_ADT_VECTOR_H
+#ifndef ENI_ADT_VECTOR
+#define ENI_ADT_VECTOR
 
 #include <diagnostic/Exception.h>
 #include <cstdlib>

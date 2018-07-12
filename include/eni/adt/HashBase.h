@@ -4,8 +4,8 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
-#ifndef LITY_ADT_BITS_HASHBASE_H
-#define LITY_ADT_BITS_HASHBASE_H
+#ifndef ENI_ADT_HASHBASE
+#define ENI_ADT_HASHBASE
 
 #include <cstdlib>
 #include <cstring>

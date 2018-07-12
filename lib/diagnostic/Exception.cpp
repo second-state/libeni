@@ -1,4 +1,4 @@
-/*==- lity/diagnostic/Exception.cpp ----------------------------------------==
+/*==- diagnostic/Exception.cpp ---------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.

@@ -4,9 +4,8 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
-
-#ifndef LITY_ADT_STRING_HASHER_H
-#define LITY_ADT_STRING_HASHER_H
+#ifndef ENI_ADT_STRING_HASHER
+#define ENI_ADT_STRING_HASHER
 
 #include <diagnostic/Exception.h>
 #include <string>

@@ -1,4 +1,4 @@
-/*==- lity/diagnostic/Exception.h ------------------------------------------==
+/*==- diagnostic/Exception.h -----------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.

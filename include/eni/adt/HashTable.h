@@ -4,8 +4,8 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
-#ifndef LITY_ADT_HASH_TABLE_H
-#define LITY_ADT_HASH_TABLE_H
+#ifndef ENI_ADT_HASH_TABLE
+#define ENI_ADT_HASH_TABLE
 
 #include <adt/HashBase.h>
 #include <adt/HashIterator.h>
@@ -21,7 +21,7 @@ template <class KeyType, class ValueType, typename HasherType,
  *  \brief HashTable is a hash table which follows boost::unordered_map, but it
  *  is open addressing and can linear probing.
  *
- *  lity::HashTable is a linear probing hash table.
+ *  HashTable is a linear probing hash table.
  */
 template <class KeyType, class ValueType, typename HasherType,
           template<class, class> class EntryType,

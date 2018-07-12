@@ -4,8 +4,8 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
-#ifndef LITY_ADT_STRING_MAP_H
-#define LITY_ADT_STRING_MAP_H
+#ifndef ENI_ADT_STRING_MAP
+#define ENI_ADT_STRING_MAP
 
 #include <adt/StringHashTable.h>
 

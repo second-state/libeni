@@ -4,8 +4,8 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
-#ifndef LITY_SUPPORT_MALLOC_ALLOCATOR_H
-#define LITY_SUPPORT_MALLOC_ALLOCATOR_H
+#ifndef ENI_SUPPORT_MALLOC_ALLOCATOR
+#define ENI_SUPPORT_MALLOC_ALLOCATOR
 
 #include <cstdlib>
 
