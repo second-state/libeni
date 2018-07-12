@@ -17,7 +17,7 @@ namespace eni {
 namespace internal {
 
 /**
- * Partial specification version of struct Entry for std::string.
+ * Partial specialization version of struct Entry for std::string.
  */
 template<class ValueType>
 struct Entry<std::string, ValueType>

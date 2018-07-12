@@ -33,7 +33,7 @@ enum StringHasherType {
 };
 
 /** \class StringHasher
- *  \brief the template StringHasher class, for specification
+ *  \brief the template StringHasher class, for specialization
  */
 template<uint32_t NAME>
 struct StringHasher : public std::unary_function<const std::string&, uint32_t>
@@ -335,7 +335,7 @@ struct StringHasher<ES> : public std::unary_function<const std::string&, uint32_
 };
 
 /** \class StringCompare
- *  \brief the template StringCompare class, for specification
+ *  \brief the template StringCompare class, for specialization
  */
 template<typename STRING_TYPE>
 struct StringCompare : public std::binary_function<const STRING_TYPE&, const STRING_TYPE&, bool>
