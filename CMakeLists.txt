@@ -35,7 +35,7 @@ function(add_eni_library target)
 endfunction() #[[End of add_eni_library().]]
 
 include_directories(PRIVATE
-  ${CMAKE_SOURCE_DIR}/include/lity
+  ${CMAKE_SOURCE_DIR}/include/eni
 )
 
 add_library(eni SHARED
