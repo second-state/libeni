@@ -9,6 +9,13 @@
 
 using namespace eni;
 
+SKYPAT_F(VectorTest, copy_constructor)
+{
+  std::vector<int> vec(1, 101);
+  Vector<int> cpy(vec);
+  EXPECT_EQ(cpy.at(0), 101);
+}
+
 SKYPAT_F(VectorTest, constructor_initialize_list)
 {
   Vector<int> v({234, 546, 563});
