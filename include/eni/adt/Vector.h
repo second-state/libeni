@@ -86,10 +86,10 @@ public:
   };
 
   Vector();
-  Vector(size_t n);
+  explicit Vector(size_t n);
   Vector(size_t n, const ElementType& value);
-  Vector(std::vector<ElementType>& stdVector);
-  Vector(Vector& x);
+  Vector(const std::vector<ElementType>& stdVector);
+  Vector(const Vector& x);
   Vector(std::initializer_list<ElementType> ilist);
 
   ~Vector();
@@ -100,13 +100,13 @@ public:
   iterator begin();
   iterator end();
 
-  size_t size();
-  size_t max_size();
+  size_t size() const;
+  size_t max_size() const;
   void resize(size_t n);
   void resize(size_t n, const ElementType& value);
 
-  bool empty();
-  size_t capacity();
+  bool empty() const;
+  size_t capacity() const;
   void reserve(size_t n);
   void shrink_to_fit();
 
@@ -117,19 +117,20 @@ public:
   ElementType* data();
 
   void assign(iterator first, iterator last);
-  void assign(std::vector<ElementType>& stdVector);
+  void assign(const std::vector<ElementType>& stdVector);
   void assign(size_t n, const ElementType& value);
   void assign(std::initializer_list<ElementType> ilist);
+
   void push_back(const ElementType& value);
   ElementType pop_back();
 
   iterator insert(iterator position, const ElementType& value);
   iterator insert(iterator position, size_t n, const ElementType& value);
-  iterator insert(iterator position, std::vector<ElementType>& stdVector);
+  iterator insert(iterator position, const std::vector<ElementType>& stdVector);
   iterator insert(iterator position, std::initializer_list<ElementType> ilist);
   void insert(size_t index, const ElementType& value);
   void insert(size_t index, size_t n, const ElementType& value);
-  void insert(size_t index, std::vector<ElementType>& stdVector);
+  void insert(size_t index, const std::vector<ElementType>& stdVector);
   void insert(size_t index, std::initializer_list<ElementType> ilist);
 
   iterator erase(iterator position);

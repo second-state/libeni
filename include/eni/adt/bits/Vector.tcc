@@ -26,18 +26,20 @@ Vector<ElementType>::Vector(size_t n, const ElementType& value)
 }
 
 template<class ElementType>
-Vector<ElementType>::Vector(std::vector<ElementType>& stdVector)
+Vector<ElementType>::Vector(const std::vector<ElementType>& stdVector)
   : elementSize(stdVector.size()), allocatedSize(stdVector.size()) {
   dataArr = (ElementType*)calloc(stdVector.size(), sizeof(ElementType));
   Vector<ElementType>::iterator myIt = begin();
-  for (typename std::vector<ElementType>::iterator it = stdVector.begin(); it != stdVector.end(); ++it, ++myIt) {
+  for (typename std::vector<ElementType>::const_iterator it = stdVector.begin(); it != stdVector.end(); ++it, ++myIt) {
     *myIt = *it;
   }
 }
 
 template<class ElementType>
-Vector<ElementType>::Vector(Vector& x)
+Vector<ElementType>::Vector(const Vector& x)
   : elementSize(x.elementSize), allocatedSize(x.elementSize) {
+  // XXX: this will not compile
+  // const_iterator is not used (nor implemented) here
   dataArr = (ElementType*)calloc(x.elementSize, sizeof(ElementType));
   for (Vector<ElementType>::iterator myIt = begin(), xIt = x.begin(); myIt != end(); ++myIt, ++xIt) {
     *myIt = *xIt;
@@ -97,13 +99,13 @@ typename Vector<ElementType>::iterator Vector<ElementType>::end()
 }
 
 template<class ElementType>
-size_t Vector<ElementType>::size()
+size_t Vector<ElementType>::size() const
 {
   return elementSize;
 }
 
 template<class ElementType>
-size_t Vector<ElementType>::max_size()
+size_t Vector<ElementType>::max_size() const
 {
   return ((size_t) 0 - 1) / sizeof(ElementType);
 }
@@ -150,13 +152,13 @@ void Vector<ElementType>::resize(size_t n, const ElementType& value)
 }
 
 template<class ElementType>
-bool Vector<ElementType>::empty()
+bool Vector<ElementType>::empty() const
 {
   return elementSize == 0;
 }
 
 template<class ElementType>
-size_t Vector<ElementType>::capacity()
+size_t Vector<ElementType>::capacity() const
 {
   return allocatedSize;
 }
@@ -228,11 +230,11 @@ void Vector<ElementType>::assign(Vector<ElementType>::iterator first, Vector<Ele
 }
 
 template<class ElementType>
-void Vector<ElementType>::assign(std::vector<ElementType>& stdVector)
+void Vector<ElementType>::assign(const std::vector<ElementType>& stdVector)
 {
   resize(stdVector.size());
   Vector<ElementType>::iterator myIt = begin();
-  for (typename std::vector<ElementType>::iterator it = stdVector.begin(); it != stdVector.end(); ++it, ++myIt) {
+  for (typename std::vector<ElementType>::const_iterator it = stdVector.begin(); it != stdVector.end(); ++it, ++myIt) {
     *myIt = *it;
   }
 }
@@ -296,7 +298,7 @@ typename Vector<ElementType>::iterator Vector<ElementType>::insert(Vector<Elemen
 }
 
 template<class ElementType>
-typename Vector<ElementType>::iterator Vector<ElementType>::insert(Vector<ElementType>::iterator position, std::vector<ElementType>& stdVector)
+typename Vector<ElementType>::iterator Vector<ElementType>::insert(Vector<ElementType>::iterator position, const std::vector<ElementType>& stdVector)
 {
   size_t index = position - begin();
   insert(index, stdVector);
@@ -304,7 +306,7 @@ typename Vector<ElementType>::iterator Vector<ElementType>::insert(Vector<Elemen
 }
 
 template<class ElementType>
-void Vector<ElementType>::insert(size_t index, std::vector<ElementType>& stdVector)
+void Vector<ElementType>::insert(size_t index, const std::vector<ElementType>& stdVector)
 {
   size_t n = stdVector.size();
   if (index > elementSize) {
