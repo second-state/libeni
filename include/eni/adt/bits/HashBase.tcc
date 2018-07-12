@@ -1,15 +1,15 @@
-/*==---- lity/adt/bits/HashBase.tcc ---------------------------------------==
+/*==- adt/bits/HashBase.tcc ------------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
-==----------------------------------------------------------------------===*/
+==------------------------------------------------------------------------==*/
 
 enum { NumOfInitBuckets = 16 };
 
-//===----------------------------------------------------------------------===//
-// internal non-member functions
-//===----------------------------------------------------------------------===//
+/*==------------------------------------------------------------------------==
+  internal non-member functions
+==------------------------------------------------------------------------==*/
 inline static unsigned int compute_bucket_size(unsigned int pNumOfBuckets)
 {
   static const unsigned int bucket_size[] =
@@ -32,9 +32,9 @@ inline static unsigned int compute_bucket_size(unsigned int pNumOfBuckets)
   return (pNumOfBuckets+131101); // rare case. increase constantly
 }
 
-//===----------------------------------------------------------------------===//
-// template implementation of TableImpl
-//===----------------------------------------------------------------------===//
+/*==------------------------------------------------------------------------==
+  template implementation of TableImpl
+==------------------------------------------------------------------------==*/
 template<typename K, typename V, typename H, template<class, class> class E>
 TableImpl<K, V, H, E>::TableImpl()
   : m_Buckets(nullptr),

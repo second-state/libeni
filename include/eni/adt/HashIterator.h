@@ -1,9 +1,9 @@
-/*===- lity/adt/HashIterator.h --------------------------------------------==
+/*==- adt/HashIterator.h ---------------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
-==----------------------------------------------------------------------===*/
+==------------------------------------------------------------------------==*/
 #ifndef LITY_ADT_HASH_ITERATOR_H
 #define LITY_ADT_HASH_ITERATOR_H
 

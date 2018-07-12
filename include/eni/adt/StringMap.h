@@ -1,9 +1,9 @@
-/*===- lity/adt/StringMap.h ----------------------------------------------===
+/*==- adt/StringMap.h ------------------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
-==----------------------------------------------------------------------===*/
+==------------------------------------------------------------------------==*/
 #ifndef LITY_ADT_STRING_MAP_H
 #define LITY_ADT_STRING_MAP_H
 

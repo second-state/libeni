@@ -1,4 +1,4 @@
-/*==- test/json/unittests/ArrayTest.cpp ------------------------------------==
+/*==- test/unittests/json/ArrayTest.cpp ------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.

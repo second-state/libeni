@@ -1,9 +1,9 @@
-/*==---- lity/adt/bits/HashTable.tcc --------------------------------------==
+/*==- adt/bits/HashTable.tcc -----------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
-==----------------------------------------------------------------------===*/
+==------------------------------------------------------------------------==*/
 
 // constructor with initial size
 template<typename K, typename V, typename H,

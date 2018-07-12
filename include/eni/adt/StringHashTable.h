@@ -1,9 +1,9 @@
-/*===- lity/adt/StringHashTable.h ----------------------------------------===
+/*==- adt/StringHashTable.h ------------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
-==----------------------------------------------------------------------===*/
+==------------------------------------------------------------------------==*/
 #ifndef LITY_ADT_STRING_HASH_TABLE_H
 #define LITY_ADT_STRING_HASH_TABLE_H
 

@@ -1,9 +1,9 @@
-/*==- lity/adt/HashBase.h -------------------------------------------------==
+/*==- adt/HashBase.h -------------------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
-==----------------------------------------------------------------------===*/
+==------------------------------------------------------------------------==*/
 #ifndef LITY_ADT_BITS_HASHBASE_H
 #define LITY_ADT_BITS_HASHBASE_H
 

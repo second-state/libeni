@@ -1,9 +1,9 @@
-/*==- lity/adt/StringHasher.h --------------------------------------------===
+/*==- adt/StringHasher.h ---------------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
-==----------------------------------------------------------------------===*/
+==------------------------------------------------------------------------==*/
 
 #ifndef LITY_ADT_STRING_HASHER_H
 #define LITY_ADT_STRING_HASHER_H

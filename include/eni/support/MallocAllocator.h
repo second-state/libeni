@@ -1,9 +1,9 @@
-/*==- lity/adt/MallocAllocator.h -----------------------------------------==
+/*==- support/MallocAllocator.h --------------------------------------------==
 
   This file is part of the Lity project distributed under GPL-3.0.
   See LICENSE for details.
 
-==---------------------------------------------------------------------===*/
+==------------------------------------------------------------------------==*/
 #ifndef LITY_SUPPORT_MALLOC_ALLOCATOR_H
 #define LITY_SUPPORT_MALLOC_ALLOCATOR_H
 
