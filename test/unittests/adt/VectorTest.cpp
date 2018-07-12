@@ -7,7 +7,7 @@
 #include <skypat/skypat.h>
 #include <adt/Vector.h>
 
-using namespace lity;
+using namespace eni;
 
 SKYPAT_F(VectorTest, constructor_initialize_list)
 {

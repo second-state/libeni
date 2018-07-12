@@ -15,7 +15,7 @@
 #include <initializer_list>
 #include <vector>
 
-namespace lity {
+namespace eni {
 
 /** \class Vector
  *  \brief Vector is a container with continuous memory
@@ -151,6 +151,6 @@ private:
 
 #include "bits/Vector.tcc"
 
-}
+} // namespace of eni
 
 #endif

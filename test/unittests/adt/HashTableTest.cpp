@@ -9,7 +9,7 @@
 #include <adt/StringMap.h>
 #include <adt/StringHashTable.h>
 
-using namespace lity;
+using namespace eni;
 
 namespace {
 

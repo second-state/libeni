@@ -11,7 +11,7 @@
 #include <adt/HashIterator.h>
 #include <support/MallocAllocator.h>
 
-namespace lity {
+namespace eni {
 
 template <class KeyType, class ValueType, typename HasherType,
           template<class, class> class EntryType = internal::Entry,
@@ -133,6 +133,6 @@ protected:
 
 #include "bits/HashTable.tcc"
 
-} // namespace of lity
+} // namespace of eni
 
 #endif

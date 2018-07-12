@@ -9,12 +9,12 @@
 
 #include <adt/StringHashTable.h>
 
-namespace lity {
+namespace eni {
 
 template<class ValueType>
 using StringMap = StringHashTable<ValueType,
                                   internal::StringHasher<internal::SDBM> >;
 
-} // namespace of lity
+} // namespace of eni
 
 #endif

@@ -14,7 +14,7 @@
 #include <cctype>
 #include <functional>
 
-namespace lity {
+namespace eni {
 namespace internal {
 
 /**
@@ -108,6 +108,6 @@ template<class ValueType,
          class HasherType = internal::StringHasher<internal::ELF> >
 using StringHashTable = HashTable<std::string, ValueType, HasherType>;
 
-} // namespace of lity
+} // namespace of eni
 
 #endif

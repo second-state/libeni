@@ -11,7 +11,7 @@
 #include <iterator>
 #include <cassert>
 
-namespace lity {
+namespace eni {
 
 /** \class ChainIterBase
  *  \brief ChaintIteratorBase follows the HashEntryTy with the same hash value.
@@ -172,6 +172,6 @@ public:
 
 #include "bits/HashIterator.tcc"
 
-} // namespace of lity
+} // namespace of eni
 
 #endif

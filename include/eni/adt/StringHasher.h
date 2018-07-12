@@ -14,7 +14,7 @@
 #include <cstring>
 #include <functional>
 
-namespace lity {
+namespace eni {
 namespace internal {
 
 enum StringHasherType {
@@ -359,6 +359,6 @@ struct StringCompare<char*> : public std::binary_function<const char*, const cha
 };
 
 } // namespace of internal
-} // namespace of lity
+} // namespace of eni
 
 #endif

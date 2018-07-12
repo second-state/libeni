@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include <cstring>
 
-namespace lity {
+namespace eni {
 namespace internal {
 
 template<typename Key, typename Value>
@@ -145,6 +145,6 @@ protected:
 #include "bits/HashBase.tcc"
 
 } // namespace of internal
-} // namespace of lity
+} // namespace of eni
 
 #endif

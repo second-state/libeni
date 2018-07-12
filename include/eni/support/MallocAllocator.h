@@ -9,7 +9,7 @@
 
 #include <cstdlib>
 
-namespace lity {
+namespace eni {
 
 /**
  *  \brief MallocAllocator allocate objects in dynamic storage.
@@ -113,6 +113,6 @@ public:
   { std::free(pObject); }
 };
 
-} // namespace lity
+} // namespace of eni
 
 #endif
