@@ -7,6 +7,7 @@
 #ifndef ENI_ADT_VECTOR
 #define ENI_ADT_VECTOR
 
+#include <adt/PointerIterator.h>
 #include <diagnostic/Exception.h>
 #include <cstdlib>
 #include <cerrno>
@@ -25,53 +26,10 @@ template<class ElementType>
 class Vector
 {
 public:
-  class iterator : public std::iterator<std::random_access_iterator_tag, ElementType>
-  {
-  public:
-    iterator(ElementType* x = nullptr) : ptr(x) {
-    }
-    iterator(const ElementType& r) : ptr(r.ptr) {
-    }
-    iterator& operator++() {
-      ++ptr;
-      return *this;
-    }
-    iterator& operator++(int) {
-      iterator t(*this);
-      ++ptr;
-      return t;
-    }
-    iterator& operator--() {
-      --ptr;
-      return *this;
-    }
-    iterator operator+(size_t i) {
-      return iterator(ptr + i);
-    }
-    iterator operator-(size_t i) {
-      return iterator(ptr - i);
-    }
-    size_t operator-(iterator i) {
-      return ptr - i.ptr;
-    }
-    iterator& operator--(int) {
-      iterator t(*this);
-      --ptr;
-      return t;
-    }
-    bool operator==(const iterator& r) const {
-      return ptr == r.ptr;
-    }
-    bool operator!=(const iterator& r) const {
-      return ptr != r.ptr;
-    }
-    ElementType& operator*() {
-      return *ptr;
-    }
-  private:
-    ElementType* ptr;
-  };
+  typedef PointerIterator<ElementType>        iterator;
+  typedef PointerIterator<const ElementType>  const_iterator;
 
+public:
   Vector();
   explicit Vector(size_t n);
   Vector(size_t n, const ElementType& value);
