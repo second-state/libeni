@@ -1,3 +1,22 @@
+### 1.2.x (pre-release)
+
+Features:
+  * all: Generate SHA512 checksum for all ENI libraries.
+  * all: Add our own `Exception`.
+  * all: Refactor all C-style asserts and exceptions to use `Exception`.
+  * adt: Add our own abstract data types `StringMap`, `HashIterator`, `Vector`,
+    and `PointerIterator`.
+  * json: Exit when parsing error.
+
+Bug fixes:
+  * json: Fix implicit casting to `bool` when constructing a `json::Value` from
+    `char*` or `int`.
+  * test: Fix memory leak in ScryptTest.
+
+Known issues:
+  * all: Current building system does not support Mac OSX.
+  * adt: Interface for `HashTable` and its descendents is very inconvenient.
+
 ### 1.2.0
 
 Features:
