@@ -9,11 +9,9 @@
 
 #include <adt/PointerIterator.h>
 #include <diagnostic/Exception.h>
+#include <algorithm>
 #include <cstdlib>
-#include <cerrno>
-#include <cstring>
-#include <string>
-#include <stdexcept>
+#include <limits>
 #include <initializer_list>
 #include <vector>
 
@@ -26,73 +24,83 @@ template<class ElementType>
 class Vector
 {
 public:
+  typedef ElementType value_type;
+  typedef size_t size_type;
+  typedef ptrdiff_t difference_type;
+
+  typedef value_type*       pointer;
+  typedef const value_type* const_pointer;
+  typedef value_type&       reference;
+  typedef const value_type& const_reference;
+
   typedef PointerIterator<ElementType>        iterator;
   typedef PointerIterator<const ElementType>  const_iterator;
 
+  typedef std::vector<ElementType>            std_vector;
+  typedef std::initializer_list<ElementType>  initializer_list;
+
 public:
   Vector();
-  explicit Vector(size_t n);
-  Vector(size_t n, const ElementType& value);
-  Vector(const std::vector<ElementType>& stdVector);
-  Vector(const Vector& x);
-  Vector(std::initializer_list<ElementType> ilist);
+  explicit Vector(size_type pSize);
+  Vector(size_type pSize, const_reference pValue);
+  Vector(const std_vector& pVector);
+  Vector(const Vector& pOther);
+  Vector(initializer_list pIList);
 
-  ~Vector();
+  virtual ~Vector();
 
-  Vector& operator=(const Vector& x);
-  Vector& operator=(std::initializer_list<ElementType> ilist);
+  Vector& operator=(const Vector& pOther);
+  Vector& operator=(initializer_list pIList);
 
   iterator begin();
+  const_iterator begin() const;
   iterator end();
+  const_iterator end() const;
 
-  size_t size() const;
-  size_t max_size() const;
-  void resize(size_t n);
-  void resize(size_t n, const ElementType& value);
+  size_type size() const;
+  size_type max_size() const;
+  void resize(size_type pSize);
+  void resize(size_type pSize, const_reference value);
 
   bool empty() const;
-  size_t capacity() const;
-  void reserve(size_t n);
+  size_type capacity() const;
+  void reserve(size_type pSize);
   void shrink_to_fit();
 
-  ElementType& operator[](size_t index);
-  ElementType& at(size_t index);
-  ElementType& front();
-  ElementType& back();
-  ElementType* data();
+  reference operator[](size_type pIndex);
+  reference at(size_type pIndex);
+  reference front();
+  reference back();
+  pointer data();
 
-  void assign(iterator first, iterator last);
-  void assign(const std::vector<ElementType>& stdVector);
-  void assign(size_t n, const ElementType& value);
-  void assign(std::initializer_list<ElementType> ilist);
+  void assign(size_type pSize, const_reference pValue);
+  void assign(const_iterator pFirst, const_iterator pLast);
+  void assign(initializer_list pIList);
 
-  void push_back(const ElementType& value);
-  ElementType pop_back();
+  void push_back(const_reference value);
+  value_type pop_back();
 
-  iterator insert(iterator position, const ElementType& value);
-  iterator insert(iterator position, size_t n, const ElementType& value);
-  iterator insert(iterator position, const std::vector<ElementType>& stdVector);
-  iterator insert(iterator position, std::initializer_list<ElementType> ilist);
-  void insert(size_t index, const ElementType& value);
-  void insert(size_t index, size_t n, const ElementType& value);
-  void insert(size_t index, const std::vector<ElementType>& stdVector);
-  void insert(size_t index, std::initializer_list<ElementType> ilist);
+  iterator insert(iterator pIt, const_reference pValue);
+  iterator insert(iterator pIt, size_type pSize, const_reference pValue);
+  iterator insert(iterator pIt, const_iterator pFirst, const_iterator pLast);
+  iterator insert(iterator pIt, initializer_list pIList);
+  void insert(size_type pIndex, const_reference pValue);
+  void insert(size_type pIndex, size_type pSize, const_reference pValue);
+  void insert(size_type pIndex, const_iterator pFirst, const_iterator pLast);
+  void insert(size_type pIndex, initializer_list pIList);
 
-  iterator erase(iterator position);
-  iterator erase(iterator first, iterator last);
-  void erase(size_t position);
-  void erase(size_t first, size_t last);
+  iterator erase(iterator pIt);
+  iterator erase(iterator pFirst, iterator pLast);
+  void erase(size_type pIndex);
+  void erase(size_type pFirst, size_type pLast);
 
-  void swap(Vector& x);
+  void swap(Vector& pOther);
   void clear();
 
-protected:
-  virtual void grow_memory();
-
 private:
-  ElementType* dataArr;
-  size_t elementSize;
-  size_t allocatedSize;
+  pointer m_Data;
+  size_type m_DataSize;
+  size_type m_AllocSize;
 };
 
 #include "bits/Vector.tcc"

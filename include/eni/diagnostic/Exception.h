@@ -45,8 +45,6 @@ private:
 public:
   Exception() : BaseType() { }
 
-  explicit Exception(int pErrNo) : BaseType(), m_ErrNo(pErrNo) { }
-
   const char* what() const noexcept override {
     return ErrStr.c_str();
   }
@@ -67,6 +65,21 @@ private:
 
 public:
   Exception() : std::logic_error(ErrStr) { }
+
+  const char* what() const noexcept override {
+    return ErrStr.c_str();
+  }
+};
+
+template<DiagID ID>
+class Exception<ID, std::length_error> : private internal::ExceptionBase<ID>,
+                                         public std::length_error
+{
+private:
+  using internal::ExceptionBase<ID>::ErrStr;
+
+public:
+  Exception() : std::length_error(ErrStr) { }
 
   const char* what() const noexcept override {
     return ErrStr.c_str();

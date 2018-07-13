@@ -7,451 +7,340 @@
 
 template<class ElementType>
 Vector<ElementType>::Vector()
-  : elementSize(0), allocatedSize(0), dataArr(nullptr) {
+  : m_DataSize(0), m_AllocSize(0), m_Data(nullptr) {
 }
 
 template<class ElementType>
-Vector<ElementType>::Vector(size_t n)
-  : elementSize(n), allocatedSize(n) {
-  dataArr = (ElementType*)calloc(n, sizeof(ElementType));
+Vector<ElementType>::Vector(size_type pSize)
+  : m_DataSize(pSize), m_AllocSize(pSize) {
+  m_Data = (ElementType*)std::calloc(m_DataSize, sizeof(ElementType));
 }
 
 template<class ElementType>
-Vector<ElementType>::Vector(size_t n, const ElementType& value)
-  : elementSize(n), allocatedSize(n) {
-  dataArr = (ElementType*)calloc(n, sizeof(ElementType));
-  for (Vector<ElementType>::iterator it = begin(); it != end(); ++it) {
-    *it = value;
-  }
+Vector<ElementType>::Vector(size_type pSize, const_reference pValue)
+  : m_DataSize(pSize), m_AllocSize(pSize) {
+  m_Data = (ElementType*)std::calloc(m_DataSize, sizeof(ElementType));
+  std::fill_n(m_Data, m_DataSize, pValue);
 }
 
 template<class ElementType>
-Vector<ElementType>::Vector(const std::vector<ElementType>& stdVector)
-  : elementSize(stdVector.size()), allocatedSize(stdVector.size()) {
-  dataArr = (ElementType*)calloc(stdVector.size(), sizeof(ElementType));
-  Vector<ElementType>::iterator myIt = begin();
-  for (typename std::vector<ElementType>::const_iterator it = stdVector.begin(); it != stdVector.end(); ++it, ++myIt) {
-    *myIt = *it;
-  }
+Vector<ElementType>::Vector(const std_vector& pVector)
+  : m_DataSize(pVector.size()), m_AllocSize(pVector.size()) {
+  m_Data = (ElementType*)std::calloc(m_DataSize, sizeof(ElementType));
+  std::copy(pVector.begin(), pVector.end(), m_Data);
 }
 
 template<class ElementType>
-Vector<ElementType>::Vector(const Vector& x)
-  : elementSize(x.elementSize), allocatedSize(x.elementSize) {
-  // XXX: this will not compile
-  // const_iterator is not used (nor implemented) here
-  dataArr = (ElementType*)calloc(x.elementSize, sizeof(ElementType));
-  for (Vector<ElementType>::iterator myIt = begin(), xIt = x.begin(); myIt != end(); ++myIt, ++xIt) {
-    *myIt = *xIt;
-  }
+Vector<ElementType>::Vector(const Vector& pOther)
+  : m_DataSize(pOther.m_DataSize), m_AllocSize(pOther.m_DataSize) {
+  m_Data = (ElementType*)std::calloc(m_DataSize, sizeof(ElementType));
+  std::copy(pOther.begin(), pOther.end(), m_Data);
 }
 
 template<class ElementType>
-Vector<ElementType>::Vector(std::initializer_list<ElementType> ilist)
-  : elementSize(ilist.size()), allocatedSize(ilist.size()) {
-  dataArr = (ElementType*)calloc(ilist.size(), sizeof(ElementType));
-  Vector<ElementType>::iterator myIt = begin();
-  for (typename std::initializer_list<ElementType>::iterator iIt = ilist.begin(); iIt != ilist.end(); ++myIt, ++iIt) {
-    *myIt = *iIt;
-  }
+Vector<ElementType>::Vector(initializer_list pIList)
+  : m_DataSize(pIList.size()), m_AllocSize(pIList.size()) {
+  m_Data = (ElementType*)std::calloc(m_DataSize, sizeof(ElementType));
+  std::copy(pIList.begin(), pIList.end(), m_Data);
 }
 
 template<class ElementType>
 Vector<ElementType>::~Vector()
 {
-  if (dataArr) {
-    free(dataArr);
-    dataArr = nullptr;
-  }
+  clear();
 }
 
-template<class ElementType>
-Vector<ElementType>& Vector<ElementType>::operator=(const Vector<ElementType>& x)
+template<class ElementType> Vector<ElementType>&
+Vector<ElementType>::operator=(const Vector<ElementType>& pOther)
 {
-  resize(x.elementSize);
-  for (Vector<ElementType>::iterator myIt = begin(), xIt = x.begin(); myIt != end(); ++myIt, ++xIt) {
-    *myIt = *xIt;
-  }
+  assign(pOther.begin(), pOther.end());
   return *this;
 }
 
-template<class ElementType>
-Vector<ElementType>& Vector<ElementType>::operator=(std::initializer_list<ElementType> ilist)
+template<class ElementType> Vector<ElementType>&
+Vector<ElementType>::operator=(initializer_list pIList)
 {
-  resize(ilist.size());
-  Vector<ElementType>::iterator myIt = begin();
-  for (typename std::initializer_list<ElementType>::iterator iIt = ilist.begin(); iIt != ilist.end(); ++myIt, ++iIt) {
-    *myIt = *iIt;
-  }
+  assign(pIList);
   return *this;
 }
 
-template<class ElementType>
-typename Vector<ElementType>::iterator Vector<ElementType>::begin()
+template<class ElementType> typename Vector<ElementType>::iterator
+Vector<ElementType>::begin()
 {
-  return Vector<ElementType>::iterator(dataArr);
+  return iterator(m_Data);
 }
 
-template<class ElementType>
-typename Vector<ElementType>::iterator Vector<ElementType>::end()
+template<class ElementType> typename Vector<ElementType>::const_iterator
+Vector<ElementType>::begin() const
 {
-  return Vector<ElementType>::iterator(dataArr + elementSize);
+  return const_iterator(m_Data);
 }
 
-template<class ElementType>
-size_t Vector<ElementType>::size() const
+template<class ElementType> typename Vector<ElementType>::iterator
+Vector<ElementType>::end()
 {
-  return elementSize;
+  return iterator(m_Data + m_DataSize);
 }
 
-template<class ElementType>
-size_t Vector<ElementType>::max_size() const
+template<class ElementType> typename Vector<ElementType>::const_iterator
+Vector<ElementType>::end() const
 {
-  return ((size_t) 0 - 1) / sizeof(ElementType);
+  return const_iterator(m_Data + m_DataSize);
 }
 
-template<class ElementType>
-void Vector<ElementType>::resize(size_t n)
+template<class ElementType> typename Vector<ElementType>::size_type
+Vector<ElementType>::size() const
 {
-  if (n > max_size()) {
-    throw BadAlloc<NoMemory>();
-  }
+  return m_DataSize;
+}
+
+template<class ElementType> typename Vector<ElementType>::size_type
+Vector<ElementType>::max_size() const
+{
+  return std::numeric_limits<size_t>::max();
+}
+
+template<class ElementType> void
+Vector<ElementType>::resize(size_type pSize)
+{
+  resize(pSize, value_type());
+}
+
+template<class ElementType> void
+Vector<ElementType>::resize(size_t pSize, const ElementType& pValue)
+{
+  reserve(pSize);
+  if (pSize > m_DataSize)
+    std::fill_n(end(), pSize - m_DataSize, pValue);
+  m_DataSize = pSize;
+}
+
+template<class ElementType> bool
+Vector<ElementType>::empty() const
+{
+  return 0 == size();
+}
+
+template<class ElementType> typename Vector<ElementType>::size_type
+Vector<ElementType>::capacity() const
+{
+  return m_AllocSize;
+}
+
+template<class ElementType> void
+Vector<ElementType>::reserve(size_type pSize)
+{
+  if (pSize <= capacity()) //< no need to allocate
+    return;
+  if (pSize > max_size()) //< too much to be allocated
+    throw LengthError<InvalidVectorSize>();
   else {
-    if (n > allocatedSize && allocatedSize != max_size()) {
-      dataArr = (ElementType*)realloc(dataArr, n);
-      if (errno) {
-        throw BadAlloc<NoMemory>(errno);
-      }
-      allocatedSize = n;
+    size_type targetSize = capacity();
+    while (targetSize < pSize && targetSize < max_size()) {
+      targetSize = (targetSize > 0) ? targetSize * 2 : 1;
     }
-    elementSize = n;
-  }
-}
-
-template<class ElementType>
-void Vector<ElementType>::resize(size_t n, const ElementType& value)
-{
-  if (n > max_size()) {
-    throw BadAlloc<NoMemory>();
-  }
-  else {
-    if (n > allocatedSize && allocatedSize != max_size()) {
-      dataArr = (ElementType*)realloc(dataArr, n);
-      if (errno) {
-        throw BadAlloc<NoMemory>(errno);
-      }
-      for (size_t i = allocatedSize; i < n; ++i) {
-        dataArr[i] = value;
-      }
-      allocatedSize = n;
+    if (targetSize > max_size())
+      targetSize = max_size();
+    pointer ptr = (ElementType*)std::realloc(m_Data, sizeof(ElementType) * targetSize);
+    if (nullptr == ptr) //< not enough memory
+      throw BadAlloc<NoMemory>();
+    else {
+      m_Data = ptr;
+      m_AllocSize = pSize;
     }
-    elementSize = n;
   }
 }
 
-template<class ElementType>
-bool Vector<ElementType>::empty() const
+template<class ElementType> void
+Vector<ElementType>::shrink_to_fit()
 {
-  return elementSize == 0;
+  // Not implemented (allowed by the spec).
 }
 
-template<class ElementType>
-size_t Vector<ElementType>::capacity() const
+template<class ElementType> typename Vector<ElementType>::reference
+Vector<ElementType>::operator[](size_type pIndex)
 {
-  return allocatedSize;
+  return m_Data[pIndex];
 }
 
-template<class ElementType>
-void Vector<ElementType>::reserve(size_t n)
+template<class ElementType> typename Vector<ElementType>::reference
+Vector<ElementType>::at(size_type pIndex)
 {
-  if (n > allocatedSize) {
-    if (n > max_size()) {
-      throw LengthError<InvalidVectorSize>();
-    }
-    resize(n);
-  }
-}
-
-template<class ElementType>
-void Vector<ElementType>::shrink_to_fit()
-{
-  if (allocatedSize > elementSize) {
-    dataArr = (ElementType*)realloc(dataArr, elementSize);
-    if (errno) {
-      throw BadAlloc<NoMemory>(errno);
-    }
-    allocatedSize = elementSize;
-  }
-}
-
-template<class ElementType>
-ElementType& Vector<ElementType>::operator[](size_t index)
-{
-  return dataArr[index];
-}
-
-template<class ElementType>
-ElementType& Vector<ElementType>::at(size_t index)
-{
-  if (index >= elementSize || index < 0) {
+  if (0 > pIndex || pIndex >= size()) {
     throw OutOfRange<InvalidVectorIndex>();
   }
-  return dataArr[index];
+  return m_Data[pIndex];
 }
 
-template<class ElementType>
-ElementType& Vector<ElementType>::front()
+template<class ElementType> typename Vector<ElementType>::reference
+Vector<ElementType>::front()
 {
-  return dataArr[0];
+  return m_Data[0];
 }
 
-template<class ElementType>
-ElementType& Vector<ElementType>::back()
+template<class ElementType> typename Vector<ElementType>::reference
+Vector<ElementType>::back()
 {
-  return dataArr[elementSize - 1];
+  return m_Data[size() - 1];
 }
 
-template<class ElementType>
-ElementType* Vector<ElementType>::data()
+template<class ElementType> typename Vector<ElementType>::pointer
+Vector<ElementType>::data()
 {
-  return dataArr;
+  return m_Data;
 }
 
-template<class ElementType>
-void Vector<ElementType>::assign(Vector<ElementType>::iterator first, Vector<ElementType>::iterator last)
+template<class ElementType> void
+Vector<ElementType>::assign(size_type pSize, const_reference pValue)
 {
-  resize(last - first);
-  for (Vector<ElementType>::iterator myIt = begin(), xIt = first; xIt != last; ++myIt, ++xIt) {
-    *myIt = *xIt;
-  }
+  resize(pSize);
+  std::fill_n(m_Data, pSize, pValue);
 }
 
-template<class ElementType>
-void Vector<ElementType>::assign(const std::vector<ElementType>& stdVector)
+template<class ElementType> void
+Vector<ElementType>::assign(const_iterator pFirst, const_iterator pLast)
 {
-  resize(stdVector.size());
-  Vector<ElementType>::iterator myIt = begin();
-  for (typename std::vector<ElementType>::const_iterator it = stdVector.begin(); it != stdVector.end(); ++it, ++myIt) {
-    *myIt = *it;
-  }
+  resize(pLast - pFirst);
+  std::copy(pFirst, pLast, m_Data);
 }
 
-template<class ElementType>
-void Vector<ElementType>::assign(size_t n, const ElementType& value)
+template<class ElementType> void
+Vector<ElementType>::assign(initializer_list pIList)
 {
-  resize(n);
-  for (Vector<ElementType>::iterator myIt = begin(); myIt != end(); ++myIt) {
-    *myIt = value;
-  }
+  assign(pIList.begin(), pIList.end());
 }
 
-template<class ElementType>
-void Vector<ElementType>::assign(std::initializer_list<ElementType> ilist)
+template<class ElementType> void
+Vector<ElementType>::push_back(const_reference pValue)
 {
-  resize(ilist.size());
-  Vector<ElementType>::iterator myIt = begin();
-  for (typename std::initializer_list<ElementType>::iterator it = ilist.begin(); it != ilist.end(); ++it, ++myIt) {
-    *myIt = *it;
-  }
+  reserve(size() + 1);
+  m_Data[m_DataSize++] = pValue;
 }
 
-template<class ElementType>
-void Vector<ElementType>::push_back(const ElementType& value)
+template<class ElementType> typename Vector<ElementType>::value_type
+Vector<ElementType>::pop_back()
 {
-  if (elementSize == allocatedSize) {
-    grow_memory();
-  }
-  dataArr[elementSize++] = value;
+  return m_Data[--m_DataSize];
 }
 
-template<class ElementType>
-ElementType Vector<ElementType>::pop_back()
+template<class ElementType> typename Vector<ElementType>::iterator
+Vector<ElementType>::insert(iterator pIt, const_reference pValue)
 {
-  return dataArr[--elementSize];
+  size_type index = pIt - begin();
+  insert(index, pValue);
+  return iterator(m_Data + index);
 }
 
-template<class ElementType>
-typename Vector<ElementType>::iterator Vector<ElementType>::insert(Vector<ElementType>::iterator position, const ElementType& value)
+template<class ElementType> typename Vector<ElementType>::iterator
+Vector<ElementType>::insert(iterator pIt, size_type pSize, const_reference pValue)
 {
-  size_t index = position - begin();
-  insert(index, value);
-  return Vector<ElementType>::iterator(dataArr + index);
+  size_type index = pIt - begin();
+  insert(index, pSize, pValue);
+  return iterator(m_Data + index);
 }
 
-template<class ElementType>
-typename Vector<ElementType>::iterator Vector<ElementType>::insert(Vector<ElementType>::iterator position, size_t n, const ElementType& value)
+template<class ElementType> typename Vector<ElementType>::iterator
+Vector<ElementType>::insert(iterator pIt, const_iterator pFirst, const_iterator pLast)
 {
-  size_t index = position - begin();
-  insert(index, n, value);
-  return Vector<ElementType>::iterator(dataArr + index);
+  size_type index = pIt - begin();
+  insert(index, pFirst, pLast);
+  return Vector<ElementType>::iterator(m_Data + index);
 }
 
-template<class ElementType>
-typename Vector<ElementType>::iterator Vector<ElementType>::insert(Vector<ElementType>::iterator position, std::initializer_list<ElementType> ilist)
+template<class ElementType> typename Vector<ElementType>::iterator
+Vector<ElementType>::insert(iterator pIt, initializer_list pIList)
 {
-  size_t index = position - begin();
-  insert(index, ilist);
-  return Vector<ElementType>::iterator(dataArr + index);
+  size_type index = pIt - begin();
+  insert(index, pIList);
+  return iterator(m_Data + index);
 }
 
-template<class ElementType>
-typename Vector<ElementType>::iterator Vector<ElementType>::insert(Vector<ElementType>::iterator position, const std::vector<ElementType>& stdVector)
+template<class ElementType> void
+Vector<ElementType>::insert(size_type pIndex, const_reference pValue)
 {
-  size_t index = position - begin();
-  insert(index, stdVector);
-  return Vector<ElementType>::iterator(dataArr + index);
+  insert(pIndex, 1, pValue);
 }
 
-template<class ElementType>
-void Vector<ElementType>::insert(size_t index, const std::vector<ElementType>& stdVector)
+template<class ElementType> void
+Vector<ElementType>::insert(size_type pIndex, size_type pSize, const_reference pValue)
 {
-  size_t n = stdVector.size();
-  if (index > elementSize) {
+  if (0 > pIndex || pIndex > size()) {
     throw OutOfRange<InvalidVectorIndex>();
   }
-  resize(elementSize + n);
-  for (size_t i = elementSize - 1; i >= index + n; --i) {
-    dataArr[i] = dataArr[i - n];
-  }
-  for (size_t i = index, j = 0; i < index + n; ++i, ++j) {
-    dataArr[i] = stdVector[j];
-  }
+  resize(size() + pSize);
+  pointer ptr = m_Data + pIndex;
+  pointer end = m_Data + size();
+  std::copy_backward(ptr, end - pSize, end);
+  std::fill_n(ptr, pSize, pValue);
 }
 
-template<class ElementType>
-void Vector<ElementType>::insert(size_t index, const ElementType& value)
+template<class ElementType> void
+Vector<ElementType>::insert(size_type pIndex, const_iterator pFirst, const_iterator pLast)
 {
-  if (index > elementSize) {
+  if (0 > pIndex || pIndex > size()) {
     throw OutOfRange<InvalidVectorIndex>();
   }
-  resize(elementSize + 1);
-  for (size_t i = elementSize - 1; i > index; --i) {
-    dataArr[i] = dataArr[i - 1];
-  }
-  dataArr[index] = value;
+  size_type insertSize = pLast - pFirst;
+  resize(size() + insertSize);
+  pointer ptr = m_Data + pIndex;
+  pointer end = m_Data + size();
+  std::copy_backward(ptr, end - insertSize, end);
+  std::copy(pFirst, pLast, ptr);
 }
 
-template<class ElementType>
-void Vector<ElementType>::insert(size_t index, size_t n, const ElementType& value)
+template<class ElementType> void
+Vector<ElementType>::insert(size_type pIndex, initializer_list pIList)
 {
-  if (index > elementSize) {
+  insert(pIndex, pIList.begin(), pIList.end());
+}
+
+template<class ElementType> typename Vector<ElementType>::iterator
+Vector<ElementType>::erase(iterator pIt)
+{
+  size_type index = pIt - begin();
+  erase(index);
+  return iterator(m_Data + index);
+}
+
+template<class ElementType> typename Vector<ElementType>::iterator
+Vector<ElementType>::erase(iterator pFirst, iterator pLast)
+{
+  size_type index = pFirst - begin();
+  erase(index, pLast - begin());
+  return iterator(m_Data + index);
+}
+
+template<class ElementType> void
+Vector<ElementType>::erase(size_type pIndex)
+{
+  erase(pIndex, pIndex + 1);
+}
+
+template<class ElementType> void
+Vector<ElementType>::erase(size_type pFirst, size_type pLast)
+{
+  if (0 > pFirst || pFirst >= pLast || pLast >= size())
     throw OutOfRange<InvalidVectorIndex>();
-  }
-  resize(elementSize + n);
-  for (size_t i = elementSize - 1; i >= index + n; --i) {
-    dataArr[i] = dataArr[i - n];
-  }
-  for (size_t i = index; i < index + n; ++i) {
-    dataArr[i] = value;
-  }
+  size_type eraseSize = pLast - pFirst;
+  std::copy(m_Data + pLast, m_Data + size(), m_Data + pFirst);
+  resize(size() - eraseSize);
 }
 
-template<class ElementType>
-void Vector<ElementType>::insert(size_t index, std::initializer_list<ElementType> ilist)
+template<class ElementType> void
+Vector<ElementType>::swap(Vector<ElementType>& pOther)
 {
-  size_t n = ilist.size();
-  if (index > elementSize) {
-    throw OutOfRange<InvalidVectorIndex>();
-  }
-  resize(elementSize + n);
-  for (size_t i = elementSize - 1; i >= index + n; --i) {
-    dataArr[i] = dataArr[i - n];
-  }
-  typename std::initializer_list<ElementType>::iterator it = ilist.begin();
-  for (size_t i = index; i < index + n; ++i, ++it) {
-    dataArr[i] = *it;
-  }
-}
-
-template<class ElementType>
-typename Vector<ElementType>::iterator Vector<ElementType>::erase(Vector<ElementType>::iterator position)
-{
-  Vector<ElementType>::iterator ret = position;
-  for (Vector<ElementType>::iterator it = position + 1; it != end(); ++it, ++position) {
-    *position = *it;
-  }
-  pop_back();
-  return ret;
-}
-
-template<class ElementType>
-typename Vector<ElementType>::iterator Vector<ElementType>::erase(Vector<ElementType>::iterator first, Vector<ElementType>::iterator last)
-{
-  Vector<ElementType>::iterator ret = first;
-  size_t reducedSize = last - first;
-  for (Vector<ElementType>::iterator it = last + 1; it != end(); ++it, ++first) {
-    *first = *it;
-  }
-  resize(elementSize - reducedSize - 1);
-  return ret;
-}
-
-template<class ElementType>
-void Vector<ElementType>::erase(size_t position)
-{
-  for (; position < elementSize - 1; ++position) {
-    dataArr[position] = dataArr[position + 1];
-  }
-  pop_back();
-}
-
-template<class ElementType>
-void Vector<ElementType>::erase(size_t first, size_t last) {
-  size_t reducedSize = last - first;
-  for (size_t i = last + 1; i < elementSize; ++i, ++first) {
-    dataArr[first] = dataArr[i];
-  }
-  resize(elementSize - reducedSize - 1);
-}
-
-template<class ElementType>
-void Vector<ElementType>::swap(Vector<ElementType>& x)
-{
-  // Compare
-  Vector<ElementType>* largePtr;
-  Vector<ElementType>* smallPtr;
-  if (elementSize >= x.elementSize) {
-    largePtr = this;
-    smallPtr = &x;
-  }
-  else {
-    largePtr = &x;
-    smallPtr = this;
-  }
-  // Swap small one
-  for (Vector<ElementType>::iterator lIt = largePtr->begin(), sIt = smallPtr->begin(); sIt != smallPtr->end(); ++lIt, ++sIt) {
-    *lIt ^= *sIt;
-    *sIt = *lIt ^ *sIt;
-    *lIt ^= *sIt;
-  }
-  // Save origin size
-  size_t lSize = largePtr->elementSize, sSize = smallPtr->elementSize;
-  // Remainer
-  smallPtr->resize(lSize);
-  for (Vector<ElementType>::iterator lIt = largePtr->begin() + sSize, sIt = smallPtr->begin() + sSize; sIt != smallPtr->end(); ++lIt, ++sIt) {
-    *sIt = *lIt;
-  }
-  largePtr->resize(sSize);
+  std::swap(m_Data, pOther.m_Data);
+  std::swap(m_DataSize, pOther.m_DataSize);
+  std::swap(m_AllocSize, pOther.m_AllocSize);
 }
 
 template<class ElementType>
 void Vector<ElementType>::clear()
 {
-  free(dataArr);
-  dataArr = nullptr;
-  elementSize = 0;
-  allocatedSize = 0;
-}
-
-template<class ElementType>
-void Vector<ElementType>::grow_memory()
-{
-  if (allocatedSize != max_size()) {
-    size_t suggested = (allocatedSize != 0) ? allocatedSize * 2 : 1;
-    if (suggested > max_size()) {
-      suggested = max_size();
-    }
-    dataArr = (ElementType*)realloc(dataArr, sizeof(ElementType) * suggested);
-    allocatedSize = suggested;
+  if (nullptr != m_Data) {
+    std::free(m_Data);
+    m_Data = nullptr;
   }
+  m_DataSize = 0;
+  m_AllocSize = 0;
 }
