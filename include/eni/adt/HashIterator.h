@@ -9,7 +9,6 @@
 
 #include <diagnostic/Exception.h>
 #include <cstddef>
-#include <iterator>
 
 namespace eni {
 

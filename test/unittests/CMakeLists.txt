@@ -11,6 +11,7 @@ add_executable(unittests
   json/ValueTest.cpp
   adt/HashTableTest.cpp
   adt/StringHashTableTest.cpp
+  adt/StringMapTest.cpp
   adt/VectorTest.cpp
   adt/PointerIteratorTest.cpp
   diagnostic/ExceptionTest.cpp

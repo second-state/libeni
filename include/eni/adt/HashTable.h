@@ -64,7 +64,7 @@ public:
 
   HashTable(HashTable&& pOther);
 
-  ~HashTable();
+  virtual ~HashTable();
 
   HashTable& operator=(const HashTable& pCopy);
 
@@ -106,8 +106,8 @@ public:
   iterator begin();
   iterator end();
 
-  const_entry_iterator begin() const;
-  const_entry_iterator end() const;
+  const_iterator begin() const;
+  const_iterator end() const;
 
   chain_iterator begin(const key_type& pKey);
   chain_iterator end(const key_type& pKey);
