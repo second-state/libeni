@@ -6,8 +6,6 @@
 ==------------------------------------------------------------------------==*/
 #include <skypat/skypat.h>
 #include <adt/HashTable.h>
-#include <adt/StringMap.h>
-#include <adt/StringHashTable.h>
 
 using namespace eni;
 
@@ -34,12 +32,13 @@ struct FixHash
 
 } // anonymous namespace
 
-//===----------------------------------------------------------------------===//
-// Testcases
-//===----------------------------------------------------------------------===//
+/*==------------------------------------------------------------------------==
+  HashTableTest
+==------------------------------------------------------------------------==*/
 SKYPAT_F(HashTableTest, constructor_test)
 {
-  StringMap<int> hash(10);
+  typedef HashTable<int*, int, PtrHash> HashTable;
+  HashTable hash(10);
 
   EXPECT_GE(hash.numOfBuckets(), 10);
   EXPECT_TRUE(hash.empty());
@@ -77,11 +76,11 @@ SKYPAT_F(HashTableTest, ptr_entry)
 
 SKYPAT_F(HashTableTest, allocation)
 {
-  typedef StringMap<int> HashTable;
+  typedef HashTable<int, int, IntHash> HashTable;
   HashTable* table = new HashTable(22);
 
   bool exist;
-  const char* key = "key";
+  int key = 777;
   HashTable::entry_type* val = table->insert(key, exist);
   val->setValue(999);
 
@@ -292,26 +291,6 @@ SKYPAT_F(HashTableTest, chain_iterator_list_test)
   delete table;
 }
 
-SKYPAT_F(StringHashTableTest, string_hash_table)
-{
-  typedef StringHashTable<int> HashTable;
-  HashTable* table = new HashTable(22);
-
-  bool exist;
-  const char* key = "key";
-  HashTable::entry_type* val = table->insert(key, exist);
-  val->setValue(999);
-
-  EXPECT_FALSE(table->empty());
-  EXPECT_FALSE(exist);
-  EXPECT_TRUE(NULL != val);
-
-  HashTable::iterator entry = table->find(key);
-  EXPECT_EQ(entry->value(), 999);
-
-  delete table;
-}
-
 SKYPAT_F(HashTableTest, rehash_perform_test)
 {
   typedef HashTable<int, int, IntHash> HashTableType;
@@ -329,58 +308,6 @@ SKYPAT_F(HashTableTest, rehash_perform_test)
   HashTableType::iterator iter;
   PERFORM(skypat::CONTEXT_SWITCHES) {
     for (int key = 0; key < 400000; ++key) {
-      iter = table->find(key);
-    }
-  }
-
-  delete table;
-}
-
-SKYPAT_F(StringHashTableTest, conflict_perform_test)
-{
-  typedef StringHashTable<int> HashTableType;
-  HashTableType *table = new HashTableType();
-
-  bool exist;
-  HashTableType::entry_type* entry = NULL;
-  PERFORM(skypat::CONTEXT_SWITCHES) {
-    const char* key = "key";
-    for (unsigned int counter = 0; counter < 400000; ++counter) {
-      entry = table->insert(key, exist);
-      entry->setValue(counter+10);
-    }
-  }
-
-  HashTableType::iterator iter;
-  PERFORM(skypat::CONTEXT_SWITCHES) {
-    const char* key = "key";
-    for (int counter = 0; counter < 400000; ++counter) {
-      iter = table->find(key);
-    }
-  }
-
-  delete table;
-}
-
-SKYPAT_F(StringMapTest, conflict_perform_test)
-{
-  typedef StringMap<int> HashTableType;
-  HashTableType *table = new HashTableType();
-
-  bool exist;
-  HashTableType::entry_type* entry = NULL;
-  PERFORM(skypat::CONTEXT_SWITCHES) {
-    const char* key = "key";
-    for (unsigned int counter = 0; counter < 400000; ++counter) {
-      entry = table->insert(key, exist);
-      entry->setValue(counter+10);
-    }
-  }
-
-  HashTableType::iterator iter;
-  PERFORM(skypat::CONTEXT_SWITCHES) {
-    const char* key = "key";
-    for (int counter = 0; counter < 400000; ++counter) {
       iter = table->find(key);
     }
   }
@@ -455,21 +382,27 @@ SKYPAT_F(HashTableTest, assignment)
   delete table;
 }
 
-SKYPAT_F(StringHashTableTest, copy_constructor)
+SKYPAT_F(HashTableTest, conflict_perform_test)
 {
-  typedef StringHashTable<int> HashTable;
-  HashTable* table = new HashTable(22);
+  typedef HashTable<int, int, FixHash> HashTableType;
+  HashTableType *table = new HashTableType();
 
   bool exist;
-  const char* key = "key";
-  HashTable::entry_type* val = table->insert(key, exist);
-  val->setValue(999);
+  HashTableType::entry_type* entry = NULL;
+  PERFORM(skypat::CONTEXT_SWITCHES) {
+    for (unsigned int counter = 0; counter < 10000; ++counter) {
+      entry = table->insert(counter, exist);
+      entry->setValue(counter);
+    }
+  }
 
-  HashTable table2(*table);
-
-  EXPECT_FALSE(table2.empty());
-  HashTable::iterator entry = table2.find(key);
-  EXPECT_EQ(entry->value(), 999);
+  HashTableType::iterator iter;
+  PERFORM(skypat::CONTEXT_SWITCHES) {
+    for (int counter = 0; counter < 10000; ++counter) {
+      iter = table->find(counter);
+    }
+  }
+  EXPECT_EQ(iter->value(), 9999);
 
   delete table;
 }
