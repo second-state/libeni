@@ -26,7 +26,7 @@ SKYPAT_F(StringHashTableTest, string_hash_table)
   EXPECT_FALSE(exist);
   EXPECT_TRUE(NULL != val);
 
-  HashTable::iterator entry = table->find(key);
+  HashTable::const_iterator entry = table->find(key);
   EXPECT_EQ(entry->value(), 999);
 
   delete table;
@@ -47,7 +47,7 @@ SKYPAT_F(StringHashTableTest, conflict_perform_test)
     }
   }
 
-  HashTableType::iterator iter;
+  HashTableType::const_iterator iter;
   PERFORM(skypat::CONTEXT_SWITCHES) {
     const char* key = "key";
     for (int counter = 0; counter < 400000; ++counter) {
@@ -71,7 +71,7 @@ SKYPAT_F(StringHashTableTest, copy_constructor)
   HashTable table2(*table);
 
   EXPECT_FALSE(table2.empty());
-  HashTable::iterator entry = table2.find(key);
+  HashTable::const_iterator entry = table2.find(key);
   EXPECT_EQ(entry->value(), 999);
 
   delete table;

@@ -68,7 +68,7 @@ SKYPAT_F(HashTableTest, ptr_entry)
 
   EXPECT_FALSE(hash->empty());
 
-  HashTable<int*, int, PtrHash>::iterator iter;
+  HashTable<int*, int, PtrHash>::const_iterator iter;
   iter = hash->find(NULL);
   EXPECT_TRUE(iter == hash->end());
   delete hash;
@@ -88,7 +88,7 @@ SKYPAT_F(HashTableTest, allocation)
   EXPECT_FALSE(exist);
   EXPECT_TRUE(NULL != val);
 
-  HashTable::iterator entry = table->find(key);
+  HashTable::const_iterator entry = table->find(key);
   EXPECT_EQ(entry->value(), 999);
   delete table;
 }
@@ -129,7 +129,7 @@ SKYPAT_F(HashTableTest, erase100IntTest)
   EXPECT_FALSE(table->empty());
 
   int count;
-  HashTableType::iterator iter;
+  HashTableType::const_iterator iter;
   for (unsigned int key = 0; key <100; ++key) {
     count = table->erase(key);
     EXPECT_EQ(count, 1);
@@ -154,10 +154,10 @@ SKYPAT_F(HashTableTest, clear_test)
 
   table->clear();
 
-  HashTableType::iterator iter;
+  HashTableType::const_iterator iter;
   for (unsigned int key = 0; key < 100; ++key) {
     iter = table->find(key);
-    EXPECT_TRUE(table->end() == iter);
+    EXPECT_TRUE(iter == table->end());
   }
 
   EXPECT_TRUE(table->empty());
@@ -177,12 +177,12 @@ SKYPAT_F(HashTableTest, tombstone_test)
   EXPECT_FALSE(table->empty());
 
   int count;
-  HashTableType::iterator iter;
+  HashTableType::const_iterator iter;
   for (unsigned int key = 0; key <20; ++key) {
     count = table->erase(key);
     EXPECT_EQ(1, count);
     iter = table->find(key);
-    EXPECT_TRUE(table->end() == iter);
+    EXPECT_TRUE(iter == table->end());
   }
   EXPECT_EQ(table->numOfEntries(), 80);
 
@@ -212,7 +212,7 @@ SKYPAT_F(HashTableTest, rehash_test)
     entry->setValue(key+10);
   }
 
-  HashTableType::iterator iter;
+  HashTableType::const_iterator iter;
   for (int key = 0; key < 400000; ++key) {
     iter = table->find(key);
     EXPECT_EQ((key+10), iter->value());
@@ -233,7 +233,7 @@ SKYPAT_F(HashTableTest, bucket_iterator_test)
     entry->setValue(key+10);
   }
 
-  HashTableType::iterator iter, iEnd = table->end();
+  HashTableType::const_iterator iter, iEnd = table->end();
   int counter = 0;
   for (iter = table->begin(); iter != iEnd; ++iter) {
     EXPECT_EQ(iter->key()+10, iter->value());
@@ -256,7 +256,7 @@ SKYPAT_F(HashTableTest, chain_iterator_single_test)
   }
   for (int key = 0; key < 16; ++key) {
     int counter = 0;
-    HashTableType::chain_iterator iter, iEnd = table->end(key*37);
+    HashTableType::const_chain_iterator iter, iEnd = table->end(key*37);
     for (iter = table->begin(key*37); iter != iEnd; ++iter) {
       EXPECT_EQ(key+10, iter->value());
       ++counter;
@@ -283,7 +283,7 @@ SKYPAT_F(HashTableTest, chain_iterator_list_test)
 
   unsigned int key = 0;
   int count = 0;
-  HashTableType::chain_iterator iter, iEnd = table->end(key);
+  HashTableType::const_chain_iterator iter, iEnd = table->end(key);
   for (iter = table->begin(key); iter != iEnd; ++iter) {
     count++;
   }
@@ -305,7 +305,7 @@ SKYPAT_F(HashTableTest, rehash_perform_test)
     }
   }
 
-  HashTableType::iterator iter;
+  HashTableType::const_iterator iter;
   PERFORM(skypat::CONTEXT_SWITCHES) {
     for (int key = 0; key < 400000; ++key) {
       iter = table->find(key);
@@ -336,13 +336,13 @@ SKYPAT_F(HashTableTest, copy_constructor)
   ASSERT_EQ(table2.numOfBuckets(), 37);
 
   unsigned int count = 0;
-  HashTableType::iterator iter, iEnd = table2.end();
+  HashTableType::const_iterator iter, iEnd = table2.end();
   for (iter = table2.begin(); iter != iEnd; ++iter) {
     count++;
   }
   ASSERT_EQ(count, 16);
 
-  HashTableType::iterator en2 = table2.find(2);
+  HashTableType::const_iterator en2 = table2.find(2);
   ASSERT_EQ(en2->value(), 2);
 
   delete table;
@@ -371,13 +371,13 @@ SKYPAT_F(HashTableTest, assignment)
   ASSERT_EQ(table2.numOfBuckets(), 37);
 
   unsigned int count = 0;
-  HashTableType::iterator iter, iEnd = table2.end();
+  HashTableType::const_iterator iter, iEnd = table2.end();
   for (iter = table2.begin(); iter != iEnd; ++iter) {
     count++;
   }
   ASSERT_EQ(count, 16);
 
-  HashTableType::iterator en2 = table2.find(2);
+  HashTableType::const_iterator en2 = table2.find(2);
   ASSERT_EQ(en2->value(), 2);
   delete table;
 }
@@ -396,7 +396,7 @@ SKYPAT_F(HashTableTest, conflict_perform_test)
     }
   }
 
-  HashTableType::iterator iter;
+  HashTableType::const_iterator iter;
   PERFORM(skypat::CONTEXT_SWITCHES) {
     for (int counter = 0; counter < 10000; ++counter) {
       iter = table->find(counter);
