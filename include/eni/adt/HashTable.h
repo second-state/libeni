@@ -44,11 +44,11 @@ public:
   typedef typename super::entry_type  entry_type;
   typedef typename super::bucket_type bucket_type;
 
-  typedef HashIterator<const ChainIterBase<const super> > const_chain_iterator;
-  typedef HashIterator<      ChainIterBase<super> >       chain_iterator;
+  typedef HashIterator<ChainIterBase, const super> const_chain_iterator;
+  typedef HashIterator<ChainIterBase, super>       chain_iterator;
 
-  typedef HashIterator<const EntryIterBase<const super> > const_entry_iterator;
-  typedef HashIterator<      EntryIterBase<super> >       entry_iterator;
+  typedef HashIterator<EntryIterBase, const super> const_entry_iterator;
+  typedef HashIterator<EntryIterBase, super>       entry_iterator;
 
   typedef entry_iterator       iterator;
   typedef const_entry_iterator const_iterator;

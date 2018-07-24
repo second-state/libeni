@@ -42,6 +42,12 @@ ChainIterBase<HT>::ChainIterBase(HT* pTable, const key_type& pKey)
     }
   }
 }
+template<typename HT>
+ChainIterBase<HT>::ChainIterBase(HT* pTable, unsigned int pIndex,
+                                 unsigned int pHashValue, unsigned pEndIndex)
+  : m_pHashTable(pTable), m_Index(pIndex), m_HashValue(pHashValue),
+    m_EndIndex(pEndIndex) {
+}
 
 template<typename HT>
 ChainIterBase<HT>::ChainIterBase(const ChainIterBase& pCopy)
@@ -123,7 +129,7 @@ void ChainIterBase<HT>::advance()
       return;
     }
 
-    bucket_type &bucket = m_pHashTable->bucket(m_Index);
+    const bucket_type &bucket = m_pHashTable->bucket(m_Index);
 
     if (hash_table::Tombstone() == bucket.entry ||
         hash_table::EmptyBucket() == bucket.entry) {
@@ -136,7 +142,7 @@ void ChainIterBase<HT>::advance()
 }
 
 template<typename HT> bool
-ChainIterBase<HT>::operator==(const ChainIterBase& pCopy) const
+ChainIterBase<HT>::equals(const ChainIterBase& pCopy) const
 {
   if (m_pHashTable == pCopy.m_pHashTable) {
     if (0 == m_pHashTable)
@@ -146,12 +152,6 @@ ChainIterBase<HT>::operator==(const ChainIterBase& pCopy) const
             (m_Index == pCopy.m_Index));
   }
   return false;
-}
-
-template<typename HT> bool
-ChainIterBase<HT>::operator!=(const ChainIterBase& pCopy) const
-{
-  return !(*this == pCopy);
 }
 
 /*==------------------------------------------------------------------------==
@@ -239,13 +239,7 @@ void EntryIterBase<HT>::advance()
 }
 
 template<typename HT>
-bool EntryIterBase<HT>::operator==(const EntryIterBase& pCopy) const
+bool EntryIterBase<HT>::equals(const EntryIterBase& pCopy) const
 {
   return ((m_pHashTable == pCopy.m_pHashTable) && (m_Index == pCopy.m_Index));
-}
-
-template<typename HT>
-bool EntryIterBase<HT>::operator!=(const EntryIterBase& pCopy) const
-{
-  return !(*this == pCopy);
 }
