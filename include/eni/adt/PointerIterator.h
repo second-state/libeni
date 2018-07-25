@@ -49,6 +49,10 @@ public:
   iterator& operator++();
   /// @}
 
+  const_reference operator*() const;
+  const_pointer operator->() const;
+  pointer operator->();
+
   /// @name C++ Forward Iterator
   /// @{
   iterator operator++(int);

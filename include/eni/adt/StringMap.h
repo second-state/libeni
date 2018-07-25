@@ -45,7 +45,7 @@ public:
 
   StringMap(StringMap&& pOther) : super(pOther) { }
 
-  ~StringMap() { }
+  virtual ~StringMap() { }
 
   StringMap& operator=(const StringMap& pCopy) {
     super::operator=(pCopy);

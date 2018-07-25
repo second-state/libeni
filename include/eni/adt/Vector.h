@@ -68,7 +68,11 @@ public:
   void shrink_to_fit();
 
   reference operator[](size_type pIndex);
+  const_reference operator[](size_type pIndex) const;
+
   reference at(size_type pIndex);
+  const_reference at(size_type pIndex) const;
+
   reference front();
   reference back();
   pointer data();

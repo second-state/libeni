@@ -163,6 +163,21 @@ Vector<ElementType>::operator[](size_type pIndex)
   return m_Data[pIndex];
 }
 
+template<class ElementType> typename Vector<ElementType>::const_reference
+Vector<ElementType>::operator[](size_type pIndex) const
+{
+  return m_Data[pIndex];
+}
+
+template<class ElementType> typename Vector<ElementType>::const_reference
+Vector<ElementType>::at(size_type pIndex) const
+{
+  if (0 > pIndex || pIndex >= size()) {
+    throw OutOfRange<InvalidVectorIndex>();
+  }
+  return m_Data[pIndex];
+}
+
 template<class ElementType> typename Vector<ElementType>::reference
 Vector<ElementType>::at(size_type pIndex)
 {

@@ -29,7 +29,25 @@ PointerIterator<ItemType>::operator=(const_iterator& pOther)
 template<typename ItemType> typename PointerIterator<ItemType>::reference
 PointerIterator<ItemType>::operator*()
 {
-  return *m_Ptr;
+  return *(this->operator->());
+}
+
+template<typename ItemType> typename PointerIterator<ItemType>::const_reference
+PointerIterator<ItemType>::operator*() const
+{
+  return *(this->operator->());
+}
+
+template<typename ItemType> typename PointerIterator<ItemType>::pointer
+PointerIterator<ItemType>::operator->()
+{
+  return m_Ptr;
+}
+
+template<typename ItemType> typename PointerIterator<ItemType>::const_pointer
+PointerIterator<ItemType>::operator->() const
+{
+  return m_Ptr;
 }
 
 template<typename ItemType> typename PointerIterator<ItemType>::iterator&
