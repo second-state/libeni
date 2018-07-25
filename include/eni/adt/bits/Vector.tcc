@@ -238,6 +238,14 @@ Vector<ElementType>::pop_back()
   return m_Data[--m_DataSize];
 }
 
+template<class ElementType>
+template<class ...Args> void
+Vector<ElementType>::emplace_back(Args&& ...pArgs)
+{
+  reserve(size() + 1);
+  m_Data[m_DataSize++] = *(new ElementType(std::forward<Args>(pArgs)...));
+}
+
 template<class ElementType> typename Vector<ElementType>::iterator
 Vector<ElementType>::insert(iterator pIt, const_reference pValue)
 {

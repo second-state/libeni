@@ -9,6 +9,18 @@
 
 using namespace eni;
 
+namespace {
+
+struct Tri {
+  int m_A;
+  int m_B;
+  bool m_C;
+
+  Tri(int pA, int pB, bool pC) : m_A(pA), m_B(pB), m_C(pC) { }
+};
+
+} // anonymous namespace
+
 SKYPAT_F(VectorTest, copy_constructor)
 {
   std::vector<int> vec(1, 101);
@@ -99,4 +111,14 @@ SKYPAT_F(VectorTest, erase)
   v.erase(0, 3);
   EXPECT_EQ(v.size(), 1);
   EXPECT_EQ(v.at(0), 3);
+}
+
+SKYPAT_F(VectorTest, emplace_back)
+{
+  Vector<Tri> v;
+  v.emplace_back(-1, 2, true);
+  EXPECT_EQ(v.size(), 1);
+  EXPECT_EQ(v.at(0).m_A, -1);
+  EXPECT_EQ(v.at(0).m_B, 2);
+  EXPECT_TRUE(v.at(0).m_C);
 }

@@ -84,6 +84,9 @@ public:
   void push_back(const_reference value);
   value_type pop_back();
 
+  template<class ...Args>
+  void emplace_back(Args&& ...pArgs);
+
   iterator insert(iterator pIt, const_reference pValue);
   iterator insert(iterator pIt, size_type pSize, const_reference pValue);
   iterator insert(iterator pIt, const_iterator pFirst, const_iterator pLast);
