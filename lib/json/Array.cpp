@@ -10,16 +10,16 @@
 using namespace json;
 
 Array::Array()
-  : std::vector<Value>(), Notation(ARRAY) {
+  : eni::Vector<Value>(), Notation(ARRAY) {
 }
 
 Array::Array(const Array& pArray)
-  : std::vector<Value>(pArray), Notation(ARRAY) {
+  : eni::Vector<Value>(pArray), Notation(ARRAY) {
 }
 
 Array& Array::operator=(const Array& pArray)
 {
-  std::vector<Value>::operator=(pArray);
+  eni::Vector<Value>::operator=(pArray);
   Notation::operator=(pArray);
   return *this;
 }

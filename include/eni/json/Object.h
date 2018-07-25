@@ -8,18 +8,13 @@
 #define ENI_JSON_OBJECT
 
 #include <json/Value.h>
+#include <adt/StringMap.h>
 #include <string>
-#include <map>
 
 namespace json {
 
-class Object : private std::map<std::string, Value>, public Notation
+class Object : public eni::StringMap<Value>, public Notation
 {
-public:
-  using std::map<std::string, Value>::begin;
-  using std::map<std::string, Value>::end;
-  using std::map<std::string, Value>::operator[];
-
 public:
   Object();
 

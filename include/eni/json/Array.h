@@ -8,23 +8,15 @@
 #define ENI_JSON_ARRAY
 
 #include <json/Notation.h>
-#include <vector>
+#include <adt/Vector.h>
 #include <iostream>
 
 namespace json {
 
 class Value;
 
-class Array : private std::vector<Value>, public Notation
+class Array : public eni::Vector<Value>, public Notation
 {
-public:
-  using std::vector<Value>::at;
-  using std::vector<Value>::begin;
-  using std::vector<Value>::end;
-  using std::vector<Value>::emplace_back;
-  using std::vector<Value>::push_back;
-  using std::vector<Value>::size;
-
 public:
   Array();
 
