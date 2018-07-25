@@ -19,41 +19,15 @@ SKYPAT_F(StringHashTableTest, string_hash_table)
 
   bool exist;
   const char* key = "key";
-  HashTable::entry_type* val = table->insert(key, exist);
-  val->setValue(999);
+  HashTable::entry_type* entry = table->insert(key, exist);
+  entry->setValue(999);
 
   EXPECT_FALSE(table->empty());
   EXPECT_FALSE(exist);
-  EXPECT_TRUE(NULL != val);
+  EXPECT_TRUE(NULL != entry);
 
-  HashTable::const_iterator entry = table->find(key);
-  EXPECT_EQ(entry->value(), 999);
-
-  delete table;
-}
-
-SKYPAT_F(StringHashTableTest, conflict_perform_test)
-{
-  typedef StringHashTable<int> HashTableType;
-  HashTableType *table = new HashTableType();
-
-  bool exist;
-  HashTableType::entry_type* entry = NULL;
-  PERFORM(skypat::CONTEXT_SWITCHES) {
-    const char* key = "key";
-    for (unsigned int counter = 0; counter < 400000; ++counter) {
-      entry = table->insert(key, exist);
-      entry->setValue(counter+10);
-    }
-  }
-
-  HashTableType::const_iterator iter;
-  PERFORM(skypat::CONTEXT_SWITCHES) {
-    const char* key = "key";
-    for (int counter = 0; counter < 400000; ++counter) {
-      iter = table->find(key);
-    }
-  }
+  HashTable::const_iterator it = table->find(key);
+  EXPECT_EQ(it->value(), 999);
 
   delete table;
 }
@@ -65,14 +39,14 @@ SKYPAT_F(StringHashTableTest, copy_constructor)
 
   bool exist;
   const char* key = "key";
-  HashTable::entry_type* val = table->insert(key, exist);
-  val->setValue(999);
+  HashTable::entry_type* entry = table->insert(key, exist);
+  entry->setValue(999);
 
   HashTable table2(*table);
 
-  EXPECT_FALSE(table2.empty());
-  HashTable::const_iterator entry = table2.find(key);
-  EXPECT_EQ(entry->value(), 999);
+  ASSERT_FALSE(table2.empty());
+  HashTable::const_iterator it = table2.find(key);
+  EXPECT_EQ(it->value(), 999);
 
   delete table;
 }
