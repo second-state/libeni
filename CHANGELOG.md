@@ -1,3 +1,20 @@
+### 1.3.0
+
+Features:
+  * adt: Refactor `StringMap` interface.
+  * docs: Update SHA512 usage and add platform-specific prerequisites.
+  * json: Refactor `json::Object`, inherit from `eni::StringMap` instead
+    of `std::map`.
+  * json: Refactor `json::Array`, inherit from `eni::Vector` instead of
+    `std::vector`.
+
+Bug fixes:
+  * adt: Fix several bugs in `HashIterator`.
+
+Known issues:
+  * all: Current building system does not support Mac OSX.
+
+
 ### 1.2.x (pre-release)
 
 Features:
