@@ -48,10 +48,10 @@ Get the JSON files for testing from the directory
 
 .. code:: bash
 
-  eni_gas ${LIBENI_PATH}/lib/eni_crypto.so rsa_encrypt $(cat pub_encrypt.json)
-  eni_run ${LIBENI_PATH}/lib/eni_crypto.so rsa_encrypt $(cat pub_encrypt.json)
-  eni_gas ${LIBENI_PATH}/lib/eni_crypto.so rsa_decrypt $(cat priv_decrypt.json)
-  eni_run ${LIBENI_PATH}/lib/eni_crypto.so rsa_decrypt $(cat priv_decrypt.json)
+  eni_gas ${LIBENI_PATH}/lib/eni_crypto.so rsa_encrypt "$(cat pub_encrypt.json)"
+  eni_run ${LIBENI_PATH}/lib/eni_crypto.so rsa_encrypt "$(cat pub_encrypt.json)"
+  eni_gas ${LIBENI_PATH}/lib/eni_crypto.so rsa_decrypt "$(cat priv_decrypt.json)"
+  eni_run ${LIBENI_PATH}/lib/eni_crypto.so rsa_decrypt "$(cat priv_decrypt.json)"
 
 Output for the above lines.
 
