@@ -11,8 +11,9 @@ for the newest release.
 Prerequisites
 `````````````
 
-- Boost >= 1.58
 - OpenSSL >= 1.0.2
+
+See :doc:`Prerequisites <prerequisites>` for platform specific prerequisites guide.
 
 Install
 ```````
