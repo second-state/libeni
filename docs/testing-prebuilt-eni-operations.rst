@@ -43,7 +43,8 @@ Output for the above lines.
 Test "eni_crypto.so" (`tools/eni_crypto`)
 `````````````````````````````````````````
 
-Get the JSON files for testing from the directory `test/t0004 <test/t0004>`_.
+Get the JSON files for testing from the directory
+`test/t0004 <https://github.com/CyberMiles/libeni/tree/master/test/t0004>`_.
 
 .. code:: bash
 
