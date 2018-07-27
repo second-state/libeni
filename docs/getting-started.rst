@@ -21,6 +21,23 @@ Install
 
   tar zxvf libeni.tgz --strip-components 1 -C ${LIBENI_PATH}
 
+Validate the Shared Libraries
+`````````````````````````````
+
+.. code:: bash
+
+  cd ${LIBENI_PATH}/lib
+  sha512sum -c *.so.sha512
+
+You should get a list of OKs if all libraries are good.
+
+.. code:: bash
+
+  eni_caesar_cipher.so: OK
+  eni_crypto.so: OK
+  eni_reverse.so: OK
+  eni_scrypt.so: OK
+
 Test Manually
 `````````````
 
