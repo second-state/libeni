@@ -15,8 +15,11 @@ Supported Platforms
 ```````````````````
 
 - Ubuntu (x86_64)
+
   * 16.04 xenial
+
 - CentOS (x86_64)
+
   * 7 and later versions
 
 Prerequisites
