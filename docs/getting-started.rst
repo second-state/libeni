@@ -8,6 +8,17 @@ Download the Prebuilt libENI
 See `libENI releases <https://github.com/CyberMiles/libeni/releases>`_
 for the newest release.
 
+- `libeni`: for general ENI users.
+- `libeni-dev`: for ENI operation developers
+
+Supported Platforms
+```````````````````
+
+- Ubuntu (x86_64)
+  * 16.04 xenial
+- CentOS (x86_64)
+  * 7 and later versions
+
 Prerequisites
 `````````````
 

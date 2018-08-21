@@ -5,7 +5,12 @@ Developer Guide
 In this tutorial, we will guide you through how to create new ENI operations
 with libENI in C++.
 
-See :doc:`Getting Started <getting-started>` for how to install libENI.
+Prerequisites
+`````````````
+
+In order to build your ENI operations, you need to install `libeni-dev` first.
+
+See :doc:`Getting Started <getting-started>` for more information.
 
 Implement an ENI Operation
 --------------------------
