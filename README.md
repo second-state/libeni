@@ -16,10 +16,11 @@ in the [Lity documentation](http://lity.readthedocs.io/).
 [Lity]: https://github.com/CyberMiles/lity
 [ENI]: https://github.com/CyberMiles/libeni
 
-To install or build libENI,
-check [getting started](docs/getting-started.rst) in the documentation.
-To create your own ENI operations,
-check the [developer guide](docs/developer-guide.rst).
+To install or build libENI, check [getting started][ENI-GS] in the documentation.
+To create your own ENI operations, check the [developer guide][ENI-DG].
+
+[ENI-GS]: https://libeni.readthedocs.io/en/latest/getting-started.html
+[ENI-DG]: https://libeni.readthedocs.io/en/latest/developer-guide.html
 
 ## Contributing
 
