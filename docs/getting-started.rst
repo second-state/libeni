@@ -6,21 +6,43 @@ Download the Prebuilt libENI
 ----------------------------
 
 See `libENI releases <https://github.com/CyberMiles/libeni/releases>`_
-for the newest release.
+for the latest release.
 
-- `libeni`: for general ENI users.
 - `libeni-dev`: for ENI operation developers
+- `libeni`: for general ENI users.
 
-Supported Platforms
-```````````````````
+Releases
+````````
++---------+----------------------------+----------------------------+
+| Version | libeni-dev                 | libeni                     |
++=========+============================+============================+
+| v1.3.0_ | `Ubuntu 16.04 <ud130_>`__, | `Ubuntu 16.04 <uu130_>`__, |
+|         | `CentOS 7 <cd130_>`__      | `CentOS 7 <cu130_>`__      |
++---------+----------------------------+----------------------------+
+| v1.2.x_ | `Ubuntu 16.04 <ud12x_>`__, | `Ubuntu 16.04 <uu12x_>`__, |
+|         | `CentOS 7 <cd12x_>`__      | `CentOS 7 <cu12x_>`__      |
++---------+----------------------------+----------------------------+
+| v1.2.0_ | `Ubuntu 16.04 <ud120_>`__, | `Ubuntu 16.04 <uu120_>`__, |
+|         | `CentOS 7 <cd120_>`__      | `CentOS 7 <cu120_>`__      |
++---------+----------------------------+----------------------------+
 
-- Ubuntu (x86_64)
+.. _v1.3.0: https://github.com/CyberMiles/libeni/releases/tag/v1.3.0
+.. _ud130: https://github.com/CyberMiles/libeni/releases/download/v1.3.0/libeni-1.3.0-dev_ubuntu-16.04.tgz
+.. _uu130: https://github.com/CyberMiles/libeni/releases/download/v1.3.0/libeni-1.3.0_ubuntu-16.04.tgz
+.. _cd130: https://github.com/CyberMiles/libeni/releases/download/v1.3.0/libeni-1.3.0-dev_centos-7.tgz
+.. _cu130: https://github.com/CyberMiles/libeni/releases/download/v1.3.0/libeni-1.3.0_centos-7.tgz
 
-  * 16.04 xenial
+.. _v1.2.x: https://github.com/CyberMiles/libeni/releases/tag/v1.2.x
+.. _ud12x: https://github.com/CyberMiles/libeni/releases/download/v1.2.x/libeni-1.2.x-dev_ubuntu-16.04.tgz
+.. _uu12x: https://github.com/CyberMiles/libeni/releases/download/v1.2.x/libeni-1.2.x_ubuntu-16.04.tgz
+.. _cd12x: https://github.com/CyberMiles/libeni/releases/download/v1.2.x/libeni-1.2.x-dev_centos-7.tgz
+.. _cu12x: https://github.com/CyberMiles/libeni/releases/download/v1.2.x/libeni-1.2.x_centos-7.tgz
 
-- CentOS (x86_64)
-
-  * 7 and later versions
+.. _v1.2.0: https://github.com/CyberMiles/libeni/releases/tag/v1.2.0
+.. _ud120: https://github.com/CyberMiles/libeni/releases/download/v1.2.0/libeni-1.2.0-dev_ubuntu-16.04.tgz
+.. _uu120: https://github.com/CyberMiles/libeni/releases/download/v1.2.0/libeni-1.2.0_ubuntu-16.04.tgz
+.. _cd120: https://github.com/CyberMiles/libeni/releases/download/v1.2.0/libeni-1.2.0-dev_centos-7.tgz
+.. _cu120: https://github.com/CyberMiles/libeni/releases/download/v1.2.0/libeni-1.2.0_centos-7.tgz
 
 Prerequisites
 `````````````
