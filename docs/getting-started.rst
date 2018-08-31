@@ -46,8 +46,12 @@ Releases
 
 Prerequisites
 `````````````
-
-- OpenSSL >= 1.0.2
++----------------------------+----------------------------+
+| libeni-dev                 | libeni                     |
++============================+============================+
+| - Boost >= 1.58            | - OpenSSL >= 1.0.2         |
+| - OpenSSL >= 1.0.2         |                            |
++----------------------------+----------------------------+
 
 See :doc:`Prerequisites <prerequisites>` for platform specific prerequisites guide.
 
