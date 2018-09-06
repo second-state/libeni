@@ -13,4 +13,5 @@ Contents
 
    getting-started
    developer-guide
+   documentation
    contributing
