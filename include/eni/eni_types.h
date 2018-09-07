@@ -18,7 +18,7 @@ using u64 = boost::multiprecision::number<
 >;
 using u128 = boost::multiprecision::uint128_t;
 using u256 = boost::multiprecision::uint256_t;
-using s256 = boost::multiprecision::int128_t;
+using s256 = boost::multiprecision::int256_t;
 using u160 = boost::multiprecision::number<
   boost::multiprecision::cpp_int_backend<160, 160,
     boost::multiprecision::unsigned_magnitude,
