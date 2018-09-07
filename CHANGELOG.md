@@ -1,3 +1,16 @@
+### 1.3.1
+
+Features:
+  * all: Add `eni::to_string` for all ENI types.
+  * all: Supplement ENI integer types and remove redundant ones.
+
+Bug fixes:
+  * all: Fix ENI integer types.
+
+Known issues:
+  * all: Current building system does not support Mac OSX.
+
+
 ### 1.3.0
 
 Features:
@@ -33,6 +46,7 @@ Bug fixes:
 Known issues:
   * all: Current building system does not support Mac OSX.
   * adt: Interface for `HashTable` and its descendents is very inconvenient.
+
 
 ### 1.2.0
 
