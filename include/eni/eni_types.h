@@ -24,11 +24,6 @@ using u160 = boost::multiprecision::number<
     boost::multiprecision::unsigned_magnitude,
     boost::multiprecision::unchecked, void>
 >;
-using s160 = boost::multiprecision::number<
-  boost::multiprecision::cpp_int_backend<160, 160,
-    boost::multiprecision::signed_magnitude,
-    boost::multiprecision::unchecked, void>
->;
 
 using Bool = bool;
 using Int = s256;
