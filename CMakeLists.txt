@@ -40,6 +40,7 @@ include_directories(PRIVATE
 
 add_library(eni SHARED
   lib/eni.cpp
+  lib/eni_types.cpp
   lib/json/Object.cpp
   lib/json/Notation.cpp
   lib/json/Value.cpp

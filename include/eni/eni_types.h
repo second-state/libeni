@@ -11,6 +11,9 @@
 
 namespace eni {
 
+/*==------------------------------------------------------------------------==
+  Primitive Types
+==------------------------------------------------------------------------==*/
 using u64 = boost::multiprecision::number<
   boost::multiprecision::cpp_int_backend<64, 64,
     boost::multiprecision::unsigned_magnitude,
@@ -29,6 +32,13 @@ using Bool = bool;
 using Int = s256;
 using UInt = u256;
 using Address = u160;
+
+
+/*==------------------------------------------------------------------------==
+  Convert Primitive Types to String
+==------------------------------------------------------------------------==*/
+template<typename T>
+std::string to_string(T);
 
 } // namespace of eni
 
