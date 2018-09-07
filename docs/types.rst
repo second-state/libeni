@@ -11,8 +11,6 @@ These types are provided to be coherent with `primitive types of Lity <lity_>`__
 .. _lity: https://lity.readthedocs.io/en/latest/types.html
 .. _solidity: https://solidity.readthedocs.io/en/latest/types.html
 
-.. _types-eni-int:
-
 ENI Integers
 ````````````
 
@@ -55,21 +53,15 @@ Suggested Use of ENI Integers
 
 .. include:: 404.rst
 
-.. _types-eni-bool:
-
 ENI Boolean
 ```````````
 
 ``eni::Bool`` is an alias for C++ ``bool``.
 
-.. _types-eni-addr:
-
 ENI Address
 ```````````
 
 ``eni::Address`` is an alias for ``eni::u160`` (20 bytes, size of an Ethereum address).
-
-.. _types-json:
 
 Abstract Data Types
 -------------------
