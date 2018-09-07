@@ -3,7 +3,7 @@ libENI: Library for Ethereum Native Interface
 
 [![Latest Release](https://img.shields.io/github/release-date/CyberMiles/libeni.svg)](https://github.com/CyberMiles/libeni/releases)
 [![Build Status](https://img.shields.io/travis/CyberMiles/libeni.svg)](https://travis-ci.org/CyberMiles/libeni)
-[![Docs](https://img.shields.io/readthedocs/lity.svg)](http://lity.readthedocs.io/)
+[![Docs](https://img.shields.io/readthedocs/lity.svg)](http://lity.readthedocs.io/projects/libeni/)
 
 Official C++ implementation of **libENI**,
 which is part of [the Lity project][Lity].
