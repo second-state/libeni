@@ -6,6 +6,7 @@ set_tests_properties(unittests PROPERTIES LABELS "unittest")
 
 add_executable(unittests
   main.cpp
+  EniTypesTest.cpp
   json/ArrayTest.cpp
   json/ParserTest.cpp
   json/ValueTest.cpp
