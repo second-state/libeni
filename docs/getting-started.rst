@@ -16,6 +16,9 @@ Releases
 +---------+----------------------------+----------------------------+
 | Version | libeni-dev                 | libeni                     |
 +=========+============================+============================+
+| v1.3.1_ | `Ubuntu 16.04 <ud131_>`__, | `Ubuntu 16.04 <uu131_>`__, |
+|         | `CentOS 7 <cd131_>`__      | `CentOS 7 <cu131_>`__      |
++---------+----------------------------+----------------------------+
 | v1.3.0_ | `Ubuntu 16.04 <ud130_>`__, | `Ubuntu 16.04 <uu130_>`__, |
 |         | `CentOS 7 <cd130_>`__      | `CentOS 7 <cu130_>`__      |
 +---------+----------------------------+----------------------------+
@@ -25,6 +28,12 @@ Releases
 | v1.2.0_ | `Ubuntu 16.04 <ud120_>`__, | `Ubuntu 16.04 <uu120_>`__, |
 |         | `CentOS 7 <cd120_>`__      | `CentOS 7 <cu120_>`__      |
 +---------+----------------------------+----------------------------+
+
+.. _v1.3.1: https://github.com/CyberMiles/libeni/releases/tag/v1.3.1
+.. _ud131: https://github.com/CyberMiles/libeni/releases/download/v1.3.1/libeni-1.3.1-dev_ubuntu-16.04.tgz
+.. _uu131: https://github.com/CyberMiles/libeni/releases/download/v1.3.1/libeni-1.3.1_ubuntu-16.04.tgz
+.. _cd131: https://github.com/CyberMiles/libeni/releases/download/v1.3.1/libeni-1.3.1-dev_centos-7.tgz
+.. _cu131: https://github.com/CyberMiles/libeni/releases/download/v1.3.1/libeni-1.3.1_centos-7.tgz
 
 .. _v1.3.0: https://github.com/CyberMiles/libeni/releases/tag/v1.3.0
 .. _ud130: https://github.com/CyberMiles/libeni/releases/download/v1.3.0/libeni-1.3.0-dev_ubuntu-16.04.tgz
