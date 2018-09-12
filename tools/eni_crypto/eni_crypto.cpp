@@ -71,10 +71,14 @@ void rsa::destroy(RSA*& pKey)
 
 bool rsa::pub_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 {
-  unsigned char* encrypted = new unsigned char[::RSA_size(&pKey)];
-  int len = ::RSA_public_encrypt(pMsg.length(),
-    reinterpret_cast<const unsigned char*>(pMsg.c_str()), encrypted, &pKey,
-    RSA_PKCS1_PADDING);
+  int size = ::RSA_size(&pKey);
+  unsigned char* encrypted = new unsigned char[size];
+  std::string message(pMsg);
+  if (message.length() < size)
+      message.append(size - message.length(), '\0');
+  int len = ::RSA_public_encrypt(size,
+    reinterpret_cast<const unsigned char*>(message.c_str()), encrypted, &pKey,
+    RSA_NO_PADDING);
   if (-1 == len)
     return false;
   pResult.assign(reinterpret_cast<char*>(encrypted), len);
@@ -86,19 +90,24 @@ bool rsa::pub_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
   unsigned char* decrypted = new unsigned char[::RSA_size(&pKey)];
   int len = ::RSA_public_decrypt(pMsg.length(),
     reinterpret_cast<const unsigned char*>(pMsg.c_str()), decrypted, &pKey,
-    RSA_PKCS1_PADDING);
+    RSA_NO_PADDING);
   if (-1 == len)
     return false;
-  pResult.assign(reinterpret_cast<char*>(decrypted), len);
+  std::string result(reinterpret_cast<const char*>(decrypted));
+  pResult.assign(result.c_str(), result.length());
   return true;
 }
 
 bool rsa::priv_encrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
 {
-  unsigned char* encrypted = new unsigned char[::RSA_size(&pKey)];
-  int len = ::RSA_private_encrypt(pMsg.length(),
-    reinterpret_cast<const unsigned char*>(pMsg.c_str()), encrypted, &pKey,
-    RSA_PKCS1_PADDING);
+  int size = ::RSA_size(&pKey);
+  unsigned char* encrypted = new unsigned char[size];
+  std::string message(pMsg);
+  if (message.length() < size)
+      message.append(size - message.length(), '\0');
+  int len = ::RSA_private_encrypt(size,
+    reinterpret_cast<const unsigned char*>(message.c_str()), encrypted, &pKey,
+    RSA_NO_PADDING);
   if (-1 == len)
     return false;
   pResult.assign(reinterpret_cast<char*>(encrypted), len);
@@ -110,10 +119,11 @@ bool rsa::priv_decrypt(RSA& pKey, const std::string& pMsg, std::string& pResult)
   unsigned char* decrypted = new unsigned char[::RSA_size(&pKey)];
   int len = ::RSA_private_decrypt(pMsg.length(),
     reinterpret_cast<const unsigned char*>(pMsg.c_str()), decrypted, &pKey,
-    RSA_PKCS1_PADDING);
+    RSA_NO_PADDING);
   if (-1 == len)
     return false;
-  pResult.assign(reinterpret_cast<char*>(decrypted), len);
+  std::string result(reinterpret_cast<const char*>(decrypted));
+  pResult.assign(result.c_str(), result.length());
   return true;
 }
 
