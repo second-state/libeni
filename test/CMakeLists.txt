@@ -12,4 +12,5 @@ foreach(test ${tests})
   )
 endforeach(test)
 
+add_subdirectory(consensus)
 add_subdirectory(unittests)
