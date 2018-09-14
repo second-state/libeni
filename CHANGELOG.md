@@ -1,3 +1,16 @@
+### 1.3.2
+
+Features:
+  * test: Add consensus tests.
+
+Bug fixes:
+  * tools: Ensure RSA encryption always generate the same output from
+    the same input.
+
+Known issues:
+  * all: Current building system does not support Mac OSX.
+
+
 ### 1.3.1
 
 Features:
