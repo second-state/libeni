@@ -13,6 +13,13 @@
 bool Scrypt::parse(const json::Array& pArgs)
 {
   m_Str = pArgs[0].toString();
+
+  // input validation
+  if (m_Str.length() > 160)
+      return false;
+  if (m_Str.find_first_not_of("0123456789abcdefABCDEF") != std::string::npos)
+      return false;
+
   return true;
 }
 
@@ -31,9 +38,9 @@ bool Scrypt::run(json::Array& pRetVal)
 
   // unhex input
   if (m_Str.length() % 2 != 0) {
-      return false;
+      m_Str.insert(0, 1, '0');
   }
-  int len = m_Str.length() / 2 < 80 ? m_Str.length() / 2 : 80;
+  int len = m_Str.length() / 2;
   for (int i = 0; i < len; i++) {
       char c1 = tolower(m_Str[2 * i]), c2 = tolower(m_Str[2 * i + 1]);
       input[i] += c1 < 'a' ? c1 - '0' : c1 - 'a' + 10;

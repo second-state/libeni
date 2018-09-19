@@ -5,6 +5,7 @@
 SKYPAT_F(ScryptTest, scrypt_empty_string)
 {
   Scrypt* functor = new Scrypt(R"([""])");
+  EXPECT_EQ(functor->getGas(), 0);
   char *hash = functor->start();
   delete functor;
 
@@ -15,6 +16,7 @@ SKYPAT_F(ScryptTest, scrypt_empty_string)
 SKYPAT_F(ScryptTest, scrypt_all_zero)
 {
   Scrypt* functor = new Scrypt(R"(["0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"])");
+  EXPECT_EQ(functor->getGas(), 160);
   char *hash = functor->start();
   delete functor;
 
@@ -25,6 +27,7 @@ SKYPAT_F(ScryptTest, scrypt_all_zero)
 SKYPAT_F(ScryptTest, scrypt_all_ff)
 {
   Scrypt* functor = new Scrypt(R"(["ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"])");
+  EXPECT_EQ(functor->getGas(), 160);
   char *hash = functor->start();
   delete functor;
 
@@ -32,12 +35,50 @@ SKYPAT_F(ScryptTest, scrypt_all_ff)
   free(hash);
 }
 
-SKYPAT_F(ScryptTest, scrypt_truncate_oversized)
+SKYPAT_F(ScryptTest, scrypt_oversized)
 {
   Scrypt* functor = new Scrypt(R"(["ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01"])");
   char *hash = functor->start();
   delete functor;
 
-  EXPECT_EQ(memcmp(hash, R"(["5253069c14ecedf978745486375ee37415e977f55cdbedac31ebee8bf33dd127"])", 68), 0);
+  EXPECT_FALSE(hash);
   free(hash);
+}
+
+SKYPAT_F(ScryptTest, scrypt_invalid_hex)
+{
+  Scrypt* functor = new Scrypt(R"(["wxyz"])");
+  char *hash = functor->start();
+  delete functor;
+
+  EXPECT_FALSE(hash);
+  free(hash);
+}
+
+SKYPAT_F(ScryptTest, scrypt_prepend_zero)
+{
+  Scrypt* functor1 = new Scrypt(R"(["01"])");
+  Scrypt* functor2 = new Scrypt(R"(["1"])");
+  char *hash1 = functor1->start();
+  char *hash2 = functor2->start();
+  delete functor1;
+  delete functor2;
+
+  EXPECT_EQ(memcmp(hash1, hash2, 68), 0);
+  free(hash1);
+  free(hash2);
+}
+
+SKYPAT_F(ScryptTest, scrypt_upper_lower_case)
+{
+  Scrypt* functor1 = new Scrypt(R"(["0123456789abcdef"])");
+  Scrypt* functor2 = new Scrypt(R"(["0123456789ABCDEF"])");
+  char *hash1 = functor1->start();
+  char *hash2 = functor2->start();
+  delete functor1;
+  delete functor2;
+
+  EXPECT_EQ(memcmp(hash1, hash2, 68), 0);
+  free(hash1);
+  free(hash2);
 }
