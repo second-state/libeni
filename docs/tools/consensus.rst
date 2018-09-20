@@ -7,6 +7,14 @@ the same result when given the same input.
 This is crucial for ENI to work on blockchain. Otherwise it will break the
 consensus between nodes.
 
+Prerequisites
+-------------
+
+Besides the prerequisites of libENI, `Python 3` is also required to run `consensus.py`.
+
+Usage
+-----
+
 Check the usage of `consensus.py` by running it with the argument ``-h``.
 
 .. code::
