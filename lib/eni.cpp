@@ -13,7 +13,7 @@ using namespace eni;
   EniBase
 ==------------------------------------------------------------------------==*/
 EniBase::EniBase(const std::string& pArgStr)
-  : m_Parsed(false), m_Args(), m_RetVals() {
+  : m_Parsed(false), m_ParseSuccess(false), m_Args(), m_RetVals() {
   json::Parser parser(pArgStr);
   m_Args = parser.getRoot();
   m_RetVals.delegate(*(new json::Array()));

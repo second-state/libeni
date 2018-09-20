@@ -67,12 +67,11 @@ public:
 
 private:
   bool check(const json::Value& pArgs) {
-    bool ret = true;
     if (!m_Parsed) {
-      ret = parse(pArgs.toArray());
+      m_ParseSuccess = parse(pArgs.toArray());
       m_Parsed = true;
     }
-    return ret;
+    return m_ParseSuccess;
   }
 
 private:
@@ -84,6 +83,7 @@ private:
 
 private:
   bool m_Parsed;
+  bool m_ParseSuccess;
   json::Value m_Args;
   json::Value m_RetVals;
 };
