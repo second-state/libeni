@@ -33,7 +33,6 @@ def expand(args):
     ))
 
 def repeat(args, n):
-    assert n > 1
     same = True
     for i in range(n):
         p = subprocess.run(
@@ -54,7 +53,8 @@ def repeat(args, n):
             print('STDERR:', p.stderr.decode("utf-8"))
     return same
 
-def run_tests(tests):
+def run_tests(tests, n_repeat):
+    assert n_repeat > 1
     n_run, n_failed = 0, 0
     for soname, oplist in tests.items():
         for args in oplist:
@@ -66,7 +66,7 @@ def run_tests(tests):
                 print('ERROR: failed to expand arguments', args)
                 continue
             print('PARAMS:', params)
-            success = repeat(['eni_run', soname, op, params], 3)
+            success = repeat(['eni_run', soname, op, params], n_repeat)
             n_run += 1
             n_failed += 0 if success else 1
     return n_run, n_failed
@@ -75,6 +75,8 @@ if __name__ == '__main__':
     ps = argparse.ArgumentParser(description='libENI Consensus Test')
     ps.add_argument('file', metavar='TEST_LIST', type=argparse.FileType('r'),
         help='JSON description file for list of tests')
+    ps.add_argument('-n', '--n-repeat', type=int, default=3,
+        help='Number of times to repeat each test.')
     args = ps.parse_args()
 
     tests = json.loads(args.file.read())
