@@ -1,3 +1,16 @@
+### 1.3.3
+
+Features:
+  * test: Separate consensus testing tool from test cases.
+
+Bug fixes:
+  * all: Ensure multiple calls to `EniBase::check` return the same result.
+  * tools: Validate input of scrypt.
+
+Known issues:
+  * all: Current building system does not support Mac OSX.
+
+
 ### 1.3.2
 
 Features:
