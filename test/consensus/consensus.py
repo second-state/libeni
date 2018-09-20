@@ -5,25 +5,11 @@
 # See LICENSE for details.
 #
 #==-----------------------------------------------------------------------==#
-import os
+import argparse
+import json
 import random
 import string
 import subprocess
-
-T_BINDIR = os.getenv('T_BINDIR', '')
-tests = {
-    os.path.join(T_BINDIR, 'examples/eni/eni_reverse.so'): [
-        ('reverse', 's:32'),
-    ],
-    os.path.join(T_BINDIR, 'examples/eni/eni_caesar_cipher.so'): [
-        ('caesar_encrypt', 's:32', 's:16'),
-        ('caesar_decrypt', 's:32', 's:16'),
-    ],
-    os.path.join(T_BINDIR, 'tools/eni_crypto/eni_crypto.so'): [
-        ('rsa_encrypt', 'f:pub.pem',  's:17'),
-        ('rsa_decrypt', 'f:priv.pem', 'f:rsa'),
-    ],
-}
 
 def expand(args):
     def rands(n):
@@ -32,7 +18,7 @@ def expand(args):
             for _ in range(int(n))
         )
     def readf(f):
-        with open(os.path.join('data', f), 'r') as fin:
+        with open(f, 'r') as fin:
             return fin.read().rstrip('\n')
     fns = {
         's': rands,
@@ -46,12 +32,12 @@ def expand(args):
         arglist
     ))
 
-def repeat(args, env, n):
+def repeat(args, n):
     assert n > 1
     same = True
     for i in range(n):
         p = subprocess.run(
-            args, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            args, stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
         assert p.returncode is 0
         if i is 0:
@@ -68,13 +54,7 @@ def repeat(args, env, n):
             print('STDERR:', p.stderr.decode("utf-8"))
     return same
 
-def run_tests():
-    def joinenv(key, value):
-        return os.pathsep.join(filter(None, [value, os.getenv(key)]))
-    env = {
-        'PATH': joinenv('PATH', os.path.join(T_BINDIR, 'tools/eni_cli')),
-        'LD_LIBRARY_PATH': joinenv('LD_LIBRARY_PATH', T_BINDIR),
-    }
+def run_tests(tests):
     n_run, n_failed = 0, 0
     for soname, oplist in tests.items():
         for args in oplist:
@@ -86,12 +66,18 @@ def run_tests():
                 print('ERROR: failed to expand arguments', args)
                 continue
             print('PARAMS:', params)
-            success = repeat(['eni_run', soname, op, params], env, 3)
+            success = repeat(['eni_run', soname, op, params], 3)
             n_run += 1
             n_failed += 0 if success else 1
     return n_run, n_failed
 
 if __name__ == '__main__':
-    n_run, n_failed = run_tests()
+    ps = argparse.ArgumentParser(description='libENI Consensus Test')
+    ps.add_argument('file', metavar='TEST_LIST', type=argparse.FileType('r'),
+        help='JSON description file for list of tests')
+    args = ps.parse_args()
+
+    tests = json.loads(args.file.read())
+    n_run, n_failed = run_tests(tests, args.n_repeat)
     if n_failed > 0:
         exit(1)
