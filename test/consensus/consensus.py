@@ -11,6 +11,34 @@ import random
 import string
 import subprocess
 
+class TestResult:
+    def __init__(self):
+        self.n_tests, self.n_run, self.n_failed = 0, 0, 0
+
+    def start_one(self, soname, *args):
+        self.n_tests += 1
+        print('Case #%d:' % self.n_tests, soname)
+        print('Arguments:', args)
+        op, params = None, None
+        try:
+            op, args = args[0], args[1:]
+            params = expand(args)
+            print('PARAMS:', params)
+        except:
+            print('ERROR: failed to expand arguments', args)
+        return op, params
+
+    def finish_one(self, success):
+        self.n_run += 1
+        self.n_failed += 0 if success else 1
+
+    def summarize(self):
+        if self.n_tests != self.n_run:
+            return False
+        if self.n_failed is not 0:
+            return False
+        return True
+
 def expand(args):
     def rands(n):
         return ''.join(
@@ -61,21 +89,15 @@ def repeat(args, n):
 
 def run_tests(tests, n_repeat):
     assert n_repeat > 1
-    n_run, n_failed = 0, 0
+    r = TestResult()
     for soname, oplist in tests.items():
         for args in oplist:
-            op, args = args[0], args[1:]
-            print('Case #%d:' % n_run, soname, op)
-            try:
-                params = expand(args)
-            except:
-                print('ERROR: failed to expand arguments', args)
+            op, params = r.start_one(soname, *args)
+            if not op or not params:
                 continue
-            print('PARAMS:', params)
             success = repeat(['eni_run', soname, op, params], n_repeat)
-            n_run += 1
-            n_failed += 0 if success else 1
-    return n_run, n_failed
+            r.finish_one(success)
+    return r
 
 if __name__ == '__main__':
     ps = argparse.ArgumentParser(description='libENI Consensus Test')
@@ -86,6 +108,6 @@ if __name__ == '__main__':
     args = ps.parse_args()
 
     tests = json.loads(args.file.read())
-    n_run, n_failed = run_tests(tests, args.n_repeat)
-    if n_failed > 0:
+    r = run_tests(tests, args.n_repeat)
+    if not r.summarize():
         exit(1)
