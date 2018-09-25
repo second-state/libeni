@@ -1,0 +1,5 @@
+{
+    "${CMAKE_BINARY_DIR}/examples/eni/eni_reverse.so": [
+        ["reverse", "Hello World!"]
+    ]
+}
