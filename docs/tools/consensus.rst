@@ -110,7 +110,23 @@ The output of the consensus tests will look like this (for the above example).
 
 .. code::
 
-    Case #0: /home/libeni/build/tools/eni_crypto/eni_crypto.so rsa_encrypt
+    Case #1: /home/libeni/build/examples/eni/eni_caesar_cipher.so
+    Arguments: ('caesar_encrypt', 's:32', 's:16')
+    PARAMS: ["F5ED8WAFFJKC2NG45XO9YCKOI4RNIXTX","XLK4RIEBBGE01K8Y"]
+    STDOUT: ["C5BA8TXCCGHZ2KD45UL9VZHLF4OKFUQU"]
+
+    Case #2: /home/libeni/build/examples/eni/eni_caesar_cipher.so
+    Arguments: ('caesar_decrypt', 's:32', 's:16')
+    PARAMS: ["MMOUZ7X3H9QANHC9IDHG2D0C3HSUKX9W","36CWS7PGJPQB1PIM"]
+    STDOUT: ["MMOUZ7X3H9QANHC9IDHG2D0C3HSUKX9W"]
+
+    Case #3: /home/libeni/build/tools/eni_scrypt/eni_scrypt.so
+    Arguments: ('scrypt', 'h:160')
+    PARAMS: ["cEa0eBaDCA7bcFAB0fF30cFC1742eCA3ae34fC8bc8C30927B8AcBbF7A7ebdDeC330cf516EFcEc5d5C9a9d8BF8E71Bebf86de0faf78d4Af3A1FFf295f6CaEACc4DCd14CCfB9BEfA2FC1c372cCF2EaC38f"]
+    STDOUT: ["31fddc755f864d1541b07d333ffc85c8c898aa48d4c193bf20cb8c3e8d4d94f7"]
+
+    Case #4: /home/libeni/build/tools/eni_crypto/eni_crypto.so
+    Arguments: ('rsa_encrypt', 'f:data/pub.pem', 's:17')
     PARAMS: ["-----BEGIN PUBLIC KEY-----
     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApr/atzUuBArbsWHkn8tU
     mq00tCV4CcLfVUVg+zr41sixYIb54rd5EFWoQ1xecYMZIbnoTl2vu9awHBZF18Dk
@@ -119,10 +135,11 @@ The output of the consensus tests will look like this (for the above example).
     lNlozUySI0mBmjgyymAhPm4qx5Zcf/Wmg42vbIFRrBl5PgWKGsY0L7xcPRDPAPRt
     ndUPr+CLLk5KjyHI8a2WiYrJvjUGTQNyqPM5MmLLfHMkjkbE6DshWbMZona+/5ji
     3wIDAQAB
-    -----END PUBLIC KEY-----","4POB4HDNKUXEGP2U3"]
-    STDOUT: ["0e8cb1615bf5802a7d4e4e6e09a802bc8db648b8cbff70a3321e11275491dd54cc2d1b3e130cecb8fac37cb047b137ea65314ca9224efe8b1ea1a8790c0173b160d47e3b0b472ffe1a35fe80a1359ef0708e98f26fd4d954162b46ae3fab65c534ff7edb9e2ceec5b1191451eeade8eb208243d2f41fcdfe7bd1378ff8f2467c1e52a92d85ac6d41d632e82c8e51241057eabdfc9ba56c490f482ab4051bfbe4b6f0a9494ce29ee37d7cd6339471d58af2701fb999dbf3713f6a636cd059731808c4fa8ba6351e34f999448a9b165af327a4e9a5c40bb2948775b9889dfeb2ec61ccad51a4285962953debb38790c4363733bed0db056ce0ba9bfb5bec0071f6"]
+    -----END PUBLIC KEY-----","0H2GDJ0ZBYM0EHNLU"]
+    STDOUT: ["a4de681da245bf1ad8ad67df5b43f3b74aed0c277fa054c01a94cfa4f3ca19ecb4c639d4fe3aef3ae74638e44a2bfa7c25898b2fa52173e770a43242e5e761682227c1c1ac8ae9cc0602cc2a0c413719ef3b142b421aa0f8099412a769ca093e943896e12ee957019220fd23b12c877f09150fe7c7ab4b0393e6cc9a1ae9e3e91344627be43be4719e59faf89eb1ef9d802586e00850244dc2fff373da53a387b81d42660f61cb023079e955d62703fa9bf0ca82cdcecd164438426317e6e8abaa253b080f783ee556eb4c81d81852b1bd3f487341f0fcbb8f48b5240fc1033a2eb228ef27443cbc820cdb04f2bfdb98950f10c631b5c11c89683111734df89d"]
 
-    Case #1: /home/libeni/build/tools/eni_crypto/eni_crypto.so rsa_decrypt
+    Case #5: /home/libeni/build/tools/eni_crypto/eni_crypto.so
+    Arguments: ('rsa_decrypt', 'f:data/priv.pem', 'f:data/rsa')
     PARAMS: ["-----BEGIN RSA PRIVATE KEY-----
     MIIEowIBAAKCAQEApr/atzUuBArbsWHkn8tUmq00tCV4CcLfVUVg+zr41sixYIb5
     4rd5EFWoQ1xecYMZIbnoTl2vu9awHBZF18DkNlG8pjw1Vw5EjaWrCDn734lcKGhs
@@ -152,18 +169,7 @@ The output of the consensus tests will look like this (for the above example).
     -----END RSA PRIVATE KEY-----","65b4474b010b1992cfa93a57238be244248dd22060b2fe7f65791b9aecbd1086ff05a1e47977766646a7c2aac3550e2ceac3ba51c8a4f88fac32dfc8e9c39a28b20b70e4e5f5f425e2c68ff37959fa64a6838447eef4ca7200a4a720cb34e4917439a4a075105002b3bdb46625a6f0155017ef094cd08238e5ba742c4fd67bf9b275bea4b811dabc8e8b212997145b80ac78db53c0df757d57b18af6f8045ca85d2d26d1c2f45d9593595166018c6c03b320a147e0435a7bd9f109762bed60ab35ad38daa19b96e7545d4e45e4597f67c08584a8f2fa0298b55e8286780bc38c464d6dce80f062f24b80aa83df2ef816011b02758ef25ff8640e0599d021b2b9"]
     STDOUT: ["Hello World!"]
 
-    Case #2: /home/libeni/build/examples/eni/eni_caesar_cipher.so caesar_encrypt
-    PARAMS: ["Y54WGC2FXDQBXQHXYS7O0XTSLNYC1P7L","JJCENMR2BJ89MEE0"]
-    STDOUT: ["H54FPL2OGMZKGZQGHB7X0GCBUWHL1Y7U"]
-
-    Case #3: /home/libeni/build/examples/eni/eni_caesar_cipher.so caesar_decrypt
-    PARAMS: ["0QQGCGXT6ZWR2C57AR2T9IRRL94LY80J","FURNHPTQVQYRYZZS"]
-    STDOUT: ["0LLBXBSO6URM2X57VM2O9DMMG94GT80E"]
-
-    Case #4: /home/libeni/build/examples/eni/eni_reverse.so reverse
-    PARAMS: ["OQ837FGSXH558HEV2H3AZOAI9FSGDUZP"]
-    STDOUT: ["PZUDGSF9IAOZA3H2VEH855HXSGF738QO"]
-
-    Case #5: /home/libeni/build/tools/eni_scrypt/eni_scrypt.so scrypt
-    PARAMS: ["fB3ce61aCEd8BF9448d1FBbC231D83D5DA7D9cA7C8C2e6063E5cA0236d3B5326E896b15dBA2Ba25221F31A7ceFE8Ec76AEefAdc602ed22a88A63aEf2cBc4b0bA44C1d8f1ccBebDDac9f99a5F3ef514ce"]
-    STDOUT: ["9adbc8ee0ba576481c00819eb832e8f8b8217bd1024ce12e2f6ed1b11cf92000"]
+    Case #6: /home/libeni/build/examples/eni/eni_reverse.so
+    Arguments: ('reverse', 's:32')
+    PARAMS: ["OWU94YH9F62MGUGE86VWILXNZ7CLC1DH"]
+    STDOUT: ["HD1CLC7ZNXLIWV68EGUGM26F9HY49UWO"]
