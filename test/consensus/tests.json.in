@@ -9,5 +9,8 @@
     "${CMAKE_BINARY_DIR}/tools/eni_crypto/eni_crypto.so": [
         ["rsa_encrypt", "f:data/pub.pem",  "s:17"],
         ["rsa_decrypt", "f:data/priv.pem", "f:data/rsa"]
+    ],
+    "${CMAKE_BINARY_DIR}/tools/eni_scrypt/eni_scrypt.so": [
+        ["scrypt", "h:160"]
     ]
 }
