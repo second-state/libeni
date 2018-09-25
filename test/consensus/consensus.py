@@ -20,9 +20,15 @@ def expand(args):
     def readf(f):
         with open(f, 'r') as fin:
             return fin.read().rstrip('\n')
+    def randh(n):
+        return ''.join(
+            random.choice(string.hexdigits)
+            for _ in range(int(n))
+        )
     fns = {
         's': rands,
         'f': readf,
+        'h': randh,
     }
     arglist = []
     for arg in args:

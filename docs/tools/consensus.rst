@@ -58,6 +58,11 @@ The format of the input JSON description file looks like this.
 |            | - `type`: ``s``                                         |
 |            | - `arg`: length of string                               |
 |            |                                                         |
+|            | Hex: a random hex string of the given length.           |
+|            |                                                         |
+|            | - `type`: ``h``                                         |
+|            | - `arg`: length of hex string                           |
+|            |                                                         |
 |            | File: a string containing the file content.             |
 |            |                                                         |
 |            | - `type`: ``f``                                         |
@@ -82,6 +87,9 @@ Here is an example JSON file in libENI's own tests.
         "/home/libeni/build/tools/eni_crypto/eni_crypto.so": [
             ["rsa_encrypt", "f:data/pub.pem",  "s:17"],
             ["rsa_decrypt", "f:data/priv.pem", "f:data/rsa"]
+        ],
+        "/home/libeni/build/tools/eni_scrypt/eni_scrypt.so": [
+            ["scrypt", "h:160"]
         ]
     }
 
@@ -155,3 +163,7 @@ The output of the consensus tests will look like this (for the above example).
     Case #4: /home/libeni/build/examples/eni/eni_reverse.so reverse
     PARAMS: ["OQ837FGSXH558HEV2H3AZOAI9FSGDUZP"]
     STDOUT: ["PZUDGSF9IAOZA3H2VEH855HXSGF738QO"]
+
+    Case #5: /home/libeni/build/tools/eni_scrypt/eni_scrypt.so scrypt
+    PARAMS: ["fB3ce61aCEd8BF9448d1FBbC231D83D5DA7D9cA7C8C2e6063E5cA0236d3B5326E896b15dBA2Ba25221F31A7ceFE8Ec76AEefAdc602ed22a88A63aEf2cBc4b0bA44C1d8f1ccBebDDac9f99a5F3ef514ce"]
+    STDOUT: ["9adbc8ee0ba576481c00819eb832e8f8b8217bd1024ce12e2f6ed1b11cf92000"]
