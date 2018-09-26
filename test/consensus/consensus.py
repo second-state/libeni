@@ -23,7 +23,7 @@ class TestResult:
         try:
             op, args = args[0], args[1:]
             params = expand(args)
-            print('PARAMS:', params)
+            print('Parameters:', params)
         except:
             print('ERROR: failed to expand arguments', args)
         return op, params
@@ -38,6 +38,47 @@ class TestResult:
         if self.n_failed is not 0:
             return False
         return True
+
+class TestCase:
+    def __init__(self):
+        self.first, self.count, self.same = None, 0, True
+
+    def start_one(self):
+        self.count += 1
+
+    def finish_one(self, proc):
+        proc.stdout = proc.stdout.decode("utf-8")
+        proc.stderr = proc.stderr.decode("utf-8")
+        if self.count is 1:
+            self.first = proc
+            return True
+        self.same = TestCase.casecmp(self.first, proc)
+        if not self.same:
+            TestCase.caseprint(self.first, 'expected')
+            TestCase.caseprint(proc, 'got this')
+        return self.same
+
+    def summarize(self):
+        if self.count <= 1 or not self.same:
+            return False
+        TestCase.caseprint(self.first)
+        return True
+
+    @staticmethod
+    def casecmp(proc, proc0):
+        return (proc.returncode == proc0.returncode
+                and proc.stdout == proc0.stdout
+                and proc.stderr == proc0.stderr)
+
+    @staticmethod
+    def caseprint(proc, prefix=None):
+        prefix = '' if prefix is None else '(%s) ' % prefix
+        print('%sRETURN:' % prefix, proc.returncode)
+        if proc.stdout:
+            print('%sSTDOUT:' % prefix, proc.stdout.rstrip())
+        if proc.stderr:
+            print('%sSTDERR:' % prefix, proc.stderr.rstrip())
+        print()
 
 def expand(args):
     def rands(n):
@@ -67,25 +108,15 @@ def expand(args):
     ))
 
 def repeat(args, n):
-    same = True
+    t = TestCase()
     for i in range(n):
+        t.start_one()
         p = subprocess.run(
             args, stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
-        assert p.returncode is 0
-        if i is 0:
-            prevout = p.stdout
-        elif prevout != p.stdout:
-            same = False
-            print('Expect:', prevout.decode("utf-8"))
-            print('Output:', p.stdout.decode("utf-8"))
+        if not t.finish_one(p):
             break
-    else:
-        if p.stdout:
-            print('STDOUT:', p.stdout.decode("utf-8"))
-        if p.stderr:
-            print('STDERR:', p.stderr.decode("utf-8"))
-    return same
+    return t.summarize()
 
 def run_tests(tests, n_repeat):
     assert n_repeat > 1
@@ -97,7 +128,7 @@ def run_tests(tests, n_repeat):
                 continue
             success = repeat(['eni_run', soname, op, params], n_repeat)
             r.finish_one(success)
-    return r
+    return r.summarize()
 
 if __name__ == '__main__':
     ps = argparse.ArgumentParser(description='libENI Consensus Test')
@@ -108,6 +139,6 @@ if __name__ == '__main__':
     args = ps.parse_args()
 
     tests = json.loads(args.file.read())
-    r = run_tests(tests, args.n_repeat)
-    if not r.summarize():
+    success = run_tests(tests, args.n_repeat)
+    if not success:
         exit(1)
