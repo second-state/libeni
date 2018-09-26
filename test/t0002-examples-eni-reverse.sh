@@ -11,5 +11,5 @@ source ./testlib.sh
 
 libpath=$T_BINDIR/examples/eni/eni_reverse.so
 params='["Hello World!"]'
-o_expect '12'               eni_gas "$libpath" reverse "$params"
+o_expect '120'              eni_gas "$libpath" reverse "$params"
 o_expect '["!dlroW olleH"]' eni_run "$libpath" reverse "$params"

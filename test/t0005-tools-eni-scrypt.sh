@@ -11,5 +11,5 @@ source ./testlib.sh
 
 libpath=$T_BINDIR/tools/eni_scrypt/eni_scrypt.so
 params='["00"]'
-o_expect '2' eni_gas "$libpath" scrypt "$params"
+o_expect '10' eni_gas "$libpath" scrypt "$params"
 o_expect '["161d0876f3b93b1048cda1bdeaa7332ee210f7131b42013cb43913a6553a4b69"]' eni_run "$libpath" scrypt "$params"

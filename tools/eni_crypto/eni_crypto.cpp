@@ -141,7 +141,8 @@ bool RSAEncrypt::parse(const json::Array& pArgs)
 
 eni::Gas RSAEncrypt::gas() const
 {
-  return m_Msg.length();
+  int size = ::RSA_size(m_Key);
+  return size * 10;
 }
 
 bool RSAEncrypt::run(json::Array& pRetVal)
@@ -170,7 +171,8 @@ bool RSADecrypt::parse(const json::Array& pArgs)
 
 eni::Gas RSADecrypt::gas() const
 {
-  return m_Msg.length();
+  int size = ::RSA_size(m_Key);
+  return size * 10;
 }
 
 bool RSADecrypt::run(json::Array& pRetVal)

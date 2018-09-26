@@ -25,7 +25,7 @@ bool Scrypt::parse(const json::Array& pArgs)
 
 eni::Gas Scrypt::gas() const
 {
-  return m_Str.length();
+  return (m_Str.length() + 1) / 2 * 10;
 }
 
 bool Scrypt::run(json::Array& pRetVal)

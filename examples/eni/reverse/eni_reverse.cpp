@@ -20,7 +20,7 @@ private:
   }
 
   eni::Gas gas() const override {
-    return m_Str.length();
+    return m_Str.length() * 10;
   }
 
   bool run(json::Array& pRetVal) override {

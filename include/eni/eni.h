@@ -49,7 +49,7 @@ public:
 
   Gas getGas() {
     if (!check(m_Args))
-      return 0;
+      return 1500;
     return gas();
   }
 

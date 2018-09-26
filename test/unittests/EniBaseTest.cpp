@@ -45,7 +45,7 @@ SKYPAT_F(EniBaseTest, get_gas_twice)
   EniEcho echo("[]");
 
   Gas gas = echo.getGas();
-  EXPECT_EQ(gas, 0);
+  EXPECT_EQ(gas, 1500);
   gas = echo.getGas();
-  EXPECT_EQ(gas, 0);
+  EXPECT_EQ(gas, 1500);
 }

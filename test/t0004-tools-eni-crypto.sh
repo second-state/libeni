@@ -11,9 +11,9 @@ source ./testlib.sh
 
 libpath=$T_BINDIR/tools/eni_crypto/eni_crypto.so
 params=$(cat "$T_ID/pub_encrypt.json")
-o_expect '12'               eni_gas "$libpath" rsa_encrypt "$params"
+o_expect '2560'             eni_gas "$libpath" rsa_encrypt "$params"
 t_run                       eni_run "$libpath" rsa_encrypt "$params"
 o_expect '516'              echo ${#output}
 params=$(cat "$T_ID/priv_decrypt.json")
-o_expect '256'              eni_gas "$libpath" rsa_decrypt "$params"
+o_expect '2560'             eni_gas "$libpath" rsa_decrypt "$params"
 o_expect '["Hello World!"]' eni_run "$libpath" rsa_decrypt "$params"

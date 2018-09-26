@@ -16,7 +16,7 @@ SKYPAT_F(ScryptTest, scrypt_empty_string)
 SKYPAT_F(ScryptTest, scrypt_all_zero)
 {
   Scrypt* functor = new Scrypt(R"(["0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"])");
-  EXPECT_EQ(functor->getGas(), 160);
+  EXPECT_EQ(functor->getGas(), 800);
   char *hash = functor->start();
   delete functor;
 
@@ -27,7 +27,7 @@ SKYPAT_F(ScryptTest, scrypt_all_zero)
 SKYPAT_F(ScryptTest, scrypt_all_ff)
 {
   Scrypt* functor = new Scrypt(R"(["ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"])");
-  EXPECT_EQ(functor->getGas(), 160);
+  EXPECT_EQ(functor->getGas(), 800);
   char *hash = functor->start();
   delete functor;
 
@@ -38,6 +38,7 @@ SKYPAT_F(ScryptTest, scrypt_all_ff)
 SKYPAT_F(ScryptTest, scrypt_oversized)
 {
   Scrypt* functor = new Scrypt(R"(["ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01"])");
+  EXPECT_EQ(functor->getGas(), 1500);
   char *hash = functor->start();
   delete functor;
 
@@ -48,6 +49,7 @@ SKYPAT_F(ScryptTest, scrypt_oversized)
 SKYPAT_F(ScryptTest, scrypt_invalid_hex)
 {
   Scrypt* functor = new Scrypt(R"(["wxyz"])");
+  EXPECT_EQ(functor->getGas(), 1500);
   char *hash = functor->start();
   delete functor;
 
@@ -59,6 +61,8 @@ SKYPAT_F(ScryptTest, scrypt_prepend_zero)
 {
   Scrypt* functor1 = new Scrypt(R"(["01"])");
   Scrypt* functor2 = new Scrypt(R"(["1"])");
+  EXPECT_EQ(functor1->getGas(), 10);
+  EXPECT_EQ(functor2->getGas(), 10);
   char *hash1 = functor1->start();
   char *hash2 = functor2->start();
   delete functor1;
@@ -73,6 +77,8 @@ SKYPAT_F(ScryptTest, scrypt_upper_lower_case)
 {
   Scrypt* functor1 = new Scrypt(R"(["0123456789abcdef"])");
   Scrypt* functor2 = new Scrypt(R"(["0123456789ABCDEF"])");
+  EXPECT_EQ(functor1->getGas(), 80);
+  EXPECT_EQ(functor2->getGas(), 80);
   char *hash1 = functor1->start();
   char *hash2 = functor2->start();
   delete functor1;
