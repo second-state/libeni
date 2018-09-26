@@ -12,5 +12,8 @@
     ],
     "${CMAKE_BINARY_DIR}/tools/eni_scrypt/eni_scrypt.so": [
         ["scrypt", "h:160"]
+    ],
+    "${CMAKE_BINARY_DIR}/tools/eni_scrypt/eni_scrypt.so": [
+        ["scrypt", "s:160"]
     ]
 }
