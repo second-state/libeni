@@ -74,7 +74,6 @@ You should get a list of OKs if all libraries are good.
 
 .. code:: bash
 
-  eni_caesar_cipher.so: OK
   eni_crypto.so: OK
   eni_reverse.so: OK
   eni_scrypt.so: OK
@@ -123,28 +122,41 @@ The result looks like the below.
 .. code:: bash
 
   Test project ${LIBENI_PATH}/build
-      Start 1: crypto_unittests
-  1/7 Test #1: crypto_unittests .................   Passed    0.02 sec
-      Start 2: t0000-smoke
-  2/7 Test #2: t0000-smoke ......................   Passed    0.01 sec
-      Start 3: t0001-testlib
-  3/7 Test #3: t0001-testlib ....................   Passed    0.03 sec
-      Start 4: t0002-examples-eni-reverse
-  4/7 Test #4: t0002-examples-eni-reverse .......   Passed    0.02 sec
-      Start 5: t0003-examples-eni-caesar
-  5/7 Test #5: t0003-examples-eni-caesar ........   Passed    0.02 sec
-      Start 6: t0004-tools-eni-crypto
-  6/7 Test #6: t0004-tools-eni-crypto ...........   Passed    0.07 sec
-      Start 7: unittests
-  7/7 Test #7: unittests ........................   Passed    0.01 sec
-  
-  100% tests passed, 0 tests failed out of 7
-  
+        Start  1: eni_reverse_checksum_test
+   1/13 Test  #1: eni_reverse_checksum_test ........   Passed    0.00 sec
+        Start  2: eni_crypto_checksum_test
+   2/13 Test  #2: eni_crypto_checksum_test .........   Passed    0.00 sec
+        Start  3: crypto_unittests
+   3/13 Test  #3: crypto_unittests .................   Passed    0.01 sec
+        Start  4: eni_scrypt_checksum_test
+   4/13 Test  #4: eni_scrypt_checksum_test .........   Passed    0.00 sec
+        Start  5: scrypt_unittests
+   5/13 Test  #5: scrypt_unittests .................   Passed    0.01 sec
+        Start  6: t0000-smoke
+   6/13 Test  #6: t0000-smoke ......................   Passed    0.00 sec
+        Start  7: t0005-tools-eni-scrypt
+   7/13 Test  #7: t0005-tools-eni-scrypt ...........   Passed    0.01 sec
+        Start  8: t0004-tools-eni-crypto
+   8/13 Test  #8: t0004-tools-eni-crypto ...........   Passed    0.02 sec
+        Start  9: t0001-testlib
+   9/13 Test  #9: t0001-testlib ....................   Passed    0.01 sec
+        Start 10: t0002-examples-eni-reverse
+  10/13 Test #10: t0002-examples-eni-reverse .......   Passed    0.01 sec
+        Start 11: consensus_tests
+  11/13 Test #11: consensus_tests ..................   Passed    0.07 sec
+        Start 12: malformed_consensus_tests
+  12/13 Test #12: malformed_consensus_tests ........   Passed    0.03 sec
+        Start 13: unittests
+  13/13 Test #13: unittests ........................   Passed    1.37 sec
+
+  100% tests passed, 0 tests failed out of 13
+
   Label Time Summary:
-  auto          =   0.15 sec*proc (5 tests)
-  regression    =   0.15 sec*proc (5 tests)
-  unittest      =   0.03 sec*proc (2 tests)
-  
-  Total Test time (real) =   0.19 sec
+  auto          =   0.06 sec (8 tests)
+  checksum      =   0.00 sec (3 tests)
+  regression    =   0.13 sec (6 tests)
+  unittest      =   1.40 sec (3 tests)
+
+  Total Test time (real) =   1.57 sec
 
 See `Testing/Temporary/LastTest.log` for the detailed output of all tests.

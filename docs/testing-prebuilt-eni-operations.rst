@@ -21,25 +21,6 @@ Test "eni_reverse.so" (`examples/eni/reverse`)
 The first call `eni_gas` will output `12`, and
 the second one `eni_run` will output `["!dlroW olleH"]`.
 
-Test "eni_caesar_cipher.so" (`examples/eni/caesar_cipher`)
-``````````````````````````````````````````````````````````
-
-.. code:: bash
-
-  eni_gas ${LIBENI_PATH}/lib/eni_caesar_cipher.so caesar_encrypt '["Hello World!","HELLOGCC"]'
-  eni_run ${LIBENI_PATH}/lib/eni_caesar_cipher.so caesar_encrypt '["Hello World!","HELLOGCC"]'
-  eni_gas ${LIBENI_PATH}/lib/eni_caesar_cipher.so caesar_decrypt '["Olssv Dvysk!","HELLOGCC"]'
-  eni_run ${LIBENI_PATH}/lib/eni_caesar_cipher.so caesar_decrypt '["Olssv Dvysk!","HELLOGCC"]'
-
-Output for the above lines.
-
-.. code:: bash
-
-  12
-  ["Olssv Dvysk!"]
-  12
-  ["Hello World!"]
-
 Test "eni_crypto.so" (`tools/eni_crypto`)
 `````````````````````````````````````````
 

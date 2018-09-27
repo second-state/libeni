@@ -80,10 +80,6 @@ Here is an example JSON file in libENI's own tests.
         "/home/libeni/build/examples/eni/eni_reverse.so": [
             ["reverse", "s:32"]
         ],
-        "/home/libeni/build/examples/eni/eni_caesar_cipher.so": [
-            ["caesar_encrypt", "s:32", "s:16"],
-            ["caesar_decrypt", "s:32", "s:16"]
-        ],
         "/home/libeni/build/tools/eni_crypto/eni_crypto.so": [
             ["rsa_encrypt", "f:data/pub.pem",  "s:17"],
             ["rsa_decrypt", "f:data/priv.pem", "f:data/rsa"]
@@ -110,22 +106,12 @@ The output of the consensus tests will look like this (for the above example).
 
 .. code::
 
-    Case #1: /home/libeni/build/examples/eni/eni_caesar_cipher.so
-    Arguments: ('caesar_encrypt', 's:32', 's:16')
-    PARAMS: ["F5ED8WAFFJKC2NG45XO9YCKOI4RNIXTX","XLK4RIEBBGE01K8Y"]
-    STDOUT: ["C5BA8TXCCGHZ2KD45UL9VZHLF4OKFUQU"]
-
-    Case #2: /home/libeni/build/examples/eni/eni_caesar_cipher.so
-    Arguments: ('caesar_decrypt', 's:32', 's:16')
-    PARAMS: ["MMOUZ7X3H9QANHC9IDHG2D0C3HSUKX9W","36CWS7PGJPQB1PIM"]
-    STDOUT: ["MMOUZ7X3H9QANHC9IDHG2D0C3HSUKX9W"]
-
-    Case #3: /home/libeni/build/tools/eni_scrypt/eni_scrypt.so
+    Case #1: /home/libeni/build/tools/eni_scrypt/eni_scrypt.so
     Arguments: ('scrypt', 'h:160')
     PARAMS: ["cEa0eBaDCA7bcFAB0fF30cFC1742eCA3ae34fC8bc8C30927B8AcBbF7A7ebdDeC330cf516EFcEc5d5C9a9d8BF8E71Bebf86de0faf78d4Af3A1FFf295f6CaEACc4DCd14CCfB9BEfA2FC1c372cCF2EaC38f"]
     STDOUT: ["31fddc755f864d1541b07d333ffc85c8c898aa48d4c193bf20cb8c3e8d4d94f7"]
 
-    Case #4: /home/libeni/build/tools/eni_crypto/eni_crypto.so
+    Case #2: /home/libeni/build/tools/eni_crypto/eni_crypto.so
     Arguments: ('rsa_encrypt', 'f:data/pub.pem', 's:17')
     PARAMS: ["-----BEGIN PUBLIC KEY-----
     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApr/atzUuBArbsWHkn8tU
@@ -138,7 +124,7 @@ The output of the consensus tests will look like this (for the above example).
     -----END PUBLIC KEY-----","0H2GDJ0ZBYM0EHNLU"]
     STDOUT: ["a4de681da245bf1ad8ad67df5b43f3b74aed0c277fa054c01a94cfa4f3ca19ecb4c639d4fe3aef3ae74638e44a2bfa7c25898b2fa52173e770a43242e5e761682227c1c1ac8ae9cc0602cc2a0c413719ef3b142b421aa0f8099412a769ca093e943896e12ee957019220fd23b12c877f09150fe7c7ab4b0393e6cc9a1ae9e3e91344627be43be4719e59faf89eb1ef9d802586e00850244dc2fff373da53a387b81d42660f61cb023079e955d62703fa9bf0ca82cdcecd164438426317e6e8abaa253b080f783ee556eb4c81d81852b1bd3f487341f0fcbb8f48b5240fc1033a2eb228ef27443cbc820cdb04f2bfdb98950f10c631b5c11c89683111734df89d"]
 
-    Case #5: /home/libeni/build/tools/eni_crypto/eni_crypto.so
+    Case #3: /home/libeni/build/tools/eni_crypto/eni_crypto.so
     Arguments: ('rsa_decrypt', 'f:data/priv.pem', 'f:data/rsa')
     PARAMS: ["-----BEGIN RSA PRIVATE KEY-----
     MIIEowIBAAKCAQEApr/atzUuBArbsWHkn8tUmq00tCV4CcLfVUVg+zr41sixYIb5
@@ -169,7 +155,7 @@ The output of the consensus tests will look like this (for the above example).
     -----END RSA PRIVATE KEY-----","65b4474b010b1992cfa93a57238be244248dd22060b2fe7f65791b9aecbd1086ff05a1e47977766646a7c2aac3550e2ceac3ba51c8a4f88fac32dfc8e9c39a28b20b70e4e5f5f425e2c68ff37959fa64a6838447eef4ca7200a4a720cb34e4917439a4a075105002b3bdb46625a6f0155017ef094cd08238e5ba742c4fd67bf9b275bea4b811dabc8e8b212997145b80ac78db53c0df757d57b18af6f8045ca85d2d26d1c2f45d9593595166018c6c03b320a147e0435a7bd9f109762bed60ab35ad38daa19b96e7545d4e45e4597f67c08584a8f2fa0298b55e8286780bc38c464d6dce80f062f24b80aa83df2ef816011b02758ef25ff8640e0599d021b2b9"]
     STDOUT: ["Hello World!"]
 
-    Case #6: /home/libeni/build/examples/eni/eni_reverse.so
+    Case #4: /home/libeni/build/examples/eni/eni_reverse.so
     Arguments: ('reverse', 's:32')
     PARAMS: ["OWU94YH9F62MGUGE86VWILXNZ7CLC1DH"]
     STDOUT: ["HD1CLC7ZNXLIWV68EGUGM26F9HY49UWO"]

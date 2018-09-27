@@ -2,10 +2,6 @@
     "${CMAKE_BINARY_DIR}/examples/eni/eni_reverse.so": [
         ["reverse", "s:32"]
     ],
-    "${CMAKE_BINARY_DIR}/examples/eni/eni_caesar_cipher.so": [
-        ["caesar_encrypt", "s:32", "s:16"],
-        ["caesar_decrypt", "s:32", "s:16"]
-    ],
     "${CMAKE_BINARY_DIR}/tools/eni_crypto/eni_crypto.so": [
         ["rsa_encrypt", "f:data/pub.pem",  "s:17"],
         ["rsa_decrypt", "f:data/priv.pem", "f:data/rsa"]
