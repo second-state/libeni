@@ -19,16 +19,16 @@ Check the usage of `consensus.py` by running it with the argument ``-h``.
 
 .. code::
 
-    usage: consensus.py [-h] TEST_LIST
+    usage: consensus.py [-h] [-n N_REPEAT] TEST_LIST
 
     libENI Consensus Test
 
     positional arguments:
-      TEST_LIST   JSON description file for list of tests
+      TEST_LIST             JSON description file for list of tests
 
     optional arguments:
-      -h, --help  show this help message and exit
-
+      -h, --help            show this help message and exit
+      -n N_REPEAT           number of times to repeat each test
 
 Format of JSON Description File
 -------------------------------
