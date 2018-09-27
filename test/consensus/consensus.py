@@ -134,8 +134,8 @@ if __name__ == '__main__':
     ps = argparse.ArgumentParser(description='libENI Consensus Test')
     ps.add_argument('file', metavar='TEST_LIST', type=argparse.FileType('r'),
         help='JSON description file for list of tests')
-    ps.add_argument('-n', '--n-repeat', type=int, default=3,
-        help='Number of times to repeat each test.')
+    ps.add_argument('-n', dest='n_repeat', type=int, default=3,
+        help='number of times to repeat each test')
     args = ps.parse_args()
 
     tests = json.loads(args.file.read())
