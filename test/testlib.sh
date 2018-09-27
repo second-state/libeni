@@ -32,6 +32,7 @@ function t_run
   set +e
   output=$("$@")
   status=$?
+  set -e
 }
 
 # SYNOPSYS
@@ -44,6 +45,6 @@ function o_expect
 {
   local expect=$1
   shift
-  set +e; t_run "$@"
+  t_run "$@"
   [ "$expect" = "$output" ] && : || p_expect "$*" "$expect" "$output"
 }

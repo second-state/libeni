@@ -16,7 +16,7 @@ o_expect '' o_expect 'Hello World!' echo 'Hello World!'
 t_run test
 o_expect '1' echo $status
 
-o_expect '(expected)' echo '(unexpected)'
+o_expect '(expected)' echo '(unexpected)' ||
 o_expect '1' echo $?
 
 t_run o_expect '(expected)' echo '(unexpected)'
