@@ -1,3 +1,16 @@
+### 1.3.4
+
+Features:
+  * all: Refine gas cost for all ENI libraries.
+  * test: Support generating random hex number in consensus test.
+
+Bug fixes:
+  * test: Fix a bug in `o_expect` that causes wrong output.
+
+Known issues:
+  * all: Current building system does not support Mac OSX.
+
+
 ### 1.3.3
 
 Features:
