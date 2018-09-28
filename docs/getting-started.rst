@@ -16,8 +16,8 @@ Releases
 +---------+----------------------------+----------------------------+
 | Version | libeni-dev                 | libeni                     |
 +=========+============================+============================+
-| v1.3.3_ | `Ubuntu 16.04 <ud133_>`__, | `Ubuntu 16.04 <uu133_>`__, |
-|         | `CentOS 7 <cd133_>`__      | `CentOS 7 <cu133_>`__      |
+| v1.3.4_ | `Ubuntu 16.04 <ud134_>`__, | `Ubuntu 16.04 <uu134_>`__, |
+|         | `CentOS 7 <cd134_>`__      | `CentOS 7 <cu134_>`__      |
 +---------+----------------------------+----------------------------+
 | v1.2.x_ | `Ubuntu 16.04 <ud12x_>`__, | `Ubuntu 16.04 <uu12x_>`__, |
 |         | `CentOS 7 <cd12x_>`__      | `CentOS 7 <cu12x_>`__      |
@@ -26,11 +26,11 @@ Releases
 |         | `CentOS 7 <cd120_>`__      | `CentOS 7 <cu120_>`__      |
 +---------+----------------------------+----------------------------+
 
-.. _v1.3.3: https://github.com/CyberMiles/libeni/releases/tag/v1.3.3
-.. _ud133: https://github.com/CyberMiles/libeni/releases/download/v1.3.3/libeni-1.3.3-dev_ubuntu-16.04.tgz
-.. _uu133: https://github.com/CyberMiles/libeni/releases/download/v1.3.3/libeni-1.3.3_ubuntu-16.04.tgz
-.. _cd133: https://github.com/CyberMiles/libeni/releases/download/v1.3.3/libeni-1.3.3-dev_centos-7.tgz
-.. _cu133: https://github.com/CyberMiles/libeni/releases/download/v1.3.3/libeni-1.3.3_centos-7.tgz
+.. _v1.3.4: https://github.com/CyberMiles/libeni/releases/tag/v1.3.4
+.. _ud134: https://github.com/CyberMiles/libeni/releases/download/v1.3.4/libeni-1.3.4-dev_ubuntu-16.04.tgz
+.. _uu134: https://github.com/CyberMiles/libeni/releases/download/v1.3.4/libeni-1.3.4_ubuntu-16.04.tgz
+.. _cd134: https://github.com/CyberMiles/libeni/releases/download/v1.3.4/libeni-1.3.4-dev_centos-7.tgz
+.. _cu134: https://github.com/CyberMiles/libeni/releases/download/v1.3.4/libeni-1.3.4_centos-7.tgz
 
 .. _v1.2.x: https://github.com/CyberMiles/libeni/releases/tag/v1.2.x
 .. _ud12x: https://github.com/CyberMiles/libeni/releases/download/v1.2.x/libeni-1.2.x-dev_ubuntu-16.04.tgz
