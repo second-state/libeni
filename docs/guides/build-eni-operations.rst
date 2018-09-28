@@ -28,5 +28,5 @@ the flags and commands might differ if you're using different compilers.
 Related Guides
 --------------
 
-Next: :doc:<guides/test-eni-operations>.
-Previous: :doc:<guides/implementing-eni-operations>.
+Next: :doc:`test-eni-operations`.
+Previous: :doc:`implement-eni-operations`.

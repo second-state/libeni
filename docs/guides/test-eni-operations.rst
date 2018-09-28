@@ -53,4 +53,4 @@ Tools for Testing
 Related Guides
 --------------
 
-Previous: :doc:<guides/build-eni-operations>.
+Previous: :doc:`build-eni-operations`.

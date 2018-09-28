@@ -83,7 +83,7 @@ Here we just take the first argument and convert it to a string.
     std::string m_Str;
   };
 
-Check :doc:`the documentation <guides/parsing-eni-arguments>` to see more detail
+Check :doc:`the documentation <parsing-eni-arguments>` to see more detail
 about how arguments are converted into a ``json::Array``.
 
 Estimate Gas Consumption
@@ -141,4 +141,4 @@ implemented class (i.e., ``Reverse`` in this example).
 Related Guides
 --------------
 
-Next: :doc:<guides/build-eni-operations>.
+Next: :doc:`build-eni-operations`.
