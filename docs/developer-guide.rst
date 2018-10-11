@@ -16,7 +16,7 @@ Contents
 --------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    guides/implement-eni-operations.rst
    guides/build-eni-operations.rst
