@@ -32,11 +32,11 @@ public:
   using typename super::iterator;
   using typename super::const_iterator;
 
-  using typename super::empty;
-  using typename super::erase;
-  using typename super::find;
-  using typename super::begin;
-  using typename super::end;
+  using super::empty;
+  using super::erase;
+  using super::find;
+  using super::begin;
+  using super::end;
 
 public:
   explicit StringMap(size_type pSize = 8) : super(pSize) { }
