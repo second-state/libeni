@@ -1,3 +1,9 @@
+### 1.3.5
+
+Bug fixes:
+  * adt: Fix syntax errors on newer compilers.
+
+
 ### 1.3.4
 
 Features:
