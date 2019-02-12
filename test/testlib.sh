@@ -30,7 +30,7 @@ function p_expect
 function t_run
 {
   set +e
-  output=$("$@")
+  output=$("$@" 2>&1)
   status=$?
   set -e
 }

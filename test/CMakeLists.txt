@@ -10,6 +10,9 @@ foreach(test ${tests})
     ENVIRONMENT "T_BINDIR=${CMAKE_BINARY_DIR};T_NAME=${test_name};T_ID=${test_id}"
     LABELS      "auto;regression"
   )
+  if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${test_id}/CMakeLists.txt")
+    add_subdirectory(${test_id})
+  endif()
 endforeach(test)
 
 add_subdirectory(consensus)
