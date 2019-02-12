@@ -194,11 +194,21 @@ private:
     }
   }
   char parse_codepoint() {
+    if (!valid_code(m_It)) parse_error("invalid code number");
     std::string str(m_It, m_It+4);
     m_It += 4;
     int code;
     sscanf(str.c_str(), "%X", &code);
     return code;
+  }
+  // 4-digit hex code
+  bool valid_code(const char *str){
+    for (int i = 0; i < 4; i++) {
+      if ('0'<=str[i] && str[i]<='9') continue;
+      else if ('A'<=str[i] && str[i]<='F') continue;
+      else return false;
+    }
+    return true;
   }
   vector<char> parse_utf8(){
 
