@@ -47,16 +47,7 @@ template<typename K, typename V, typename H,
          template<class, class> class E, template<class> class A>
 HashTable<K, V, H, E, A>::~HashTable()
 {
-  if (empty())
-    return;
-
-  /** destruct all **/
-  for (unsigned int i=0; i < numOfBuckets(); ++i) {
-    if (EmptyBucket() != super::m_Buckets[i].entry &&
-        Tombstone() != super::m_Buckets[i].entry ) {
-      m_EntryAlloc.destroy(super::m_Buckets[i].entry);
-    }
-  }
+  clear();
 }
 
 // Copy assignment
@@ -105,7 +96,8 @@ void HashTable<K, V, H, E, A>::clear()
   for (unsigned int i=0; i < numOfBuckets(); ++i) {
     if (EmptyBucket() != super::m_Buckets[i].entry ) {
       if (Tombstone() != super::m_Buckets[i].entry ) {
-        m_EntryAlloc.destroy(super::m_Buckets[i].entry);
+        ((entry_type*)super::m_Buckets[i].entry)->~entry_type();
+        m_EntryAlloc.deallocate(super::m_Buckets[i].entry);
       }
       super::m_Buckets[i].entry = EmptyBucket();
     }
@@ -159,7 +151,8 @@ bool HashTable<K, V, H, E, A>::erase(const key_type& pKey)
     return false;
 
   bucket_type& bucket = super::m_Buckets[index];
-  m_EntryAlloc.destroy(bucket.entry);
+  ((entry_type*)bucket.entry)->~entry_type();
+  m_EntryAlloc.deallocate(bucket.entry);
   bucket.entry = Tombstone();
 
   --super::m_NumOfEntries;
