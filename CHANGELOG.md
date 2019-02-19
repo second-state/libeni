@@ -1,3 +1,10 @@
+### 1.3.6
+
+Bug fixes:
+  * adt: Dealllocate entries after destroyed.
+  * json: Check malformed unicode input.
+
+
 ### 1.3.5
 
 Bug fixes:
