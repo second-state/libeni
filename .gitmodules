@@ -1,0 +1,3 @@
+[submodule "examples/eni/json/jsmn"]
+	path = examples/eni/json/jsmn
+	url = https://github.com/zserge/jsmn
