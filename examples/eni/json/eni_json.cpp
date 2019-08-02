@@ -118,15 +118,13 @@ private:
         } else {
             return false;
         }
-        m_Str = pArgs[0].toString();
         return true;
     }
 
-    eni::Gas gas() const override { return 0; }
+    eni::Gas gas() const override { return m_Str.length() * 10; }
 
     bool run(json::Array& pRetVal) override {
-        std::string ret(m_Str.rbegin(), m_Str.rend());
-        pRetVal.emplace_back(ret);
+        pRetVal.emplace_back(m_Str);
         return true;
     }
 
