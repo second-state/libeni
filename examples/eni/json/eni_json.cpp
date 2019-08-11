@@ -83,6 +83,7 @@ std::map<std::string, jsmntok_t> objectTokens(const char* data, int start, int e
             key_token = i;
         } else {
             result[getkey()] = tokens[i];
+            key_token = 0;
         }
         after = tokens[i].end;
     }
