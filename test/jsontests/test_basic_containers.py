@@ -30,3 +30,12 @@ class BasicContainerTest(JSONTestCase):
             ['arrayGet', self.ARRAY_, 0, len(self.ARRAY_), 1],
             10, 17
         )
+
+
+class LongContainerTest(JSONTestCase):
+    def test_more_than_128(self):
+        array = '["%s"]' % ('g' * 128)
+        self.assertRange(
+            ['arrayGet', array, 0, len(array), 0],
+            1, len(array)-1
+        )
