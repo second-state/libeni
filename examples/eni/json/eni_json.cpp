@@ -25,13 +25,12 @@ std::vector<jsmntok_t> internalParse(const char* data, int start, int end) {
     return result;
 }
 std::string encodeToken(const jsmntok_t& tok) {
-    union {
-        char s[8];
-        uint32_t v[2];
-    };
-    v[0] = htobe32(tok.start - (tok.type == JSMN_STRING));
-    v[1] = htobe32(tok.end + (tok.type == JSMN_STRING));
-    return std::string(s, 8);
+    char buffer[16];
+    sprintf(buffer, "%08x%08x",
+        tok.start - (tok.type == JSMN_STRING),
+        tok.end + (tok.type == JSMN_STRING)
+    );
+    return std::string(buffer, 16);
 }
 std::vector<jsmntok_t> arrayTokens(const char* data, int start, int end) {
     auto tokens = internalParse(data, start, end);
