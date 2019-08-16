@@ -1,3 +1,10 @@
+#==- tests/jsontests/test_basic_data_types.py ----------------------------==#
+#
+# This file is part of the Lity project distributed under GPL-3.0.
+# See LICENSE for details.
+#
+#==-----------------------------------------------------------------------==#
+
 import json
 from . import JSONTestCase
 

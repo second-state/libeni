@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#==- t0008-json-parseString.sh -------------------------------------------==#
+#==- t0009-json-arratGet.sh ----------------------------------------------==#
 #
 # This file is part of the Lity project distributed under GPL-3.0.
 # See LICENSE for details.
