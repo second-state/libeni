@@ -1,3 +1,10 @@
+#==- tests/jsontests/test_nested_containers.py ---------------------------==#
+#
+# This file is part of the Lity project distributed under GPL-3.0.
+# See LICENSE for details.
+#
+#==-----------------------------------------------------------------------==#
+
 from . import JSONTestCase
 
 

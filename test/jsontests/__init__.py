@@ -1,3 +1,10 @@
+#==- tests/jsontests/__init__.py -----------------------------------------==#
+#
+# This file is part of the Lity project distributed under GPL-3.0.
+# See LICENSE for details.
+#
+#==-----------------------------------------------------------------------==#
+
 import unittest
 import os
 import json
