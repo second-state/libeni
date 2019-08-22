@@ -14,7 +14,7 @@ source ./testlib.sh
 
 libpath=$T_BINDIR/examples/eni/eni_json.so
 params='["arrayGet", "[\"Hello\", \"World!\"]", 0, 19, 0]'
-o_expect '["\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0008"]' eni_run "$libpath" json "$params"
+o_expect '["0000000100000008"]' eni_run "$libpath" json "$params"
 
 params='["arrayGet", "[\"Hello\", \"World!\"]", 0, 19, 1]'
-o_expect '["\u0000\u0000\u0000\u000A\u0000\u0000\u0000\u0012"]' eni_run "$libpath" json "$params"
+o_expect '["0000000a00000012"]' eni_run "$libpath" json "$params"
