@@ -4,6 +4,7 @@
   See LICENSE for details.
 
 ==------------------------------------------------------------------------==*/
+#include <map>
 #include <eni.h>
 #include <json/Parser.h>
 
