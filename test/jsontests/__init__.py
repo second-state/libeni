@@ -13,6 +13,7 @@ import subprocess
 
 def eni_xx(xx, libpath, name, input):
     o = subprocess.check_output([xx, libpath, name, json.dumps(input)])
+    o = o.decode('utf-8')
     return json.loads(o)
 
 
