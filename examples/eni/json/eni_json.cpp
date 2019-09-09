@@ -26,8 +26,8 @@ std::vector<jsmntok_t> internalParse(const char* data, int start, int end) {
     return result;
 }
 std::string encodeToken(const jsmntok_t& tok) {
-    char buffer[16];
-    sprintf(buffer, "%08x%08x",
+    char buffer[17];
+    snprintf(buffer, 17, "%08x%08x",
         tok.start - (tok.type == JSMN_STRING),
         tok.end + (tok.type == JSMN_STRING)
     );
