@@ -205,6 +205,7 @@ private:
   bool valid_code(const char *str){
     for (int i = 0; i < 4; i++) {
       if ('0'<=str[i] && str[i]<='9') continue;
+      else if ('a'<=str[i] && str[i]<='f') continue;
       else if ('A'<=str[i] && str[i]<='F') continue;
       else return false;
     }
