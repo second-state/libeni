@@ -11,7 +11,11 @@
 #include "jsmn/jsmn.h"
 
 namespace {
-std::string parseString(const std::string& raw) { return json::Parser(raw).getRoot().toString(); }
+std::string parseString(const std::string& raw) {
+    json::Parser parser(raw);
+    if (!parser) return "";
+    return parser.getRoot().toString();
+}
 std::vector<jsmntok_t> internalParse(const char* data, int start, int end) {
     jsmn_parser p;
     p.pos = start;

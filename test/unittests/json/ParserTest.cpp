@@ -48,3 +48,9 @@ SKYPAT_F(JsonParserTest, file_test)
   Value str = obj["escape"];
   EXPECT_EQ(str.toString(), "\"\\n\"\u0001\u000A");
 }
+
+SKYPAT_F(JsonParserTest, invalid_json_test)
+{
+  EXPECT_TRUE((bool)Parser("{}"));
+  EXPECT_FALSE((bool)Parser("{"));
+}
