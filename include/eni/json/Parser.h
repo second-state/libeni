@@ -30,6 +30,10 @@
 #include <string>
 #include <vector>
 
+namespace {
+class ParserError{};
+}
+
 namespace json {
 // the JSON parser for only JSON text in memory
 // read/write files is not supported yet
@@ -40,7 +44,17 @@ public:
   Parser(const std::string &pStr) {
     m_It = m_Start = &pStr[0];
     m_End = &pStr[0] + pStr.length();
-    parse_value();
+    try {
+      parse_value();
+    } catch (ParserError) {
+      m_ParseSucceed = false;
+      return;
+    }
+    m_ParseSucceed = true;
+  }
+
+  explicit operator bool() const {
+    return m_ParseSucceed;
   }
 
   void parse_value() {
@@ -130,7 +144,7 @@ public:
   bool parse_object() {
     skip_ws();
     if (!have('{')) return false;
-    
+
     m_CBacks.begin_object();
     skip_ws();
     if (have('}')) {// empty
@@ -267,7 +281,7 @@ private:
 
   void parse_error(const char* pErrMsg) {
     std::cerr << pErrMsg;
-    exit(87);
+    throw ParserError();
   }
 
   template<char C>
@@ -288,6 +302,7 @@ private:
   const char *m_It;// scanner iterator, this points to ASCII char instead of UTF-8 char
 
   Callbacks m_CBacks;
+  bool m_ParseSucceed;
 };
 
 }
