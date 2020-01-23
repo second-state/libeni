@@ -25,7 +25,7 @@ Test "eni_crypto.so" (`tools/eni_crypto`)
 `````````````````````````````````````````
 
 Get the JSON files for testing from the directory
-`test/t0004 <https://github.com/CyberMiles/libeni/tree/master/test/t0004>`_.
+`test/t0004 <https://github.com/second-state/libeni/tree/master/test/t0004>`_.
 
 .. code:: bash
 
