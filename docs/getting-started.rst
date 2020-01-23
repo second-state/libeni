@@ -2,10 +2,10 @@
 Getting Started
 ===============
 
-Download the Prebuilt libENI
+Download the Pre-built libENI
 ----------------------------
 
-See `libENI releases <https://github.com/CyberMiles/libeni/releases>`_
+See `libENI releases <https://github.com/second-state/libeni/releases>`_
 for the latest release.
 
 - `libeni-dev`: for ENI operation developers
@@ -26,23 +26,23 @@ Releases
 |         | `CentOS 7 <cd120_>`__      | `CentOS 7 <cu120_>`__      |
 +---------+----------------------------+----------------------------+
 
-.. _v1.3.6: https://github.com/CyberMiles/libeni/releases/tag/v1.3.6
-.. _ud136: https://github.com/CyberMiles/libeni/releases/download/v1.3.6/libeni-1.3.6-dev_ubuntu-16.04.tgz
-.. _uu136: https://github.com/CyberMiles/libeni/releases/download/v1.3.6/libeni-1.3.6_ubuntu-16.04.tgz
-.. _cd136: https://github.com/CyberMiles/libeni/releases/download/v1.3.6/libeni-1.3.6-dev_centos-7.tgz
-.. _cu136: https://github.com/CyberMiles/libeni/releases/download/v1.3.6/libeni-1.3.6_centos-7.tgz
+.. _v1.3.6: https://github.com/second-state/libeni/releases/tag/v1.3.6
+.. _ud136: https://github.com/second-state/libeni/releases/download/v1.3.6/libeni-1.3.6-dev_ubuntu-16.04.tgz
+.. _uu136: https://github.com/second-state/libeni/releases/download/v1.3.6/libeni-1.3.6_ubuntu-16.04.tgz
+.. _cd136: https://github.com/second-state/libeni/releases/download/v1.3.6/libeni-1.3.6-dev_centos-7.tgz
+.. _cu136: https://github.com/second-state/libeni/releases/download/v1.3.6/libeni-1.3.6_centos-7.tgz
 
-.. _v1.2.x: https://github.com/CyberMiles/libeni/releases/tag/v1.2.x
-.. _ud12x: https://github.com/CyberMiles/libeni/releases/download/v1.2.x/libeni-1.2.x-dev_ubuntu-16.04.tgz
-.. _uu12x: https://github.com/CyberMiles/libeni/releases/download/v1.2.x/libeni-1.2.x_ubuntu-16.04.tgz
-.. _cd12x: https://github.com/CyberMiles/libeni/releases/download/v1.2.x/libeni-1.2.x-dev_centos-7.tgz
-.. _cu12x: https://github.com/CyberMiles/libeni/releases/download/v1.2.x/libeni-1.2.x_centos-7.tgz
+.. _v1.2.x: https://github.com/second-state/libeni/releases/tag/v1.2.x
+.. _ud12x: https://github.com/second-state/libeni/releases/download/v1.2.x/libeni-1.2.x-dev_ubuntu-16.04.tgz
+.. _uu12x: https://github.com/second-state/libeni/releases/download/v1.2.x/libeni-1.2.x_ubuntu-16.04.tgz
+.. _cd12x: https://github.com/second-state/libeni/releases/download/v1.2.x/libeni-1.2.x-dev_centos-7.tgz
+.. _cu12x: https://github.com/second-state/libeni/releases/download/v1.2.x/libeni-1.2.x_centos-7.tgz
 
-.. _v1.2.0: https://github.com/CyberMiles/libeni/releases/tag/v1.2.0
-.. _ud120: https://github.com/CyberMiles/libeni/releases/download/v1.2.0/libeni-1.2.0-dev_ubuntu-16.04.tgz
-.. _uu120: https://github.com/CyberMiles/libeni/releases/download/v1.2.0/libeni-1.2.0_ubuntu-16.04.tgz
-.. _cd120: https://github.com/CyberMiles/libeni/releases/download/v1.2.0/libeni-1.2.0-dev_centos-7.tgz
-.. _cu120: https://github.com/CyberMiles/libeni/releases/download/v1.2.0/libeni-1.2.0_centos-7.tgz
+.. _v1.2.0: https://github.com/second-state/libeni/releases/tag/v1.2.0
+.. _ud120: https://github.com/second-state/libeni/releases/download/v1.2.0/libeni-1.2.0-dev_ubuntu-16.04.tgz
+.. _uu120: https://github.com/second-state/libeni/releases/download/v1.2.0/libeni-1.2.0_ubuntu-16.04.tgz
+.. _cd120: https://github.com/second-state/libeni/releases/download/v1.2.0/libeni-1.2.0-dev_centos-7.tgz
+.. _cu120: https://github.com/second-state/libeni/releases/download/v1.2.0/libeni-1.2.0_centos-7.tgz
 
 Prerequisites
 `````````````
@@ -100,7 +100,8 @@ Download Source Code
 
 .. code:: bash
 
-  git clone https://github.com/CyberMiles/libeni.git ${LIBENI_PATH}
+  git clone https://github.com/second-state/libeni.git ${LIBENI_PATH}
+  git submodule update --init --recursive
 
 Build with CMake
 ````````````````
